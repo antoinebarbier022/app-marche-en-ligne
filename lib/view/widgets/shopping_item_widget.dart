@@ -49,10 +49,12 @@ class ShoppingItem extends StatelessWidget {
                 ),
               ),
                 Container(
+                  
                 decoration: BoxDecoration(
                   color: color,
                   borderRadius: BorderRadius.circular(5),
                 ),
+                child: const Center(child: Text("+2", textAlign: TextAlign.center, style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold), )),
               ),
               ],
             ),

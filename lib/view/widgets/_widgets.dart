@@ -6,3 +6,4 @@ part 'sidebar_widget.dart';
 part 'product_item_widget.dart';
 part 'product_list_widget.dart';
 part 'shopping_item_widget.dart';
+part 'shopping_list_widget.dart';

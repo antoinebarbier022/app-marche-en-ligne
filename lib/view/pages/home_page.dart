@@ -44,8 +44,8 @@ class HomePage extends StatelessWidget {
                 indent: 20,
                 endIndent: 20,
               ),
-              ProductList(
-                title: "Popular",
+              ShoppingList(
+                title: "Shopping lists",
                 list: list_fruit,
               ),
               const Divider(
@@ -55,7 +55,7 @@ class HomePage extends StatelessWidget {
                 endIndent: 20,
               ),
               ProductList(
-                title: "Meat",
+                title: "Popular",
                 list: list_fruit,
               ),
               const Divider(
