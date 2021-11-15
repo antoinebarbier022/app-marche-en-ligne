@@ -66,27 +66,11 @@ class HomePage extends StatelessWidget {
                   itemBuilder: (context, index) {
                     final item = list[index];
 
-                    return Container(
-                        width: 100,
-                        padding: const EdgeInsets.all(10.0),
-                        //color: Colors.grey[200],
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            AspectRatio(
-                              aspectRatio: 1 / 1,
-                              child: Container(
-                                decoration: BoxDecoration(
-                                  color: Theme.of(context).primaryColor,
-                                  borderRadius: BorderRadius.circular(10),
-                                ),
-                              ),
-                            ),
-                            Text(item),
-                            const Text("Prix : 5\$"),
-                            const Text("par kg"),
-                          ],
-                        ));
+                    return ProductItem(
+                      title: list[index],
+                      price: 4.3,
+                      color: Colors.red
+                      );
                   },
                   separatorBuilder: (BuildContext context, int index) {
                     return const SizedBox(
