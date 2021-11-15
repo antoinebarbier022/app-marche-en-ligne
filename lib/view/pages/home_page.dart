@@ -9,6 +9,7 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: const AppBarCustom(title: 'Good Market',),
+      drawer: const SideBar(),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,

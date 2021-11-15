@@ -12,10 +12,6 @@ class AppBarCustom extends StatelessWidget implements PreferredSizeWidget {
   Widget build(BuildContext context) {
     return AppBar(
       centerTitle: true,
-      leading: IconButton(
-        onPressed: () {},
-        icon: const Icon(Icons.menu),
-      ),
       title: Text(title),
       actions: [
         IconButton(
