@@ -5,12 +5,12 @@ class ShoppingItem extends StatelessWidget {
     Key? key,
     required this.title,
     required this.color,
-    required this.list,
+    required this.nbItem,
   }) : super(key: key);
 
   final String title; // titre de la categorie
   final Color color;
-  var list = []; // list des item de la categorie
+  final int nbItem; // list des item de la categorie
 
   @override
   Widget build(BuildContext context) {
@@ -54,7 +54,7 @@ class ShoppingItem extends StatelessWidget {
                   color: color,
                   borderRadius: BorderRadius.circular(5),
                 ),
-                child: const Center(child: Text("+2", textAlign: TextAlign.center, style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold), )),
+                child: Center(child: Text("+$nbItem", textAlign: TextAlign.center, style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold), )),
               ),
               ],
             ),

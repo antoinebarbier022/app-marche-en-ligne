@@ -32,9 +32,9 @@ class ShoppingList extends StatelessWidget {
                   // Convert each item into a widget based on the type of item it is.
                   itemBuilder: (context, index) {
                     return ShoppingItem(
-                      title: list[index],
+                      title: list[index].title,
                       color: Colors.red,
-                      list: const ["tomate", "ketchup", "chips"]
+                      nbItem:list[index].nbItem, 
                       );
                   },
                   separatorBuilder: (BuildContext context, int index) {

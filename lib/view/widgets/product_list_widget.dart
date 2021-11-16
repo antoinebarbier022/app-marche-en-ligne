@@ -32,9 +32,9 @@ class ProductList extends StatelessWidget {
                   // Convert each item into a widget based on the type of item it is.
                   itemBuilder: (context, index) {
                     return ProductItem(
-                      title: list[index],
-                      price: 4.3,
-                      color: Colors.red
+                      title: list[index].title,
+                      price: list[index].price,
+                      color: list[index].color
                       );
                   },
                   separatorBuilder: (BuildContext context, int index) {
