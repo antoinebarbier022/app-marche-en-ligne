@@ -52,18 +52,29 @@ class DepartementDetailsPage extends StatelessWidget {
               shrinkWrap: true,
               itemCount: list_category.length,
               itemBuilder: (BuildContext context, int index) {
-                return Container(
-                    margin: const EdgeInsets.all(5),
-                    padding: const EdgeInsets.all(5),
-                    decoration: BoxDecoration(
-                      color: Colors.blue[200],
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    child: Center(
-                        child: Padding(
-                      padding: const EdgeInsets.only(left: 8, right: 8),
-                      child: Text(list_category[index]),
-                    )));
+                return InkWell(
+                  child: Container(
+                      margin: const EdgeInsets.all(5),
+                      padding: const EdgeInsets.all(5),
+                      decoration: BoxDecoration(
+                        color: Colors.blue[200],
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      child: Center(
+                          child: Padding(
+                        padding: const EdgeInsets.only(left: 8, right: 8),
+                        child: Text(list_category[index]),
+                      ))),
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      CupertinoPageRoute(
+                          builder: (context) => DepartementCategoryPage(
+                                title: list_category[index],
+                              )),
+                    );
+                  },
+                );
               },
             ),
           ),
