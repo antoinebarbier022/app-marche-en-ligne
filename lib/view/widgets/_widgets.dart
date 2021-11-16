@@ -10,3 +10,4 @@ part 'product_list_widget.dart';
 part 'shopping_item_widget.dart';
 part 'shopping_list_widget.dart';
 part 'cart_item_widget.dart';
+part 'departement_item_widget.dart';

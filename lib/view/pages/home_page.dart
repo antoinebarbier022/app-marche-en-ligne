@@ -47,14 +47,20 @@ class HomePage extends StatelessWidget {
             children: [
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children:  [
+                children: [
                   ElevatedButton(
                     child: const Text("Search Bar"),
                     onPressed: () => print("ok"),
                   ),
                   ElevatedButton(
                     child: const Text("Store Departement"),
-                    onPressed: () => print("ok"),
+                    onPressed: () => Navigator.push(
+                      context,
+                      CupertinoPageRoute(
+                          builder: (context) => StoreDepartementPage(
+                                title: "Store Departement",
+                              )),
+                    ),
                   ),
                 ],
               ),

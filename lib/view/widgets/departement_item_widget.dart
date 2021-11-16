@@ -1,15 +1,13 @@
 part of '_widgets.dart';
 
-class ProductItem extends StatelessWidget {
-  const ProductItem({
+class DepartementItem extends StatelessWidget {
+  const DepartementItem({
     Key? key,
     required this.title,
-    required this.price,
     required this.color,
   }) : super(key: key);
 
   final String title;
-  final double price;
   final Color? color;
 
   @override
@@ -31,7 +29,6 @@ class ProductItem extends StatelessWidget {
               ),
             ),
             Text(title),
-            Text("$price€/kg"),
           ],
         ));
   }
