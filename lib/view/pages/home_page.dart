@@ -32,9 +32,7 @@ class HomePage extends StatelessWidget {
     Shopping("Evening Shopping list", 4),
     Shopping("Weekend Shopping list", 6),
     Shopping("Favorite product", 9),
-   
   ];
-
 
   @override
   Widget build(BuildContext context) {
@@ -49,9 +47,15 @@ class HomePage extends StatelessWidget {
             children: [
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: const [
-                  Text("Search Bar"),
-                  Text("Store Departement"),
+                children:  [
+                  ElevatedButton(
+                    child: const Text("Search Bar"),
+                    onPressed: () => print("ok"),
+                  ),
+                  ElevatedButton(
+                    child: const Text("Store Departement"),
+                    onPressed: () => print("ok"),
+                  ),
                 ],
               ),
               const Divider(
