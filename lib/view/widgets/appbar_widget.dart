@@ -13,6 +13,7 @@ class AppBarCustom extends StatelessWidget implements PreferredSizeWidget {
     return AppBar(
       centerTitle: true,
       title: Text(title),
+      automaticallyImplyLeading:true,
       actions: [
         IconButton(
           onPressed: () {},

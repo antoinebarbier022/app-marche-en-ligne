@@ -1,4 +1,5 @@
 // Ici on place les imports des widgets
+import 'package:app_market_online/view/pages/_pages.dart';
 import 'package:flutter/material.dart';
 
 part 'appbar_widget.dart';
