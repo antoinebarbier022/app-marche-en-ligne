@@ -45,13 +45,13 @@ class HomePage extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              const Padding(
+                padding: EdgeInsets.all(10.0),
+                child: CupertinoSearchTextField(),
+              ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  ElevatedButton(
-                    child: const Text("Search Bar"),
-                    onPressed: () => print("ok"),
-                  ),
                   ElevatedButton(
                     child: const Text("Store Departement"),
                     onPressed: () => Navigator.push(

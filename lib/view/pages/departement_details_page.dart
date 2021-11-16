@@ -41,10 +41,10 @@ class DepartementDetailsPage extends StatelessWidget {
         body: SingleChildScrollView(
             child:
                 Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-          ElevatedButton(
-            child: const Text("Search Bar"),
-            onPressed: () => print("ok"),
-          ),
+          const Padding(
+                padding: EdgeInsets.all(10.0),
+                child: CupertinoSearchTextField(),
+              ),
           SizedBox(
             height: 40,
             child: ListView.builder(

@@ -31,8 +31,8 @@ class SideBar extends StatelessWidget {
                 text: "Shopping List",
                 icon: Icons.list,
                 context: context,
-                link: ShoppingCartPage(
-                  title: 'Shopping Cart',
+                link: ShoppingListsPage(
+                  title: 'Shopping Lists',
                 )),
             buildMenuItem(
                 text: "Recipes",
