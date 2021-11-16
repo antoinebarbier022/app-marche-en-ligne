@@ -10,3 +10,4 @@ part 'shopping_cart_page.dart';
 part 'store_departements_page.dart';
 part 'departement_details_page.dart';
 part 'departement_category_page.dart';
+part 'shopping_lists_page.dart';

@@ -18,7 +18,16 @@ class ShoppingList extends StatelessWidget {
           padding: const EdgeInsets.only(left: 20, right: 20),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [Text(title), const Icon(Icons.chevron_right)],
+            children: [Text(title), IconButton(
+                icon: const Icon(Icons.chevron_right),
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    CupertinoPageRoute(
+                        builder: (context) => ShoppingListsPage(title: "Shopping List",)),
+                  );
+                },
+              )],
           ),
         ),
         SizedBox(
