@@ -11,3 +11,4 @@ part 'store_departements_page.dart';
 part 'departement_details_page.dart';
 part 'departement_category_page.dart';
 part 'shopping_lists_page.dart';
+part 'shopping_list_details_page.dart';
