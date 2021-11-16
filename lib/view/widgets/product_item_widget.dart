@@ -15,10 +15,10 @@ class ProductItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
+      borderRadius: BorderRadius.circular(10),
       child: Container(
           width: 110,
           padding: const EdgeInsets.all(10.0),
-          //color: Colors.grey[200],
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
