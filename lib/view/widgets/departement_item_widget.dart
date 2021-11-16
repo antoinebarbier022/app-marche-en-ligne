@@ -17,22 +17,19 @@ class DepartementItem extends StatelessWidget {
       child: Container(
           width: 110,
           padding: const EdgeInsets.all(10.0),
-          //color: Colors.grey[200],
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
+          child: 
               AspectRatio(
                 aspectRatio: 1 / 1,
                 child: Container(
+                  padding: const EdgeInsets.all(10.0),
                   decoration: BoxDecoration(
                     color: color,
                     borderRadius: BorderRadius.circular(10),
                   ),
+                  child : Center(child: Text(title, textAlign: TextAlign.center,)),
                 ),
-              ),
-              Text(title),
-            ],
-          )),
+              ),        
+          ),
           onTap: () {
                 Navigator.push(
                   context,
