@@ -30,55 +30,61 @@ class ProductDetailPage extends StatelessWidget {
                 ),
               ),
             ),
+            const SizedBox(
+              height: 10,
+            ),
             const Text("Product X"),
             const Text("Price €"),
             const Text("per lb"),
-
+            const SizedBox(
+              height: 40,
+            ),
             DefaultTabController(
-            length: 4, // length of tabs
-            initialIndex: 0,
-            child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: <Widget>[
-              const TabBar(
-                labelColor: Colors.blue,
-                unselectedLabelColor: Colors.black,
-                tabs: [
-                  Tab(text: 'Tab 1'),
-                  Tab(text: 'Tab 2'),
-                  Tab(text: 'Tab 3'),
-                  Tab(text: 'Tab 4'),
-                ],
-              ),
-              Container(
-                height: 400, //height of TabBarView
-                decoration: const BoxDecoration(
-                  border: Border(top: BorderSide(color: Colors.grey, width: 0.5))
-                ),
-                child: TabBarView(children: <Widget>[
-                  Container(
-                    child: const Center(
-                      child: Text('Display Tab 1', style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold)),
-                    ),
-                  ),
-                  Container(
-                    child: const Center(
-                      child: Text('Display Tab 2', style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold)),
-                    ),
-                  ),
-                  Container(
-                    child: const Center(
-                      child: Text('Display Tab 3', style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold)),
-                    ),
-                  ),
-                  Container(
-                    child: const Center(
-                      child: Text('Display Tab 4', style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold)),
-                    ),
-                  ),
-                ])
-              )
-            ])
-          ),
-            ],
+                length: 3, // length of tabs
+                initialIndex: 0,
+                child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: <Widget>[
+                      const TabBar(
+                        labelColor: Colors.blue,
+                        unselectedLabelColor: Colors.black,
+                        tabs: [
+                          Tab(text: 'Details'),
+                          Tab(text: 'Nutrition'),
+                          Tab(text: 'Related'),
+                        ],
+                      ),
+                      Container(
+                          height: 300, //height of TabBarView
+                          decoration: const BoxDecoration(
+                              border: Border(
+                                  top: BorderSide(
+                                      color: Colors.grey, width: 0.5))),
+                          child: TabBarView(children: <Widget>[
+                            Container(
+                              padding: const EdgeInsets.all(20),
+                              child:  const Text('Lorem ipsum dolor sit amet, consectetur adipiscing elit. In vel ligula non dolor volutpat dignissim. Ut vel tempor velit, quis vestibulum ante. Fusce eleifend tempus imperdiet. Mauris consequat interdum iaculis. Maecenas at hendrerit est, id pulvinar mauris. Nullam vel malesuada arcu. Aliquam sit amet nunc ac risus blandit elementum. Interdum et malesuada fames ac ante ipsum primis in faucibus. Etiam molestie massa lacus, ac lacinia odio ultricies id. Suspendisse vel augue nec libero condimentum commodo et a purus. Etiam massa odio, eleifend in imperdiet nec, posuere eget arcu. Nulla sollicitudin massa et nulla eleifend ullamcorper.'),
+              
+                            ),
+                            Container(
+                              child: const Center(
+                                child: Text('Display Tab 2',
+                                    style: TextStyle(
+                                        fontSize: 22,
+                                        fontWeight: FontWeight.bold)),
+                              ),
+                            ),
+                            Container(
+                              child: const Center(
+                                child: Text('Display Tab 3',
+                                    style: TextStyle(
+                                        fontSize: 22,
+                                        fontWeight: FontWeight.bold)),
+                              ),
+                            ),
+                          ]))
+                    ])),
+          ],
         ))));
   }
 }
