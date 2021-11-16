@@ -31,21 +31,10 @@ class ProductList extends StatelessWidget {
             // Provide a builder function. This is where the magic happens.
             // Convert each item into a widget based on the type of item it is.
             itemBuilder: (context, index) {
-              return InkWell(
-                child: ProductItem(
+              return ProductItem(
                     title: list[index].title,
                     price: list[index].price,
-                    color: list[index].color),
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => const ProductDetailPage(
-                              title: '',
-                            )),
-                  );
-                },
-              );
+                    color: list[index].color);
             },
             separatorBuilder: (BuildContext context, int index) {
               return const SizedBox(

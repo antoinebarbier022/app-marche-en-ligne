@@ -14,25 +14,36 @@ class ProductItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-        width: 110,
-        padding: const EdgeInsets.all(10.0),
-        //color: Colors.grey[200],
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            AspectRatio(
-              aspectRatio: 1 / 1,
-              child: Container(
-                decoration: BoxDecoration(
-                  color: color,
-                  borderRadius: BorderRadius.circular(10),
+    return InkWell(
+      child: Container(
+          width: 110,
+          padding: const EdgeInsets.all(10.0),
+          //color: Colors.grey[200],
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              AspectRatio(
+                aspectRatio: 1 / 1,
+                child: Container(
+                  decoration: BoxDecoration(
+                    color: color,
+                    borderRadius: BorderRadius.circular(10),
+                  ),
                 ),
               ),
-            ),
-            Text(title),
-            Text("$price€/kg"),
-          ],
-        ));
+              Text(title),
+              Text("$price€/kg"),
+            ],
+          )),
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (context) => const ProductDetailPage(
+                    title: '',
+                  )),
+        );
+      },
+    );
   }
 }
