@@ -33,8 +33,9 @@ class ProductDetailPage extends StatelessWidget {
             const SizedBox(
               height: 10,
             ),
-            const Text("Product X"),
-            const Text("Price €"),
+            const Text("Product X", style: TextStyle(fontSize: 18)),
+            const Text("Price €",
+                style: TextStyle(fontWeight: FontWeight.bold)),
             const Text("per lb"),
             const SizedBox(
               height: 40,
@@ -63,8 +64,8 @@ class ProductDetailPage extends StatelessWidget {
                           child: TabBarView(children: <Widget>[
                             Container(
                               padding: const EdgeInsets.all(20),
-                              child:  const Text('Lorem ipsum dolor sit amet, consectetur adipiscing elit. In vel ligula non dolor volutpat dignissim. Ut vel tempor velit, quis vestibulum ante. Fusce eleifend tempus imperdiet. Mauris consequat interdum iaculis. Maecenas at hendrerit est, id pulvinar mauris. Nullam vel malesuada arcu. Aliquam sit amet nunc ac risus blandit elementum. Interdum et malesuada fames ac ante ipsum primis in faucibus. Etiam molestie massa lacus, ac lacinia odio ultricies id. Suspendisse vel augue nec libero condimentum commodo et a purus. Etiam massa odio, eleifend in imperdiet nec, posuere eget arcu. Nulla sollicitudin massa et nulla eleifend ullamcorper.'),
-              
+                              child: const Text(
+                                  'Lorem ipsum dolor sit amet, consectetur adipiscing elit. In vel ligula non dolor volutpat dignissim. Ut vel tempor velit, quis vestibulum ante. Fusce eleifend tempus imperdiet. Mauris consequat interdum iaculis. Maecenas at hendrerit est, id pulvinar mauris. Nullam vel malesuada arcu. Aliquam sit amet nunc ac risus blandit elementum. Interdum et malesuada fames ac ante ipsum primis in faucibus. Etiam molestie massa lacus, ac lacinia odio ultricies id. Suspendisse vel augue nec libero condimentum commodo et a purus. Etiam massa odio, eleifend in imperdiet nec, posuere eget arcu. Nulla sollicitudin massa et nulla eleifend ullamcorper.'),
                             ),
                             Container(
                               child: const Center(
@@ -85,6 +86,37 @@ class ProductDetailPage extends StatelessWidget {
                           ]))
                     ])),
           ],
-        ))));
+        ))),
+        bottomSheet: Container(
+            width: double.infinity,
+            height: 50,
+            color: Colors.grey[200],
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                Row(
+                  children: [
+                    ElevatedButton(
+                      child: const Icon(Icons.remove),
+                      onPressed: () => null,
+                    ),
+                    const Padding(
+                      padding: EdgeInsets.all(10.0),
+                      child: Text("1",style: TextStyle(
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.bold)),
+                    ),
+                    ElevatedButton(
+                      child: const Icon(Icons.add),
+                      onPressed: () => null,
+                    ),
+                  ],
+                ),
+                ElevatedButton(
+                  child: const Text("Add to cart"),
+                  onPressed: () => null,
+                )
+              ],
+            )));
   }
 }
