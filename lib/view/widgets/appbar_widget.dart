@@ -16,7 +16,15 @@ class AppBarCustom extends StatelessWidget implements PreferredSizeWidget {
       automaticallyImplyLeading:true,
       actions: [
         IconButton(
-          onPressed: () {},
+          onPressed: () {
+            Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => ShoppingCartPage(
+                              title: '',
+                            )),
+                  );
+          },
           icon: const Icon(Icons.shopping_cart_outlined),
         )
       ],

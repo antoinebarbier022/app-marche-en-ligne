@@ -8,8 +8,10 @@ class ProductDetailPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: const AppBarCustom(
-          title: 'Product détail',
+        appBar: AppBar(
+          centerTitle: true,
+          title: const Text("Product Detail"),
+          automaticallyImplyLeading: true,
         ),
         body: SingleChildScrollView(
             child: Center(
@@ -103,7 +105,7 @@ class ProductDetailPage extends StatelessWidget {
                     const Padding(
                       padding: EdgeInsets.all(10.0),
                       child: Text("1",style: TextStyle(
-                                        fontSize: 16,
+                                        fontSize: 22,
                                         fontWeight: FontWeight.bold)),
                     ),
                     ElevatedButton(
