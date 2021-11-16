@@ -45,9 +45,9 @@ class StoreDepartementPage extends StatelessWidget {
           itemCount: list.length,
           padding: const EdgeInsets.all(10),
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 3, 
+              crossAxisCount: 3,
               childAspectRatio: 0.85,
-              crossAxisSpacing: 4.0, 
+              crossAxisSpacing: 4.0,
               mainAxisSpacing: 4.0),
           itemBuilder: (BuildContext context, int index) {
             return DepartementItem(
