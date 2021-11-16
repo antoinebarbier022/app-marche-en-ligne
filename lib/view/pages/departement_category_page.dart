@@ -15,10 +15,8 @@ class DepartementCategoryPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          centerTitle: true,
-          title: Text(title),
-          automaticallyImplyLeading: true,
+        appBar: AppBarCustom(
+          title: title,
         ),
         body: GridView.builder(
           itemCount: list.length,
