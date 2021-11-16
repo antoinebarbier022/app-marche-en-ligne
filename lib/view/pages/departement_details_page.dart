@@ -93,6 +93,7 @@ class DepartementDetailsPage extends StatelessWidget {
                 return ProductList(
                   title: "Category",
                   list: list[index],
+                  link: DepartementCategoryPage(title: 'Category',)
                 );
               },
               separatorBuilder: (BuildContext context, int index) {

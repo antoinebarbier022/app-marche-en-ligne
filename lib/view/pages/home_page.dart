@@ -83,6 +83,7 @@ class HomePage extends StatelessWidget {
               ProductList(
                 title: "Popular",
                 list: list_fruit,
+                link: DepartementCategoryPage(title: 'Popular',)
               ),
               const Divider(
                 height: 20,
@@ -93,6 +94,8 @@ class HomePage extends StatelessWidget {
               ProductList(
                 title: "Fruits",
                 list: list_fruit,
+                link: DepartementCategoryPage(title: 'Fruits',)
+
               ),
               const Divider(
                 height: 20,

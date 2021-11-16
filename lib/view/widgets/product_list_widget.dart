@@ -4,10 +4,12 @@ class ProductList extends StatelessWidget {
   ProductList({
     Key? key,
     required this.title,
-    required this.list,
+    required this.list, 
+    required this.link,
   }) : super(key: key);
 
   final String title;
+  final Widget link;
   var list = [];
 
   @override
@@ -18,7 +20,19 @@ class ProductList extends StatelessWidget {
           padding: const EdgeInsets.only(left: 20, right: 20),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [Text(title), const Icon(Icons.chevron_right)],
+            children: [
+              Text(title),
+              IconButton(
+                icon: const Icon(Icons.chevron_right),
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    CupertinoPageRoute(
+                        builder: (context) => link),
+                  );
+                },
+              )
+            ],
           ),
         ),
         SizedBox(
@@ -32,9 +46,9 @@ class ProductList extends StatelessWidget {
             // Convert each item into a widget based on the type of item it is.
             itemBuilder: (context, index) {
               return ProductItem(
-                    title: list[index].title,
-                    price: list[index].price,
-                    color: list[index].color);
+                  title: list[index].title,
+                  price: list[index].price,
+                  color: list[index].color);
             },
             separatorBuilder: (BuildContext context, int index) {
               return const SizedBox(
