@@ -3,9 +3,13 @@ import 'package:flutter/material.dart';
 
 import 'view/pages/_pages.dart';
 
-void main() async {
+/*void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
+  runApp(const MyApp());
+}*/
+
+void main() {
   runApp(const MyApp());
 }
 
