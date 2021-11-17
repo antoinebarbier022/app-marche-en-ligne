@@ -53,12 +53,12 @@ class HomePage extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   ElevatedButton(
-                    child: const Text("Store Departement"),
+                    child: const Text("Store Departements"),
                     onPressed: () => Navigator.push(
                       context,
                       CupertinoPageRoute(
                           builder: (context) => StoreDepartementPage(
-                                title: "Store Departement",
+                                title: "Store Departements",
                               )),
                     ),
                   ),
