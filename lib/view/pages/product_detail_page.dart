@@ -26,7 +26,7 @@ class ProductDetailPage extends StatelessWidget {
                 aspectRatio: 1 / 1,
                 child: Container(
                   decoration: BoxDecoration(
-                    color: Colors.blue[200],
+                    color: Theme.of(context).primaryColorLight,
                     borderRadius: BorderRadius.circular(10),
                   ),
                 ),
@@ -48,10 +48,10 @@ class ProductDetailPage extends StatelessWidget {
                 child: Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: <Widget>[
-                      const TabBar(
-                        labelColor: Colors.blue,
+                      TabBar(
+                        labelColor: Theme.of(context).primaryColor,
                         unselectedLabelColor: Colors.black,
-                        tabs: [
+                        tabs: const [
                           Tab(text: 'Details'),
                           Tab(text: 'Nutrition'),
                           Tab(text: 'Related'),

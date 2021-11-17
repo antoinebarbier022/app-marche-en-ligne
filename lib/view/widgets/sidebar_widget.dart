@@ -11,7 +11,7 @@ class SideBar extends StatelessWidget {
       width:250,
       child: Drawer(
         child: Material(
-          color: Theme.of(context).primaryColor,
+          color: Theme.of(context).primaryColorDark,
           child: ListView(
             padding: const EdgeInsets.only(top: 70.0),
             children: ListTile.divideTiles(context: context, tiles: [

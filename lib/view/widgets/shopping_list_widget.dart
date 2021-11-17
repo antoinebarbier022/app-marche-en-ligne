@@ -42,7 +42,7 @@ class ShoppingList extends StatelessWidget {
                   itemBuilder: (context, index) {
                     return ShoppingItem(
                       title: list[index].title,
-                      color: Colors.red,
+                      color: Theme.of(context).primaryColorLight,
                       nbItem:list[index].nbItem, 
                       );
                   },

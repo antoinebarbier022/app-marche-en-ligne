@@ -22,7 +22,8 @@ class MyApp extends StatelessWidget {
       title: 'Online Market',
       debugShowCheckedModeBanner: true,
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.green,
+        //scaffoldBackgroundColor: Colors.grey[50]
       ),
       home: HomePage(title: 'Online Market'),
     );
