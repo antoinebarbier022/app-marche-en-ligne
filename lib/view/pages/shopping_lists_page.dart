@@ -37,7 +37,11 @@ class ShoppingListsPage extends StatelessWidget {
                   
                   icon: const Icon(Icons.add),
                   label: const Text("Add new Shopping list"),
-                  onPressed: () => print("ok"),
+                  onPressed: () => showDialog<String>(
+                      context: context,
+                      builder: (BuildContext context) =>
+                          const ModalAddNewShoppingList(),
+                    ),
                 ),
               ),
               SizedBox(
