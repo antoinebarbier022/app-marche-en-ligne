@@ -26,6 +26,14 @@ class DepartementItem extends StatelessWidget {
             decoration: BoxDecoration(
               color: color,
               borderRadius: BorderRadius.circular(10),
+              boxShadow: [
+                        BoxShadow(
+                          color: Colors.grey.withOpacity(0.1),
+                          spreadRadius: 1,
+                          blurRadius: 8,
+                          offset: const Offset(5, 10), // changes position of shadow
+                        ),
+                      ],
             ),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
