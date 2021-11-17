@@ -32,7 +32,7 @@ class DepartementItem extends StatelessWidget {
               children: [
                 Image.asset(
                   'assets/$image.png',
-                  width: 70,
+                  width: 60,
                   fit: BoxFit.scaleDown,
                 ),
                 Center(
