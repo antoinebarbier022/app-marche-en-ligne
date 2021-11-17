@@ -14,16 +14,17 @@ class StoreDepartementPage extends StatelessWidget {
   final String title;
 
   var list = [
-    Departement("Popular", Colors.blue[100], "star"),
+    Departement("Popular", Colors.brown[50], "star"),
     Departement("Meat", Colors.red[100], "meat"),
     Departement("Fruits", Colors.green[100], "fruits"),
     Departement("Grains & Pasta", Colors.orange[100], "grains"),
     Departement("Vegetables", Colors.green[100], "vegetables"),
     Departement("Cheese", Colors.blue[100], "cheese"),
     Departement("Bakery & Pastry", Colors.yellow[100], "bakery"),
-    Departement("Seafood", Colors.blue[100], "fish"),
+    Departement("Seafood", Colors.blueGrey[50], "fish"),
     Departement("Dairy & Eggs", Colors.purple[50], "dairy"),
-    Departement("Beverages", Colors.pink[50], "beverages"),
+    Departement("Nuts & Seeds", Colors.brown[50], "nuts"),
+    Departement("Beverages", Colors.green[100], "beverages"),
     Departement("Japan food", Colors.orange[100], "sushi"),
   ];
 
