@@ -58,7 +58,7 @@ class DepartementDetailsPage extends StatelessWidget {
                       margin: const EdgeInsets.all(5),
                       padding: const EdgeInsets.all(5),
                       decoration: BoxDecoration(
-                        color: Colors.blue[200],
+                        color: Theme.of(context).primaryColorLight,
                         borderRadius: BorderRadius.circular(10),
                       ),
                       child: Center(
