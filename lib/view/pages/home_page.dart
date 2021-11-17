@@ -81,10 +81,11 @@ class HomePage extends StatelessWidget {
                 endIndent: 20,
               ),
               ProductList(
-                title: "Popular",
-                list: list_fruit,
-                link: DepartementCategoryPage(title: 'Popular',)
-              ),
+                  title: "Popular",
+                  list: list_fruit,
+                  link: DepartementCategoryPage(
+                    title: 'Popular',
+                  )),
               const Divider(
                 height: 20,
                 thickness: 1,
@@ -92,11 +93,11 @@ class HomePage extends StatelessWidget {
                 endIndent: 20,
               ),
               ProductList(
-                title: "Fruits",
-                list: list_fruit,
-                link: DepartementCategoryPage(title: 'Fruits',)
-
-              ),
+                  title: "Fruits",
+                  list: list_fruit,
+                  link: DepartementCategoryPage(
+                    title: 'Fruits',
+                  )),
               const Divider(
                 height: 20,
                 thickness: 1,
@@ -109,32 +110,6 @@ class HomePage extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: const [Text("Popular"), Icon(Icons.chevron_right)],
                 ),
-              ),
-              GridView(
-                shrinkWrap: true,
-                physics: const BouncingScrollPhysics(),
-                children: [
-                  Container(color: Colors.red),
-                  Container(color: Colors.yellow),
-                  Container(color: Colors.blue),
-                  Container(color: Colors.green),
-                  Container(color: Colors.red),
-                  Container(color: Colors.yellow),
-                  Container(color: Colors.blue),
-                  Container(color: Colors.green),
-                  Container(color: Colors.red),
-                  Container(color: Colors.yellow),
-                  Container(color: Colors.blue),
-                  Container(color: Colors.green),
-                  Container(color: Colors.red),
-                  Container(color: Colors.yellow),
-                  Container(color: Colors.blue),
-                  Container(color: Colors.green)
-                ],
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 3,
-                    childAspectRatio: 0.5,
-                    crossAxisSpacing: 10),
               ),
             ],
           ),

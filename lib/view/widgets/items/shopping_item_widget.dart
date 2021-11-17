@@ -60,7 +60,7 @@ class ShoppingItem extends StatelessWidget {
                 ),
                 ],
               ),
-              SizedBox(
+              const SizedBox(
                 height:5,
               ),
               Text(title),
