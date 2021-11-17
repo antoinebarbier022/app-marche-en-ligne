@@ -1,4 +1,4 @@
-part of '_widgets.dart';
+part of '../_widgets.dart';
 
 class CartItem extends StatelessWidget {
   const CartItem({
