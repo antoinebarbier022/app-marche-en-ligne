@@ -15,3 +15,7 @@ part 'items/departement_item_widget.dart';
 
 // lists
 part 'list_widget.dart';
+
+// dialogs
+part 'dialogs/dialog_add_new_shopping_list_widget.dart';
+part 'dialogs/dialog_save_to_shopping_list_widget.dart';
