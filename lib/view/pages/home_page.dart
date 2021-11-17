@@ -1,11 +1,11 @@
 part of '_pages.dart';
 
 class Product {
-  String title;
+  String name;
   double price;
   Color? color;
 
-  Product(this.title, this.price, this.color);
+  Product(this.name, this.price, this.color);
 }
 
 class Shopping {
@@ -70,31 +70,37 @@ class HomePage extends StatelessWidget {
                 indent: 0,
                 endIndent: 0,
               ),
-              ShoppingList(
-                title: "Shopping lists",
-                list: list_shopping,
-              ),
+              CollectionList(
+                  id: '', 
+                  title: "Shopping List",
+                  listShoppingList: list_shopping,
+                  link: ShoppingListsPage(
+                    title: 'Shopping lists',
+                  ), ),
+              
               const Divider(
                 height: 20,
                 thickness: 1,
                 indent: 0,
                 endIndent: 0,
               ),
-              ProductList(
+              CollectionList(
+                  id: '', 
                   title: "Popular",
-                  list: list_fruit,
+                  listProduct: list_fruit,
                   link: DepartementCategoryPage(
                     title: 'Popular',
-                  )),
+                  ), ),
               const Divider(
                 height: 20,
                 thickness: 1,
                 indent: 0,
                 endIndent: 0,
               ),
-              ProductList(
+              CollectionList(
+                  id:'',
                   title: "Fruits",
-                  list: list_fruit,
+                  listProduct: list_fruit,
                   link: DepartementCategoryPage(
                     title: 'Fruits',
                   )),

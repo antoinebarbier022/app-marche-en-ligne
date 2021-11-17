@@ -14,5 +14,4 @@ part 'items/cart_item_widget.dart';
 part 'items/departement_item_widget.dart';
 
 // lists
-part 'product_list_widget.dart';
-part 'shopping_list_widget.dart';
+part 'list_widget.dart';

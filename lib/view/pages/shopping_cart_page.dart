@@ -26,7 +26,7 @@ class ShoppingCartPage extends StatelessWidget {
           itemCount: list.length,
           itemBuilder: (context, index) {
             return CartItem(
-              title: list[index].title,
+              title: list[index].name,
               price: list[index].price,
             );
           },

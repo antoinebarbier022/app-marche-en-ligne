@@ -39,9 +39,11 @@ class ShoppingListsPage extends StatelessWidget {
                   shrinkWrap: true,
                   itemCount: list.length,
                   itemBuilder: (BuildContext context, int index) {
-                    return ProductList(
+                    return CollectionList(
+                        id:'',
+                        isShopingList: true,
                         title: "Category",
-                        list: list[index],
+                        listProduct: list[index],
                         link: DepartementCategoryPage(
                           title: 'Category',
                         ));
