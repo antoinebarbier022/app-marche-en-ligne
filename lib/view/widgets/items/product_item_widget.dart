@@ -46,8 +46,16 @@ class ProductItem extends StatelessWidget {
                   aspectRatio: 1 / 1,
                   child: Container(
                     decoration: BoxDecoration(
-                      color: color,
+                      color: Theme.of(context).cardColor,
                       borderRadius: BorderRadius.circular(10),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.grey.withOpacity(0.1),
+                          spreadRadius: 1,
+                          blurRadius: 8,
+                          offset: const Offset(5, 10), // changes position of shadow
+                        ),
+                      ],
                     ),
                   ),
                 ),
@@ -55,7 +63,10 @@ class ProductItem extends StatelessWidget {
                   height: 5,
                 ),
                 Text(title),
-                Text("$price€/kg" , style: TextStyle(color: Colors.grey[600]),),
+                Text(
+                  "$price€/kg",
+                  style: TextStyle(color: Colors.grey[600]),
+                ),
               ],
             )),
         onTap: () {
