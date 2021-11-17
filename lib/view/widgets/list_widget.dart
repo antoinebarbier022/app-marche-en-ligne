@@ -48,7 +48,9 @@ class CollectionList extends StatelessWidget {
                             
                     constraints: const BoxConstraints(),
                             color: Colors.white,
-                            onPressed: () {},
+                            onPressed: () {
+                              ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Vous avez ajouté la liste "$title" dans votre panier.')));
+                            },
                           ),
                         ),
                         
