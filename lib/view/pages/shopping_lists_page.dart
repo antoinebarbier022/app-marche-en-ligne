@@ -30,9 +30,15 @@ class ShoppingListsPage extends StatelessWidget {
             child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-              ElevatedButton(
-                child: const Text("+ New List"),
-                onPressed: () => print("ok"),
+              Container(
+                width:double.infinity,
+                padding: const EdgeInsets.all(10),
+                child: TextButton.icon(
+                  
+                  icon: const Icon(Icons.add),
+                  label: const Text("Add new Shopping list"),
+                  onPressed: () => print("ok"),
+                ),
               ),
               SizedBox(
                 child: ListView.separated(
@@ -40,7 +46,7 @@ class ShoppingListsPage extends StatelessWidget {
                   itemCount: list.length,
                   itemBuilder: (BuildContext context, int index) {
                     return CollectionList(
-                        id:'',
+                        id: '',
                         isShopingList: true,
                         title: "Category",
                         listProduct: list[index],
