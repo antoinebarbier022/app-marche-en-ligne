@@ -17,11 +17,11 @@ class ProductList extends StatelessWidget {
     return Column(
       children: [
         Container(
-          padding: const EdgeInsets.only(left: 20, right: 20),
+          padding: const EdgeInsets.only(left: 10, right: 10),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(title),
+              Text(title, style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
               IconButton(
                 icon: const Icon(Icons.chevron_right),
                 onPressed: () {
