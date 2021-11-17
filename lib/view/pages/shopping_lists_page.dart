@@ -54,7 +54,7 @@ class ShoppingListsPage extends StatelessWidget {
                         isShopingList: true,
                         title: "Category",
                         listProduct: list[index],
-                        link: DepartementCategoryPage(
+                        link: ShoppingListDetailsPage(
                           title: 'Category',
                         ));
                   },
