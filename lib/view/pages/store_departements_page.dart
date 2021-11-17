@@ -2,9 +2,10 @@ part of '_pages.dart';
 
 class Departement {
   String title;
+  String image;
   Color? color;
 
-  Departement(this.title, this.color);
+  Departement(this.title, this.color, this.image);
 }
 
 class StoreDepartementPage extends StatelessWidget {
@@ -13,24 +14,17 @@ class StoreDepartementPage extends StatelessWidget {
   final String title;
 
   var list = [
-    Departement("Popular", Colors.blue[100]),
-    Departement("Meat", Colors.yellow[200]),
-    Departement("Seafood", Colors.red[200]),
-    Departement("Fruits", Colors.purple[100]),
-    Departement("Vegetables", Colors.orange[200]),
-    Departement("Beverages", Colors.blue[200]),
-    Departement("Bakery & Pastry", Colors.yellow[200]),
-    Departement("Dairy & Eggs", Colors.red[200]),
-    Departement("Grains & Pasta", Colors.purple[100]),
-    Departement("Popular", Colors.green[100]),
-    Departement("Meat", Colors.yellow[200]),
-    Departement("Seafood", Colors.red[200]),
-    Departement("Fruits", Colors.yellow[200]),
-    Departement("Vegetables", Colors.orange[200]),
-    Departement("Beverages", Colors.yellow[200]),
-    Departement("Bakery & Pastry", Colors.orange[200]),
-    Departement("Dairy & Eggs", Colors.orange[200]),
-    Departement("Grains & Pasta", Colors.orange[200])
+    Departement("Popular", Colors.blue[100], "bakery"),
+    Departement("Meat", Colors.red[100], "meat"),
+    Departement("Fruits", Colors.green[100], "fruits"),
+    Departement("Grains & Pasta", Colors.orange[100], "grains"),
+    Departement("Vegetables", Colors.green[100], "vegetables"),
+    Departement("Cheese", Colors.blue[100], "cheese"),
+    Departement("Bakery & Pastry", Colors.yellow[100], "bakery"),
+    Departement("Seafood", Colors.blue[100], "fish"),
+    Departement("Dairy & Eggs", Colors.purple[50], "dairy"),
+    Departement("Beverages", Colors.pink[50], "beverages"),
+    Departement("Japan food", Colors.orange[100], "sushi"),
   ];
 
   @override
@@ -52,7 +46,8 @@ class StoreDepartementPage extends StatelessWidget {
           itemBuilder: (BuildContext context, int index) {
             return DepartementItem(
                     title: list[index].title,
-                    color: list[index].color);
+                    color: list[index].color,
+                    image: list[index].image);
           },
         ));
   }

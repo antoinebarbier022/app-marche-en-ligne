@@ -67,8 +67,8 @@ class HomePage extends StatelessWidget {
               const Divider(
                 height: 20,
                 thickness: 1,
-                indent: 20,
-                endIndent: 20,
+                indent: 0,
+                endIndent: 0,
               ),
               ShoppingList(
                 title: "Shopping lists",
@@ -77,8 +77,8 @@ class HomePage extends StatelessWidget {
               const Divider(
                 height: 20,
                 thickness: 1,
-                indent: 20,
-                endIndent: 20,
+                indent: 0,
+                endIndent: 0,
               ),
               ProductList(
                   title: "Popular",
@@ -89,8 +89,8 @@ class HomePage extends StatelessWidget {
               const Divider(
                 height: 20,
                 thickness: 1,
-                indent: 20,
-                endIndent: 20,
+                indent: 0,
+                endIndent: 0,
               ),
               ProductList(
                   title: "Fruits",
@@ -98,19 +98,6 @@ class HomePage extends StatelessWidget {
                   link: DepartementCategoryPage(
                     title: 'Fruits',
                   )),
-              const Divider(
-                height: 20,
-                thickness: 1,
-                indent: 20,
-                endIndent: 20,
-              ),
-              Container(
-                padding: const EdgeInsets.only(left: 20, right: 20),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: const [Text("Popular"), Icon(Icons.chevron_right)],
-                ),
-              ),
             ],
           ),
         ));
