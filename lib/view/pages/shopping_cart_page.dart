@@ -22,7 +22,7 @@ class ShoppingCartPage extends StatelessWidget {
           automaticallyImplyLeading: true,
         ),
         body: ListView.separated(
-          padding: const EdgeInsets.only(bottom: 50),
+          padding: const EdgeInsets.only(bottom: 70),
           itemCount: list.length,
           itemBuilder: (context, index) {
             return CartItem(
@@ -41,11 +41,24 @@ class ShoppingCartPage extends StatelessWidget {
         ),
         bottomSheet: Container(
             width: double.infinity,
-            height: 50,
+            height: 70,
             color: Colors.grey[200],
-            child: ElevatedButton(
-              child: const Text("Checkout"),
-              onPressed: () => null,
+            child: Padding(
+              padding: const EdgeInsets.all(15.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                Column(
+                  children: const [Text("Total price"), Text("32€")],
+                ),
+                SizedBox(
+                  width: 250,
+                  child: ElevatedButton(
+                    child: const Text("Checkout"),
+                    onPressed: () => null,
+                  ),
+                ),
+              ]),
             )));
   }
 }
