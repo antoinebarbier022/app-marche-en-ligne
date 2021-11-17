@@ -51,8 +51,11 @@ class ProductItem extends StatelessWidget {
                     ),
                   ),
                 ),
+                const SizedBox(
+                  height: 5,
+                ),
                 Text(title),
-                Text("$price€/kg"),
+                Text("$price€/kg" , style: TextStyle(color: Colors.grey[600]),),
               ],
             )),
         onTap: () {
