@@ -17,7 +17,7 @@ class AppColors{
   static Color? green = Colors.green[100];
   static Color? orange = Colors.orange[100];
   static Color? yellow = Colors.yellow[100];
-  static Color? brown = Colors.brown[100];
+  static Color? brown = Colors.brown[50];
   static Color? purple = Colors.purple[100];
   static Color? pink = Colors.pink[100];
 }

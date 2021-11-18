@@ -2,6 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import 'buisness_logic/bloc/departement_bloc.dart';
 import 'buisness_logic/bloc/product_bloc.dart';
 import 'config/theme.dart';
 import 'view/pages/_pages.dart';
@@ -25,6 +26,9 @@ class MyApp extends StatelessWidget {
       providers: [
         BlocProvider<ProductBloc>(
           create: (BuildContext context) => ProductBloc(),
+        ),
+        BlocProvider<DepartementBloc>(
+          create: (BuildContext context) => DepartementBloc(),
         ),
       ],
       child: MaterialApp(
