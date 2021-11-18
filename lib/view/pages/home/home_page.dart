@@ -1,6 +1,5 @@
 part of '../_pages.dart';
 
-
 class Shopping {
   String title;
   int nbItem;
@@ -29,6 +28,9 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final themeBloc = BlocProvider.of<ProductBloc>(context);
+    themeBloc.add(GetAllProducts());
+
     return Scaffold(
         appBar: const AppBarCustom(
           title: 'Good Market',
@@ -64,13 +66,37 @@ class HomePage extends StatelessWidget {
                 endIndent: 0,
               ),
               CollectionList(
-                  id: '', 
-                  title: "Shopping List",
-                  listShoppingList: list_shopping,
-                  link: ShoppingListsPage(
-                    title: 'Shopping lists',
-                  ), ),
-              
+                id: '',
+                title: "Shopping List",
+                listShoppingList: list_shopping,
+                link: ShoppingListsPage(
+                  title: 'Shopping lists',
+                ),
+              ),
+              const Divider(
+                height: 20,
+                thickness: 1,
+                indent: 0,
+                endIndent: 0,
+              ),
+              BlocBuilder<ProductBloc, ProductState>(
+                builder: (context, state) {
+                  if (state is ProductsLoading) {
+                    return const Center(child: CircularProgressIndicator());
+                  } else if (state is ProductsLoaded) {
+                    return CollectionList(
+                      id: '',
+                      title: "Popular",
+                      listProduct: state.products,
+                      link: DepartementCategoryPage(
+                        title: 'Popular',
+                      ),
+                    );
+                  } else {
+                    return const Center(child: Text("Is Empty."));
+                  }
+                },
+              ),
               const Divider(
                 height: 20,
                 thickness: 1,
@@ -78,20 +104,7 @@ class HomePage extends StatelessWidget {
                 endIndent: 0,
               ),
               CollectionList(
-                  id: '', 
-                  title: "Popular",
-                  listProduct: list_fruit,
-                  link: DepartementCategoryPage(
-                    title: 'Popular',
-                  ), ),
-              const Divider(
-                height: 20,
-                thickness: 1,
-                indent: 0,
-                endIndent: 0,
-              ),
-              CollectionList(
-                  id:'',
+                  id: '',
                   title: "Fruits",
                   listProduct: list_fruit,
                   link: DepartementCategoryPage(
