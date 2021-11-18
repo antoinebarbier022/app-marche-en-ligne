@@ -6,10 +6,13 @@ class DepartementCategoryPage extends StatelessWidget {
   final String title;
 
   var list = [
-    Product("Pork 100g", 2.4, Colors.green[100]),
-    Product("Pork 200b", 5, Colors.yellow[200]),
-    Product("Pork 1kg", 2.4, Colors.red[200]),
-    Product("Pork 10kg", 2.4, Colors.yellow[200]),
+    Product("Pomme", 2.4, "Popular", "test"),
+    Product("Banane", 5,  "Popular", "test"),
+    Product("Cerise", 2.4,  "Popular", "test"),
+    Product("Mangue", 2.4,  "Popular", "test"),
+    Product("Carotte", 2.4,  "Vegetables", "test"),
+    Product("Tomate", 2.4,  "Vegetables", "test"),
+    Product("Orange", 2.4,  "Popular", "test")
   ];
 
   @override
@@ -29,8 +32,7 @@ class DepartementCategoryPage extends StatelessWidget {
           itemBuilder: (BuildContext context, int index) {
             return ProductItem(
                 title: list[index].name, 
-                price: list[index].price,
-                color: list[index].color);
+                price: list[index].price,);
           },
         ));
   }

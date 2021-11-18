@@ -105,8 +105,7 @@ class CollectionList extends StatelessWidget {
               } else {
                 return ProductItem(
                     title: listProduct[index].name,
-                    price: listProduct[index].price,
-                    color: listProduct[index].color);
+                    price: listProduct[index].price);
               }
             },
             separatorBuilder: (BuildContext context, int index) {

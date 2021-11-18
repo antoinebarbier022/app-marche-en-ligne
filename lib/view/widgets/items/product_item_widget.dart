@@ -5,12 +5,10 @@ class ProductItem extends StatelessWidget {
     Key? key,
     required this.title,
     required this.price,
-    required this.color,
   }) : super(key: key);
 
   final String title;
   final double price;
-  final Color? color;
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +24,7 @@ class ProductItem extends StatelessWidget {
             aspectRatio: 1 / 1,
             child: Container(
               decoration: BoxDecoration(
-                color: color,
+                color: Theme.of(context).cardColor,
                 border: Border.all(color: Colors.black12, width: 1),
                 borderRadius: BorderRadius.circular(10),
               ),

@@ -6,11 +6,13 @@ class ShoppingCartPage extends StatelessWidget {
   final String title;
 
   var list = [
-    Product("pomme", 2.4, Colors.green[100]),
-    Product("banane", 5, Colors.yellow[200]),
-    Product("cerise", 2.4, Colors.red[200]),
-    Product("mangue", 2.4, Colors.yellow[200]),
-    Product("orange", 2.4, Colors.orange[200])
+    Product("Pomme", 2.4, "Popular", "test"),
+    Product("Banane", 5,  "Popular", "test"),
+    Product("Cerise", 2.4,  "Popular", "test"),
+    Product("Mangue", 2.4,  "Popular", "test"),
+    Product("Carotte", 2.4,  "Vegetables", "test"),
+    Product("Tomate", 2.4,  "Vegetables", "test"),
+    Product("Orange", 2.4,  "Popular", "test")
   ];
 
   @override
