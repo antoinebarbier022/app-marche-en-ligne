@@ -52,6 +52,7 @@ class ShoppingListsPage extends StatelessWidget {
               ),
               SizedBox(
                 child: ListView.separated(
+                  physics: const NeverScrollableScrollPhysics(),
                   shrinkWrap: true,
                   itemCount: list.length,
                   itemBuilder: (BuildContext context, int index) {

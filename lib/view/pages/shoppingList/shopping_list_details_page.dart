@@ -40,6 +40,7 @@ class ShoppingListDetailsPage extends StatelessWidget {
               ],),
               SizedBox(
                 child: GridView.builder(
+                  physics: const NeverScrollableScrollPhysics(),
                   shrinkWrap: true,
                   itemCount: list.length,
                   padding: const EdgeInsets.all(10),

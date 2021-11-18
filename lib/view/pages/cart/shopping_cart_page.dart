@@ -24,6 +24,7 @@ class ShoppingCartPage extends StatelessWidget {
           automaticallyImplyLeading: true,
         ),
         body: ListView.separated(
+          physics: const NeverScrollableScrollPhysics(),
           padding: const EdgeInsets.only(bottom: 70),
           itemCount: list.length,
           itemBuilder: (context, index) {

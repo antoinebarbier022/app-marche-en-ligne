@@ -85,6 +85,7 @@ class HomePage extends StatelessWidget {
                   } else if (state is ProductsLoaded) {
                     return SizedBox(
                       child: ListView.separated(
+                        physics: const NeverScrollableScrollPhysics(),
                         shrinkWrap: true,
                         itemCount: list_departement.length,
                         itemBuilder: (BuildContext context, int index) {

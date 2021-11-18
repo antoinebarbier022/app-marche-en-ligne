@@ -47,7 +47,6 @@ class DepartementDetailsPage extends StatelessWidget {
             height: 40,
             child: ListView.builder(
               scrollDirection: Axis.horizontal,
-              
               shrinkWrap: true,
               itemCount: list_category.length,
               itemBuilder: (BuildContext context, int index) {
@@ -91,6 +90,7 @@ class DepartementDetailsPage extends StatelessWidget {
               } else if (state is ProductsLoaded) {
                 return SizedBox(
                   child: ListView.separated(
+                    physics: const NeverScrollableScrollPhysics(),
                     shrinkWrap: true,
                     itemCount: list_departement.length,
                     itemBuilder: (BuildContext context, int index) {
