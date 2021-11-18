@@ -1,4 +1,4 @@
-part of '_pages.dart';
+part of '../_pages.dart';
 
 class DepartementCategoryPage extends StatelessWidget {
   DepartementCategoryPage({Key? key, required this.title}) : super(key: key);

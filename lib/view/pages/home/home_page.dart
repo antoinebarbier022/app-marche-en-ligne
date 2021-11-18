@@ -1,4 +1,4 @@
-part of '_pages.dart';
+part of '../_pages.dart';
 
 
 class Shopping {

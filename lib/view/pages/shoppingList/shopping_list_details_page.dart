@@ -1,4 +1,4 @@
-part of '_pages.dart';
+part of '../_pages.dart';
 
 class ShoppingListDetailsPage extends StatelessWidget {
   ShoppingListDetailsPage({Key? key, required this.title}) : super(key: key);
