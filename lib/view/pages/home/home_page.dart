@@ -15,6 +15,8 @@ class HomePage extends StatelessWidget {
   var list_departement = [
     "Popular",
     "Vegetables",
+    "Fruits",
+    "Meat",
   ];
 
   final list_shopping = [

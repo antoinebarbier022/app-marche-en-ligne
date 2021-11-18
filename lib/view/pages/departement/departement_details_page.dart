@@ -6,20 +6,18 @@ class DepartementDetailsPage extends StatelessWidget {
   final String title;
 
   var list_category = [
-    "Pork",
-    "Beef",
+    "France",
+    "Espagne",
     "Chicken",
     "Pork",
     "Beef",
-    "Chicken",
-    "Pork",
-    "Beef",
-    "Chicken"
   ];
 
   var list_departement = [
     "Popular",
     "Vegetables",
+    "Fruits",
+    "Meat",
   ];
 
   var list = [
@@ -49,6 +47,7 @@ class DepartementDetailsPage extends StatelessWidget {
             height: 40,
             child: ListView.builder(
               scrollDirection: Axis.horizontal,
+              
               shrinkWrap: true,
               itemCount: list_category.length,
               itemBuilder: (BuildContext context, int index) {
