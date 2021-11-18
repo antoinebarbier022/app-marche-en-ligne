@@ -9,7 +9,7 @@ class AppSizes{
 }
 
 class AppColors{
-  static Color? primaryColor = Colors.green;
+  static MaterialColor? primaryColor = Colors.green;
 
   //couleurs pour les départements
   static Color? red = Colors.red[100];
