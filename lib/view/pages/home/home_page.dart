@@ -12,14 +12,9 @@ class HomePage extends StatelessWidget {
 
   final String title;
 
-  final list_fruit = [
-    Product("Pomme", 2.4, "Popular", "test"),
-    Product("Banane", 5,  "Popular", "test"),
-    Product("Cerise", 2.4,  "Popular", "test"),
-    Product("Mangue", 2.4,  "Popular", "test"),
-    Product("Carotte", 2.4,  "Vegetables", "test"),
-    Product("Tomate", 2.4,  "Vegetables", "test"),
-    Product("Orange", 2.4,  "Popular", "test")
+  var list_departement = [
+    "Popular",
+    "Vegetables",
   ];
 
   final list_shopping = [
@@ -86,12 +81,28 @@ class HomePage extends StatelessWidget {
                   if (state is ProductsLoading) {
                     return const Center(child: CircularProgressIndicator());
                   } else if (state is ProductsLoaded) {
-                    return CollectionList(
-                      id: '',
-                      title: "Popular",
-                      listProduct: state.products.where((i) => i.price > 3).toList(),
-                      link: DepartementCategoryPage(
-                        title: 'Popular',
+                    return SizedBox(
+                      child: ListView.separated(
+                        shrinkWrap: true,
+                        itemCount: list_departement.length,
+                        itemBuilder: (BuildContext context, int index) {
+                          return CollectionList(
+                              id: '',
+                              title: list_departement[index],
+                              listProduct: state.products
+                                  .where((i) =>
+                                      i.departement == list_departement[index])
+                                  .toList(),
+                              link: DepartementCategoryPage(
+                                title: list_departement[index],
+                              ));
+                        },
+                        separatorBuilder: (BuildContext context, int index) {
+                          return const Divider(
+                            height: 20,
+                            thickness: 1,
+                          );
+                        },
                       ),
                     );
                   } else {
@@ -99,19 +110,6 @@ class HomePage extends StatelessWidget {
                   }
                 },
               ),
-              const Divider(
-                height: 20,
-                thickness: 1,
-                indent: 0,
-                endIndent: 0,
-              ),
-              CollectionList(
-                  id: '',
-                  title: "Fruits",
-                  listProduct: list_fruit,
-                  link: DepartementCategoryPage(
-                    title: 'Fruits',
-                  )),
             ],
           ),
         ));
