@@ -1,12 +1,5 @@
 part of '_pages.dart';
 
-class Product {
-  String name;
-  double price;
-  Color? color;
-
-  Product(this.name, this.price, this.color);
-}
 
 class Shopping {
   String title;

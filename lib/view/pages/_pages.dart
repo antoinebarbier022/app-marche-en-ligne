@@ -1,4 +1,5 @@
 // Ici on place les imports des pages
+import 'package:app_market_online/data/models/_models.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
