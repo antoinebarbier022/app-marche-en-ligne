@@ -1,12 +1,5 @@
 part of '../_pages.dart';
 
-class Departement {
-  String title;
-  String image;
-  Color? color;
-
-  Departement(this.title, this.color, this.image);
-}
 
 class StoreDepartementPage extends StatelessWidget {
   StoreDepartementPage({Key? key, required this.title}) : super(key: key);
@@ -15,8 +8,8 @@ class StoreDepartementPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final themeBloc = BlocProvider.of<DepartementBloc>(context);
-    themeBloc.add(GetAllDepartements());
+    final departementBloc = BlocProvider.of<DepartementBloc>(context);
+    departementBloc.add(GetAllDepartements());
 
     return Scaffold(
         appBar: AppBar(
@@ -39,9 +32,7 @@ class StoreDepartementPage extends StatelessWidget {
                   mainAxisSpacing: 4.0),
               itemBuilder: (BuildContext context, int index) {
                 return DepartementItem(
-                    title: state.departements[index].name,
-                    color: state.departements[index].color,
-                    image: state.departements[index].image);
+                    departement: state.departements[index]);
               },
             );
           } else {

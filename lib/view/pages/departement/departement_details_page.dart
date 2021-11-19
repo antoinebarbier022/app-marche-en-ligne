@@ -1,9 +1,9 @@
 part of '../_pages.dart';
 
 class DepartementDetailsPage extends StatelessWidget {
-  DepartementDetailsPage({Key? key, required this.title}) : super(key: key);
+  DepartementDetailsPage({Key? key, required this.departement }): super(key: key);
 
-  final String title;
+  final Departement departement;
 
   var list_category = [
     "France",
@@ -34,7 +34,7 @@ class DepartementDetailsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBarCustom(
-          title: title,
+          title: departement.name,
         ),
         body: SingleChildScrollView(
             child:
@@ -69,7 +69,7 @@ class DepartementDetailsPage extends StatelessWidget {
                       context,
                       CupertinoPageRoute(
                           builder: (context) => DepartementCategoryPage(
-                                title: list_category[index],
+                                departement: departement,
                               )),
                     );
                   },
@@ -102,7 +102,7 @@ class DepartementDetailsPage extends StatelessWidget {
                                   i.departement == list_departement[index])
                               .toList(),
                           link: DepartementCategoryPage(
-                            title: list_departement[index],
+                            departement: departement,
                           ));
                     },
                     separatorBuilder: (BuildContext context, int index) {

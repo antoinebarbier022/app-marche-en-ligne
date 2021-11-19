@@ -101,7 +101,7 @@ class HomePage extends StatelessWidget {
                                           departementsState.departements[index].name)
                                       .toList(),
                                   link: DepartementCategoryPage(
-                                    title: departementsState.departements[index].name,
+                                    departement: departementsState.departements[index],
                                   ));
                             },
                             separatorBuilder:

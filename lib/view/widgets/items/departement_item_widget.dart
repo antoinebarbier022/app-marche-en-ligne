@@ -3,14 +3,11 @@ part of '../_widgets.dart';
 class DepartementItem extends StatelessWidget {
   const DepartementItem({
     Key? key,
-    required this.title,
-    required this.color,
-    required this.image,
+    required this.departement,
   }) : super(key: key);
 
-  final String title;
-  final Color? color;
-  final String image;
+
+  final Departement departement;
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +21,7 @@ class DepartementItem extends StatelessWidget {
           child: Container(
             padding: const EdgeInsets.all(10.0),
             decoration: BoxDecoration(
-              color: color,
+              color: departement.color,
               borderRadius: BorderRadius.circular(10),
               boxShadow: [
                         BoxShadow(
@@ -39,13 +36,13 @@ class DepartementItem extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 Image.asset(
-                  'assets/$image.png',
+                  'assets/${departement.image}.png',
                   width: 60,
                   fit: BoxFit.scaleDown,
                 ),
                 Center(
                     child: Text(
-                  title,
+                  departement.name,
                   textAlign: TextAlign.center,
                 )),
               ],
@@ -58,7 +55,7 @@ class DepartementItem extends StatelessWidget {
           context,
           CupertinoPageRoute(
               builder: (context) => DepartementDetailsPage(
-                    title: title,
+                    departement: departement,
                   )),
         );
       },
