@@ -84,7 +84,8 @@ class CollectionList extends StatelessWidget {
             ],
           ),
         ),
-        SizedBox(
+        Container(
+          margin: const EdgeInsets.only(bottom:20),
           height: 150,
           child: ListView.separated(
             scrollDirection: Axis.horizontal,

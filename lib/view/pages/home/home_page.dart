@@ -12,7 +12,6 @@ class HomePage extends StatelessWidget {
 
   final String title;
 
-
   final list_shopping = [
     Shopping("Evening Shopping list", 4),
     Shopping("Weekend Shopping list", 6),
@@ -55,12 +54,7 @@ class HomePage extends StatelessWidget {
                   ),
                 ],
               ),
-              const Divider(
-                height: 20,
-                thickness: 1,
-                indent: 0,
-                endIndent: 0,
-              ),
+
               CollectionList(
                 id: '',
                 title: "Shopping List",
@@ -69,47 +63,42 @@ class HomePage extends StatelessWidget {
                   title: 'Shopping lists',
                 ),
               ),
-              const Divider(
-                height: 20,
-                thickness: 1,
-                indent: 0,
-                endIndent: 0,
-              ),
               BlocBuilder<DepartementBloc, DepartementState>(
                 builder: (context, departementsState) {
                   if (departementsState is DepartementsLoading) {
                     return const Center(child: CircularProgressIndicator());
                   } else if (departementsState is DepartementsLoaded) {
-
                     return BlocBuilder<ProductBloc, ProductState>(
                         builder: (context, productsState) {
                       if (productsState is ProductsLoading) {
                         return const Center(child: CircularProgressIndicator());
                       } else if (productsState is ProductsLoaded) {
                         return SizedBox(
-                          child: ListView.separated(
+                          child: ListView.builder(
                             physics: const NeverScrollableScrollPhysics(),
                             shrinkWrap: true,
                             itemCount: departementsState.departements.length,
                             itemBuilder: (BuildContext context, int index) {
-                              return CollectionList(
-                                  id: '',
-                                  title: departementsState.departements[index].name,
-                                  listProduct: productsState.products
-                                      .where((i) =>
-                                          i.departement ==
-                                          departementsState.departements[index].name)
-                                      .toList(),
-                                  link: DepartementDetailsPage(
-                                    departement: departementsState.departements[index],
-                                  ));
-                            },
-                            separatorBuilder:
-                                (BuildContext context, int index) {
-                              return const Divider(
-                                height: 20,
-                                thickness: 1,
-                              );
+                              var listProducts = productsState.products
+                                  .where((i) =>
+                                      i.departement ==
+                                      departementsState
+                                          .departements[index].name)
+                                  .toList();
+                              if (listProducts.isNotEmpty) {
+                                return CollectionList(
+                                    id: '',
+                                    title: departementsState
+                                        .departements[index].name,
+                                    listProduct: listProducts,
+                                    link: DepartementDetailsPage(
+                                      departement:
+                                          departementsState.departements[index],
+                                    ));
+                              }else{
+                                return Container();
+                              }
+                            
                             },
                           ),
                         );
@@ -121,7 +110,7 @@ class HomePage extends StatelessWidget {
                     return const Center(child: Text("Is Empty."));
                   }
                 },
-              )
+              ),
             ],
           ),
         ));
