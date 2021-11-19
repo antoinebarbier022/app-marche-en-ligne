@@ -29,8 +29,8 @@ class ShoppingCartPage extends StatelessWidget {
           itemCount: list.length,
           itemBuilder: (context, index) {
             return CartItem(
-              title: list[index].name,
-              price: list[index].price,
+              product: list[index],
+              quantity: 1,
             );
           },
           separatorBuilder: (BuildContext context, int index) {

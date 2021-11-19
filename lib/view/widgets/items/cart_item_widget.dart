@@ -3,12 +3,12 @@ part of '../_widgets.dart';
 class CartItem extends StatelessWidget {
   const CartItem({
     Key? key,
-    required this.title,
-    required this.price,
+    required this.product,
+    required this.quantity,
   }) : super(key: key);
 
-  final String title;
-  final double price;
+  final Product product;
+  final double quantity;
 
   @override
   Widget build(BuildContext context) {
@@ -42,11 +42,11 @@ class CartItem extends StatelessWidget {
                       Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text(title, style: const TextStyle(fontSize: 18)),
+                            Text(product.name, style: const TextStyle(fontSize: 18)),
                             Text("1 lb",
                                 style: TextStyle(color: Colors.grey[700])),
                           ]),
-                      Text("$price€",
+                      Text("${product.price}€",
                           style: const TextStyle(
                               fontSize: 18, fontWeight: FontWeight.bold)),
                     ],
