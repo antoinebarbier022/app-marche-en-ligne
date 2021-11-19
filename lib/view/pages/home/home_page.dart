@@ -12,12 +12,6 @@ class HomePage extends StatelessWidget {
 
   final String title;
 
-  var list_departement = [
-    "Popular",
-    "Vegetables",
-    "Fruits",
-    "Meat",
-  ];
 
   final list_shopping = [
     Shopping("Evening Shopping list", 4),
@@ -27,8 +21,11 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final themeBloc = BlocProvider.of<ProductBloc>(context);
-    themeBloc.add(GetAllProducts());
+    final productsBloc = BlocProvider.of<ProductBloc>(context);
+    productsBloc.add(GetAllProducts());
+
+    final departementsBloc = BlocProvider.of<DepartementBloc>(context);
+    departementsBloc.add(GetAllDepartements());
 
     return Scaffold(
         appBar: const AppBarCustom(
@@ -78,41 +75,53 @@ class HomePage extends StatelessWidget {
                 indent: 0,
                 endIndent: 0,
               ),
-              BlocBuilder<ProductBloc, ProductState>(
-                builder: (context, state) {
-                  if (state is ProductsLoading) {
+              BlocBuilder<DepartementBloc, DepartementState>(
+                builder: (context, departementsState) {
+                  if (departementsState is DepartementsLoading) {
                     return const Center(child: CircularProgressIndicator());
-                  } else if (state is ProductsLoaded) {
-                    return SizedBox(
-                      child: ListView.separated(
-                        physics: const NeverScrollableScrollPhysics(),
-                        shrinkWrap: true,
-                        itemCount: list_departement.length,
-                        itemBuilder: (BuildContext context, int index) {
-                          return CollectionList(
-                              id: '',
-                              title: list_departement[index],
-                              listProduct: state.products
-                                  .where((i) =>
-                                      i.departement == list_departement[index])
-                                  .toList(),
-                              link: DepartementCategoryPage(
-                                title: list_departement[index],
-                              ));
-                        },
-                        separatorBuilder: (BuildContext context, int index) {
-                          return const Divider(
-                            height: 20,
-                            thickness: 1,
-                          );
-                        },
-                      ),
-                    );
+                  } else if (departementsState is DepartementsLoaded) {
+
+                    return BlocBuilder<ProductBloc, ProductState>(
+                        builder: (context, productsState) {
+                      if (productsState is ProductsLoading) {
+                        return const Center(child: CircularProgressIndicator());
+                      } else if (productsState is ProductsLoaded) {
+                        return SizedBox(
+                          child: ListView.separated(
+                            physics: const NeverScrollableScrollPhysics(),
+                            shrinkWrap: true,
+                            itemCount: departementsState.departements.length,
+                            itemBuilder: (BuildContext context, int index) {
+                              return CollectionList(
+                                  id: '',
+                                  title: departementsState.departements[index].name,
+                                  listProduct: productsState.products
+                                      .where((i) =>
+                                          i.departement ==
+                                          departementsState.departements[index].name)
+                                      .toList(),
+                                  link: DepartementCategoryPage(
+                                    title: departementsState.departements[index].name,
+                                  ));
+                            },
+                            separatorBuilder:
+                                (BuildContext context, int index) {
+                              return const Divider(
+                                height: 20,
+                                thickness: 1,
+                              );
+                            },
+                          ),
+                        );
+                      } else {
+                        return const Center(child: Text("Is Empty."));
+                      }
+                    });
                   } else {
                     return const Center(child: Text("Is Empty."));
                   }
                 },
-              ),
+              )
             ],
           ),
         ));
