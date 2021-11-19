@@ -58,7 +58,7 @@ class ProductItem extends StatelessWidget {
                 const SizedBox(
                   height: 5,
                 ),
-                Text(product.name),
+                Text(product.name, overflow: TextOverflow.ellipsis,),
                 Text(
                   "${product.price}€/kg",
                   style: TextStyle(color: Colors.grey[600]),

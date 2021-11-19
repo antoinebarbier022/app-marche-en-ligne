@@ -43,6 +43,7 @@ class DepartementItem extends StatelessWidget {
                 Center(
                     child: Text(
                   departement.name,
+                  overflow: TextOverflow.ellipsis,
                   textAlign: TextAlign.center,
                 )),
               ],
