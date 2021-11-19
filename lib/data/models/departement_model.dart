@@ -4,6 +4,7 @@ class Departement {
   String name;
   String image;
   Color? color;
+  List<Category> categories;
 
-  Departement(this.name, this.image, this.color);
+  Departement(this.name, this.image, this.color, this.categories);
 }
