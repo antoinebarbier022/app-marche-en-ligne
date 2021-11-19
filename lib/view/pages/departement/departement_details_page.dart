@@ -1,37 +1,19 @@
 part of '../_pages.dart';
 
 class DepartementDetailsPage extends StatelessWidget {
-  DepartementDetailsPage({Key? key, required this.departement }): super(key: key);
+  DepartementDetailsPage({Key? key, required this.departement})
+      : super(key: key);
 
   final Departement departement;
 
-  var list_category = [
-    "France",
-    "Espagne",
-    "Chicken",
-    "Pork",
-    "Beef",
-  ];
-
-  var list_departement = [
-    "Popular",
-    "Vegetables",
-    "Fruits",
-    "Meat",
-  ];
-
-  var list = [
-    Product("Pomme", 2.4, "Popular", "test"),
-    Product("Banane", 5, "Popular", "test"),
-    Product("Cerise", 2.4, "Popular", "test"),
-    Product("Mangue", 2.4, "Popular", "test"),
-    Product("Carotte", 2.4, "Vegetables", "test"),
-    Product("Tomate", 2.4, "Vegetables", "test"),
-    Product("Orange", 2.4, "Popular", "test")
-  ];
-
   @override
   Widget build(BuildContext context) {
+    final productsBloc = BlocProvider.of<ProductBloc>(context);
+    productsBloc.add(GetAllProducts());
+
+    final departementsBloc = BlocProvider.of<DepartementBloc>(context);
+    departementsBloc.add(GetAllDepartements());
+
     return Scaffold(
         appBar: AppBarCustom(
           title: departement.name,
@@ -48,7 +30,7 @@ class DepartementDetailsPage extends StatelessWidget {
             child: ListView.builder(
               scrollDirection: Axis.horizontal,
               shrinkWrap: true,
-              itemCount: list_category.length,
+              itemCount: departement.categories.length,
               itemBuilder: (BuildContext context, int index) {
                 return InkWell(
                   borderRadius: BorderRadius.circular(10),
@@ -62,7 +44,7 @@ class DepartementDetailsPage extends StatelessWidget {
                       child: Center(
                           child: Padding(
                         padding: const EdgeInsets.only(left: 8, right: 8),
-                        child: Text(list_category[index]),
+                        child: Text(departement.categories[index].name),
                       ))),
                   onTap: () {
                     Navigator.push(
@@ -84,40 +66,40 @@ class DepartementDetailsPage extends StatelessWidget {
             endIndent: 0,
           ),
           BlocBuilder<ProductBloc, ProductState>(
-            builder: (context, state) {
-              if (state is ProductsLoading) {
-                return const Center(child: CircularProgressIndicator());
-              } else if (state is ProductsLoaded) {
-                return SizedBox(
-                  child: ListView.separated(
-                    physics: const NeverScrollableScrollPhysics(),
-                    shrinkWrap: true,
-                    itemCount: list_departement.length,
-                    itemBuilder: (BuildContext context, int index) {
-                      return CollectionList(
-                          id: '',
-                          title: list_departement[index],
-                          listProduct: state.products
-                              .where((i) =>
-                                  i.departement == list_departement[index])
-                              .toList(),
-                          link: DepartementCategoryPage(
-                            departement: departement,
-                          ));
-                    },
-                    separatorBuilder: (BuildContext context, int index) {
-                      return const Divider(
-                        height: 20,
-                        thickness: 1,
-                      );
-                    },
-                  ),
-                );
-              } else {
-                return const Center(child: Text("Is Empty."));
-              }
-            },
-          ),
+              builder: (context, productsState) {
+            if (productsState is ProductsLoading) {
+              return const Center(child: CircularProgressIndicator());
+            } else if (productsState is ProductsLoaded) {
+              return SizedBox(
+                child: ListView.separated(
+                  physics: const NeverScrollableScrollPhysics(),
+                  shrinkWrap: true,
+                  itemCount: departement.categories.length,
+                  itemBuilder: (BuildContext context, int index) {
+                    return CollectionList(
+                        id: '',
+                        title: departement.categories[index].name,
+                        listProduct: productsState.products
+                            .where((i) =>
+                                i.category ==
+                                departement.categories[index].name)
+                            .toList(),
+                        link: DepartementCategoryPage(
+                          departement: departement,
+                        ));
+                  },
+                  separatorBuilder: (BuildContext context, int index) {
+                    return const Divider(
+                      height: 20,
+                      thickness: 1,
+                    );
+                  },
+                ),
+              );
+            } else {
+              return const Center(child: Text("Is Empty."));
+            }
+          })
         ])));
   }
 }
