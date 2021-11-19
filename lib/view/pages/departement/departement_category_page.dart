@@ -20,8 +20,12 @@ class DepartementCategoryPage extends StatelessWidget {
             if (state is ProductsLoading) {
               return const Center(child: CircularProgressIndicator());
             } else if (state is ProductsLoaded) {
+              var listProduct = state.products.where((i) =>
+                                          i.departement ==
+                                          departement.name)
+                                      .toList();
               return GridView.builder(
-                itemCount: state.products.length,
+                itemCount: listProduct.length,
                 padding: const EdgeInsets.all(10),
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 3,
@@ -29,7 +33,7 @@ class DepartementCategoryPage extends StatelessWidget {
                     crossAxisSpacing: 4.0,
                     mainAxisSpacing: 4.0),
                 itemBuilder: (BuildContext context, int index) {
-                  return ProductItem(product: state.products[index]);
+                  return ProductItem(product: listProduct[index]);
                 },
               );
             } else {
