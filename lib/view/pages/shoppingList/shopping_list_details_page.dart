@@ -51,8 +51,7 @@ class ShoppingListDetailsPage extends StatelessWidget {
                       mainAxisSpacing: 4.0),
                   itemBuilder: (BuildContext context, int index) {
                     return ProductItem(
-                        title: list[index].name, 
-                        price: list[index].price);
+                        product: list[index]);
                   },
                 ),
               ),

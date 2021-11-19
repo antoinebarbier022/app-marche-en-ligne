@@ -1,9 +1,9 @@
 part of '../_pages.dart';
 
 class ProductDetailPage extends StatelessWidget {
-  const ProductDetailPage({Key? key, required this.title}) : super(key: key);
+  const ProductDetailPage({Key? key, required this.product}) : super(key: key);
 
-  final String title;
+  final Product product;
 
   @override
   Widget build(BuildContext context) {
@@ -44,9 +44,9 @@ class ProductDetailPage extends StatelessWidget {
             const SizedBox(
               height: 10,
             ),
-            const Text("Product X", style: TextStyle(fontSize: 18)),
-            const Text("Price €",
-                style: TextStyle(fontWeight: FontWeight.bold)),
+            Text(product.name, style: const TextStyle(fontSize: 18)),
+            Text("Price ${product.name}€",
+                style: const TextStyle(fontWeight: FontWeight.bold)),
             const Text("per lb"),
             const SizedBox(
               height: 40,

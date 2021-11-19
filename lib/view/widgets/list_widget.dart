@@ -104,8 +104,7 @@ class CollectionList extends StatelessWidget {
                 );
               } else {
                 return ProductItem(
-                    title: listProduct[index].name,
-                    price: listProduct[index].price);
+                    product: listProduct[index]);
               }
             },
             separatorBuilder: (BuildContext context, int index) {

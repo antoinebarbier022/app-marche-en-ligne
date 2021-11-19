@@ -3,12 +3,10 @@ part of '../_widgets.dart';
 class ProductItem extends StatelessWidget {
   const ProductItem({
     Key? key,
-    required this.title,
-    required this.price,
+    required this.product,
   }) : super(key: key);
 
-  final String title;
-  final double price;
+  final Product product;
 
   @override
   Widget build(BuildContext context) {
@@ -60,9 +58,9 @@ class ProductItem extends StatelessWidget {
                 const SizedBox(
                   height: 5,
                 ),
-                Text(title),
+                Text(product.name),
                 Text(
-                  "$price€/kg",
+                  "${product.price}€/kg",
                   style: TextStyle(color: Colors.grey[600]),
                 ),
               ],
@@ -71,8 +69,8 @@ class ProductItem extends StatelessWidget {
           Navigator.push(
             context,
             MaterialPageRoute(
-                builder: (context) => const ProductDetailPage(
-                      title: '',
+                builder: (context) => ProductDetailPage(
+                      product: product,
                     )),
           );
         },
