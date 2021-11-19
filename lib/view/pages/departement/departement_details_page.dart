@@ -52,6 +52,7 @@ class DepartementDetailsPage extends StatelessWidget {
                       CupertinoPageRoute(
                           builder: (context) => DepartementCategoryPage(
                                 departement: departement,
+                                category: departement.categories[index],
                               )),
                     );
                   },
@@ -81,11 +82,13 @@ class DepartementDetailsPage extends StatelessWidget {
                         title: departement.categories[index].name,
                         listProduct: productsState.products
                             .where((i) =>
-                                i.category ==
-                                departement.categories[index].name)
+                                (i.category ==
+                                departement.categories[index].name) && (i.departement ==
+                                departement.name))
                             .toList(),
                         link: DepartementCategoryPage(
                           departement: departement,
+                          category: departement.categories[index],
                         ));
                   },
                   separatorBuilder: (BuildContext context, int index) {

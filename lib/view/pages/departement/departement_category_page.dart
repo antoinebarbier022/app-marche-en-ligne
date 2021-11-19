@@ -1,10 +1,11 @@
 part of '../_pages.dart';
 
 class DepartementCategoryPage extends StatelessWidget {
-  DepartementCategoryPage({Key? key, required this.departement})
+  DepartementCategoryPage({Key? key, required this.departement, required this.category})
       : super(key: key);
 
   final Departement departement;
+  final Category category;
 
   @override
   Widget build(BuildContext context) {
@@ -21,8 +22,9 @@ class DepartementCategoryPage extends StatelessWidget {
               return const Center(child: CircularProgressIndicator());
             } else if (state is ProductsLoaded) {
               var listProduct = state.products.where((i) =>
-                                          i.departement ==
-                                          departement.name)
+                                          (i.departement ==
+                                          departement.name) && (i.category ==
+                                          category.name) )
                                       .toList();
               return GridView.builder(
                 itemCount: listProduct.length,

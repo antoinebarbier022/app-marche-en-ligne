@@ -100,7 +100,7 @@ class HomePage extends StatelessWidget {
                                           i.departement ==
                                           departementsState.departements[index].name)
                                       .toList(),
-                                  link: DepartementCategoryPage(
+                                  link: DepartementDetailsPage(
                                     departement: departementsState.departements[index],
                                   ));
                             },
