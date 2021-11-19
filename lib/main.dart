@@ -33,7 +33,7 @@ class MyApp extends StatelessWidget {
       ],
       child: MaterialApp(
         title: 'Online Market',
-        debugShowCheckedModeBanner: true,
+        debugShowCheckedModeBanner: false,
         theme: ThemeData(
           primarySwatch: AppColors.primaryColor,
           //scaffoldBackgroundColor: Colors.grey[50]
