@@ -60,19 +60,14 @@ class DepartementDetailsPage extends StatelessWidget {
               },
             ),
           ),
-          const Divider(
-            height: 20,
-            thickness: 1,
-            indent: 0,
-            endIndent: 0,
-          ),
+          const SizedBox(height:20),
           BlocBuilder<ProductBloc, ProductState>(
               builder: (context, productsState) {
             if (productsState is ProductsLoading) {
               return const Center(child: CircularProgressIndicator());
             } else if (productsState is ProductsLoaded) {
               return SizedBox(
-                child: ListView.separated(
+                child: ListView.builder(
                   physics: const NeverScrollableScrollPhysics(),
                   shrinkWrap: true,
                   itemCount: departement.categories.length,
@@ -90,13 +85,7 @@ class DepartementDetailsPage extends StatelessWidget {
                           departement: departement,
                           category: departement.categories[index],
                         ));
-                  },
-                  separatorBuilder: (BuildContext context, int index) {
-                    return const Divider(
-                      height: 20,
-                      thickness: 1,
-                    );
-                  },
+                  }
                 ),
               );
             } else {
