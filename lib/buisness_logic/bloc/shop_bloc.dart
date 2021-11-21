@@ -76,9 +76,11 @@ class ShopBloc extends Bloc<ShopEvent, ShopState> {
 
   Stream<ShopState> _mapItemDeletedToState(ItemDeleted event) async* {
     if (state is ShopLoadSuccess) {
-      final Cart updatedShop = (state as ShopLoadSuccess)
-          .cart.items.remove(event.product) as Cart;
-      yield ShopLoadSuccess(updatedShop);
+      final List<Item> updatedShop= (state as ShopLoadSuccess)
+          .cart.items
+          .where((element) => element.product.name != event.product.name)
+          .toList();
+      yield ShopLoadSuccess(Cart(updatedShop));
       //_saveShop(updatedShop);
     }
   }
