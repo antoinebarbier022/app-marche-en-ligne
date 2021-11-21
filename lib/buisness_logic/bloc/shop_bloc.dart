@@ -52,8 +52,9 @@ class ShopBloc extends Bloc<ShopEvent, ShopState> {
         .cart
         .items
         .any((item) => item.product.name == event.item.product.name)) {
-      print("L'item est déja dans le panier");
+      print("L'item est déja dans le panier, on rajoute donc la quantité selectionné en plus");
       listItems = List.from((state as ShopLoadSuccess).cart.items);
+      listItems[listItems.indexWhere((item) => item.product.name == event.item.product.name)].quantity += event.item.quantity;
     } else {
       listItems = List.from((state as ShopLoadSuccess).cart.items)
         ..add(event.item);
