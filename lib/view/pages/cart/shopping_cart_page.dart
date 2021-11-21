@@ -75,7 +75,7 @@ class ShoppingCartPage extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.center,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children:  [
-                            Text(state is ShopLoadSuccess ? "${state.cart.getTotalPrice()}€" : "0€",  style: const TextStyle(
+                            Text(state is ShopLoadSuccess ? "${state.cart.getTotalPrice().toStringAsFixed(2)}€" : "0€",  style: const TextStyle(
                                     fontSize: 20, fontWeight: FontWeight.bold)),
                             Text("Total price", style: TextStyle(
                                     fontSize: 14, color : Colors.grey.shade600), )

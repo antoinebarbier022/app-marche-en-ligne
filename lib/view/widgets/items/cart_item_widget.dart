@@ -1,6 +1,6 @@
 part of '../_widgets.dart';
 
-class CartItem extends StatelessWidget {
+class CartItem extends StatefulWidget {
   const CartItem({
     Key? key,
     required this.product,
@@ -9,6 +9,31 @@ class CartItem extends StatelessWidget {
 
   final Product product;
   final double quantity;
+
+  @override
+  // ignore: no_logic_in_create_state
+  _CartItemState createState() => _CartItemState(quantity);
+}
+
+class _CartItemState extends State<CartItem> {
+  double _quantity;
+  _CartItemState(this._quantity);
+
+  void _incrementQuantity() {
+    setState(() {
+      _quantity++;
+    });
+  }
+
+  void _decrementQuantity() {
+    setState(() {
+      if (_quantity <= 0) {
+        _quantity = 0;
+      } else {
+        _quantity--;
+      }
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -43,47 +68,86 @@ class CartItem extends StatelessWidget {
                       Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text(product.name,
+                            Text(widget.product.name,
                                 style: const TextStyle(fontSize: 18)),
-                            Text("x ${quantity.toInt()}",
+                            Text("x ${widget.quantity.toInt()}",
                                 style: TextStyle(color: Colors.grey[700])),
-                            
                           ]),
-                          Row(
-                              children: [
-                                InkWell(
-                                  radius: 5,
-                                  child: Container(
-                                    padding: const EdgeInsets.all(3),
-                                    decoration: BoxDecoration(
-                                      color: Theme.of(context).primaryColor.withOpacity(0.12),
-                                      borderRadius: BorderRadius.circular(5),
-                                    ),
-                                    child:  Icon(Icons.remove, size: 20, color: Theme.of(context).primaryColor,),
-                                  ),onTap: (){
-
-                                  },
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: Text("1",
-                                  style: TextStyle(color: Colors.grey[700])),
-                                ),
-                                InkWell(
-                                  radius: 5,
-                                  child: Container(
-                                    padding: const EdgeInsets.all(3),
-                                    decoration: BoxDecoration(
-                                      color: Theme.of(context).primaryColor,
-                                      borderRadius: BorderRadius.circular(5),
-                                    ),
-                                    child: const Icon(Icons.add, size: 20, color: Colors.white),
-                                  ),onTap: (){
-
-                                  },
-                                )
-                              ],
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          InkWell(
+                            radius: 5,
+                            child: Container(
+                              padding: const EdgeInsets.all(3),
+                              decoration: BoxDecoration(
+                                color: Theme.of(context)
+                                    .primaryColor
+                                    .withOpacity(0.12),
+                                borderRadius: BorderRadius.circular(5),
+                              ),
+                              child: Icon(
+                                Icons.remove,
+                                size: 20,
+                                color: Theme.of(context).primaryColor,
+                              ),
                             ),
+                            onTap: () {
+                              _decrementQuantity();
+                            },
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Text("${_quantity.toInt()}",
+                                style: TextStyle(color: Colors.grey[700])),
+                          ),
+                          InkWell(
+                            radius: 5,
+                            child: Container(
+                              padding: const EdgeInsets.all(3),
+                              decoration: BoxDecoration(
+                                color: Theme.of(context).primaryColor,
+                                borderRadius: BorderRadius.circular(5),
+                              ),
+                              child: const Icon(Icons.add,
+                                  size: 20, color: Colors.white),
+                            ),
+                            onTap: () {
+                              _incrementQuantity();
+                            },
+                          ),
+                          const SizedBox(width: 10),
+
+                          // On affiche le bouton update si la quantité réel est différente de la quantité voulue
+                          Visibility(
+                            visible: (widget.quantity != _quantity),
+                            child: Container(
+                              height: 30,
+                              child: TextButton(
+                                style: _quantity == 0
+                                    ? TextButton.styleFrom(
+                                        primary: Colors.red.shade400,
+                                      )
+                                    : null,
+                                child: Text(
+                                    _quantity == 0 ? "Remove" : "Update",
+                                    style: const TextStyle(fontSize: 12)),
+                                onPressed: () {
+                                  if (_quantity == 0) {
+                                    // On delete l'item
+                                    BlocProvider.of<ShopBloc>(context)
+                                        .add(ItemDeleted(widget.product));
+                                  } else {
+                                    BlocProvider.of<ShopBloc>(context)
+                      .add(ItemUpdated(Item(widget.product, _quantity)));
+                                  }
+                                },
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
                       /*Text("Quantité : ${quantity.toInt()}",
                           style: const TextStyle(
                               fontSize: 18, fontWeight: FontWeight.bold)),*/
@@ -93,16 +157,18 @@ class CartItem extends StatelessWidget {
               ],
             ),
             Column(
+              crossAxisAlignment: CrossAxisAlignment.end,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 IconButton(
                   icon: Icon(Icons.clear, color: Colors.grey[700]),
                   onPressed: () => BlocProvider.of<ShopBloc>(context)
-                      .add(ItemDeleted(product)),
+                      .add(ItemDeleted(widget.product)),
                 ),
                 Container(
-                  margin: const EdgeInsets.all(10),
-                  child: Text("${product.price}€",
+                  margin: const EdgeInsets.only(
+                      left: 10, right: 10, top: 10, bottom: 15),
+                  child: Text("${((widget.product.price)*(_quantity)).toStringAsFixed(2)}€",
                       style: const TextStyle(
                           fontSize: 18, fontWeight: FontWeight.bold)),
                 ),
