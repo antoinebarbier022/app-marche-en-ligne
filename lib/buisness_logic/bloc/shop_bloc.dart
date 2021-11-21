@@ -14,7 +14,6 @@ class ShopBloc extends Bloc<ShopEvent, ShopState> {
 
   @override
   Stream<ShopState> mapEventToState(ShopEvent event) async* {
-    
     if (event is ShopLoaded) {
       yield* _mapShopLoadedToState();
     } else if (event is ItemAdded) {
@@ -31,12 +30,12 @@ class ShopBloc extends Bloc<ShopEvent, ShopState> {
   Stream<ShopState> _mapShopLoadedToState() async* {
     final cart;
     try {
-      if(state is ShopLoadSuccess){
+      if (state is ShopLoadSuccess) {
         cart = Cart(List.from((state as ShopLoadSuccess).cart.items));
-      }else{
+      } else {
         cart = Cart([]);
       }
-      
+
       print("ok");
       yield ShopLoadSuccess(cart);
     } catch (_) {
@@ -46,29 +45,35 @@ class ShopBloc extends Bloc<ShopEvent, ShopState> {
   }
 
   Stream<ShopState> _mapItemAddedToState(ItemAdded event) async* {
-    if (state is ShopLoadSuccess) {
-      print("Ajout d'un item");
-      final List<Item> listItems =
-          List.from((state as ShopLoadSuccess).cart.items)..add(Item(event.product, 1));
-      final Cart updatedShop = Cart(listItems);
-      print(updatedShop.items);
-      yield ShopLoadSuccess(updatedShop);
-      //_saveShop(updatedShop);
+    final List<Item> listItems;
+    // Si l'item est deja présent, on ne l'ajoute pas
+    if ((state as ShopLoadSuccess)
+        .cart
+        .items
+        .any((item) => item.product == event.product)) {
+      print("L'item est déja dans le panier");
+      listItems = List.from((state as ShopLoadSuccess).cart.items);
+    } else {
+      listItems = List.from((state as ShopLoadSuccess).cart.items)
+        ..add(Item(event.product, 1));
     }
+    final Cart updatedShop = Cart(listItems);
+    print(updatedShop.items);
+    yield ShopLoadSuccess(updatedShop);
+    //_saveShop(updatedShop);
   }
 
   Stream<ShopState> _mapItemUpdatedToState(ItemUpdated event) async* {
     if (state is ShopLoadSuccess) {
-      
-
-      
       final List<Item> listItems =
-          (state as ShopLoadSuccess).cart.items.map( (element) {
-            return element.product.name == event.item.product.name ? event.item : element;
-          } ).toList();
+          (state as ShopLoadSuccess).cart.items.map((element) {
+        return element.product.name == event.item.product.name
+            ? event.item
+            : element;
+      }).toList();
 
       final Cart updatedShop = Cart(listItems);
-          
+
       yield ShopLoadSuccess(updatedShop);
       //_saveShop(updatedShop);
     }
@@ -76,16 +81,15 @@ class ShopBloc extends Bloc<ShopEvent, ShopState> {
 
   Stream<ShopState> _mapItemDeletedToState(ItemDeleted event) async* {
     if (state is ShopLoadSuccess) {
-      final List<Item> updatedShop= (state as ShopLoadSuccess)
-          .cart.items
+      final List<Item> updatedShop = (state as ShopLoadSuccess)
+          .cart
+          .items
           .where((element) => element.product.name != event.product.name)
           .toList();
       yield ShopLoadSuccess(Cart(updatedShop));
       //_saveShop(updatedShop);
     }
   }
-
-
 
   Stream<ShopState> _mapClearShopToState() async* {
     if (state is ShopLoadSuccess) {
