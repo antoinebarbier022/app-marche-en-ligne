@@ -83,6 +83,7 @@ flutter:
     - assets/star.png
     # Illustrations 
     - assets/illustrations/EmptyCart.png
+    - assets/illustrations/Nothing.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
