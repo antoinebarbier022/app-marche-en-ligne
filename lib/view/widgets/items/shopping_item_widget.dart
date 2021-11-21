@@ -3,14 +3,10 @@ part of '../_widgets.dart';
 class ShoppingItem extends StatelessWidget {
   ShoppingItem({
     Key? key,
-    required this.title,
-    required this.color,
-    required this.nbItem,
+    required this.shoppingList,
   }) : super(key: key);
 
-  final String title; // titre de la categorie
-  final Color color;
-  final int nbItem; // list des item de la categorie
+  final ShoppingList shoppingList; // titre de la categorie
 
   @override
   Widget build(BuildContext context) {
@@ -34,36 +30,36 @@ class ShoppingItem extends StatelessWidget {
                 children: [
                   Container(
                   decoration: BoxDecoration(
-                    color: color,
+                    color: Theme.of(context).primaryColorLight,
                     borderRadius: BorderRadius.circular(5),
                   ),
                 ),
                   Container(
                   decoration: BoxDecoration(
-                    color: color,
+                    color: Theme.of(context).primaryColorLight,
                     borderRadius: BorderRadius.circular(5),
                   ),
                 ),
                   Container(
                   decoration: BoxDecoration(
-                    color: color,
+                    color: Theme.of(context).primaryColorLight,
                     borderRadius: BorderRadius.circular(5),
                   ),
                 ),
                   Container(
                     
                   decoration: BoxDecoration(
-                    color: color,
+                    color: Theme.of(context).primaryColorLight,
                     borderRadius: BorderRadius.circular(5),
                   ),
-                  child: Center(child: Text("+$nbItem", textAlign: TextAlign.center, style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold), )),
+                  child: Center(child: Text("+${shoppingList.products.length}", textAlign: TextAlign.center, style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold), )),
                 ),
                 ],
               ),
               const SizedBox(
                 height:5,
               ),
-              Text(title),
+              Text(shoppingList.name),
             ],
           )),
       onTap: (){
@@ -71,7 +67,7 @@ class ShoppingItem extends StatelessWidget {
             context,
             CupertinoPageRoute(
                 builder: (context) => ShoppingListDetailsPage(
-                      title: title,
+                      shoppingList: shoppingList,
                     )),
           );
       },

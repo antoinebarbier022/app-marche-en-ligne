@@ -13,8 +13,8 @@ class ShoppingListBloc extends Bloc<ShoppingListEvent, ShoppingListState> {
   ShoppingListBloc()
       : super(ShoppingListLoadSuccess([
           ShoppingList("Evening Shopping list", [
-            Product("Carotte", 2.4, "Vegetables", "France"),
-            Product("Tomate", 2.4, "Vegetables", "France"),
+            Product("Carottes", 2.4, "Vegetables", "France"),
+            Product("Tomates", 2.4, "Vegetables", "France"),
             Product("Concombre", 2.4, "Vegetables", "Espagne"),
             Product("Beterave", 2.4, "Vegetables", "Espagne"),
             Product("Avocat", 2.4, "Vegetables", "France"),

@@ -99,9 +99,7 @@ class CollectionList extends StatelessWidget {
             itemBuilder: (context, index) {
               if (listShoppingList.isNotEmpty) {
                 return ShoppingItem(
-                  title: listShoppingList[index].name,
-                  color: Theme.of(context).primaryColorLight,
-                  nbItem: listShoppingList[index].products.length,
+                  shoppingList: listShoppingList[index],
                 );
               } else {
                 return ProductItem(

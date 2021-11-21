@@ -43,7 +43,7 @@ class ShoppingListsPage extends StatelessWidget {
                               title: state.list[index].name,
                               listProduct: state.list[index].products,
                               link: ShoppingListDetailsPage(
-                                title: state.list[index].name,
+                                shoppingList: state.list[index],
                               ));
                         },
                         separatorBuilder: (BuildContext context, int index) {
