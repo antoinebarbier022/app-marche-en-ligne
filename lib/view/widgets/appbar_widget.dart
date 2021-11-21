@@ -16,8 +16,7 @@ class AppBarCustom extends StatelessWidget implements PreferredSizeWidget {
       automaticallyImplyLeading: true,
       actions: [
         // On récupère le nombre d'item dans le panier
-        DragTarget<Product>(
-          builder: (context, candidateItems, rejectedItems){
+        DragTarget<Product>(builder: (context, candidateItems, rejectedItems) {
           return BlocBuilder<ShopBloc, ShopState>(
             builder: (context, state) {
               // Si le panier est récupérer alors on affiche le badge avec le nombre d'items présent dans le panier
@@ -25,7 +24,9 @@ class AppBarCustom extends StatelessWidget implements PreferredSizeWidget {
                 return Badge(
                   badgeContent: Text(
                     "${state.cart.getTotalItems()}",
-                    style:  TextStyle(color: Colors.white, fontSize: state.cart.getTotalItems() < 10 ? 12 : 9),
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontSize: state.cart.getTotalItems() < 10 ? 12 : 9),
                   ),
                   showBadge: state.cart.items.isNotEmpty,
                   badgeColor: Colors.red.shade400,
@@ -43,7 +44,7 @@ class AppBarCustom extends StatelessWidget implements PreferredSizeWidget {
                     icon: const Icon(Icons.shopping_cart_outlined),
                   ),
                 );
-              // On affiche pas le badge car on a pas encore pu récupérer le nombre d'items dans le panier
+                // On affiche pas le badge car on a pas encore pu récupérer le nombre d'items dans le panier
               } else {
                 return IconButton(
                   onPressed: () {
@@ -59,11 +60,12 @@ class AppBarCustom extends StatelessWidget implements PreferredSizeWidget {
             },
           );
           // Lorsque le produuit est au dessus du panier et laché alors il est accepté, et on execute l'action dans le bloc
-          }, onAccept: (product){
-            BlocProvider.of<ShopBloc>(context).add(
-                                ItemAdded(Item(product, 1)));
-          }
-        ),
+        }, onAccept: (product) {
+          BlocProvider.of<ShopBloc>(context).add(ItemAdded(Item(product, 1)));
+          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+              content: Text(
+                  'Vous avez ajouté le produit : "${product.name}" dans votre panier.')));
+        }),
       ],
     );
   }
