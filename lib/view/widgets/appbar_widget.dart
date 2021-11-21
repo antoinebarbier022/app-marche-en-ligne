@@ -15,51 +15,43 @@ class AppBarCustom extends StatelessWidget implements PreferredSizeWidget {
       title: Text(title),
       automaticallyImplyLeading: true,
       actions: [
+        // On récupère le nombre d'item dans le panier
         BlocBuilder<ShopBloc, ShopState>(
           builder: (context, state) {
+            // Si le panier est récupérer alors on affiche le badge avec le nombre d'items présent dans le panier
             if (state is ShopLoadSuccess) {
               return Badge(
                 badgeContent: Text(
-                  "${state.cart.items.length}",
-                  style: const TextStyle(color: Colors.white, fontSize: 12),
+                  "${state.cart.getTotalItems()}",
+                  style:  TextStyle(color: Colors.white, fontSize: state.cart.getTotalItems() < 10 ? 12 : 9),
                 ),
                 showBadge: state.cart.items.isNotEmpty,
                 badgeColor: Colors.red.shade400,
                 shape: BadgeShape.circle,
-                position: BadgePosition.topEnd(top: 2, end: 7),
+                position: BadgePosition.topEnd(top: 1, end: 5),
                 toAnimate: false,
                 child: IconButton(
                   onPressed: () {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => ShoppingCartPage()),
+                          builder: (context) => const ShoppingCartPage()),
                     );
                   },
                   icon: const Icon(Icons.shopping_cart_outlined),
                 ),
               );
+            // On affiche pas le badge car on a pas encore pu récupérer le nombre d'items dans le panier
             } else {
-              return Badge(
-                badgeContent: const Text(
-                  "0",
-                  style: const TextStyle(color: Colors.white, fontSize: 12),
-                ),
-                showBadge: false,
-                badgeColor: Colors.red.shade400,
-                shape: BadgeShape.circle,
-                position: BadgePosition.topEnd(top: 2, end: 7),
-                toAnimate: false,
-                child: IconButton(
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => ShoppingCartPage()),
-                    );
-                  },
-                  icon: const Icon(Icons.shopping_cart_outlined),
-                ),
+              return IconButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const ShoppingCartPage()),
+                  );
+                },
+                icon: const Icon(Icons.shopping_cart_outlined),
               );
             }
           },

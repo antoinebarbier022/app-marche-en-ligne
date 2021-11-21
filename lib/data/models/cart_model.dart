@@ -14,6 +14,14 @@ class Cart {
     return sum;
   }
 
+  int getTotalItems(){
+    int total = 0;
+    for (var element in items) {
+      total += element.quantity.toInt();
+    }
+    return total;
+  }
+
 }
 
 class Item{
