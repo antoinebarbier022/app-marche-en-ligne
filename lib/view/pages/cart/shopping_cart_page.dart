@@ -65,16 +65,21 @@ class ShoppingCartPage extends StatelessWidget {
             height: 70,
             color: Colors.grey[200],
             child: Padding(
-              padding: const EdgeInsets.all(15.0),
+              padding: const EdgeInsets.all(5.0),
               child: BlocBuilder<ShopBloc, ShopState>(
                 builder: (context, state) {
                   return Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
                         Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children:  [
-                            const Text("Total price"), 
-                            Text(state is ShopLoadSuccess ? "${state.cart.getTotalPrice()}€" : "0€")],
+                            Text(state is ShopLoadSuccess ? "${state.cart.getTotalPrice()}€" : "0€",  style: const TextStyle(
+                                    fontSize: 20, fontWeight: FontWeight.bold)),
+                            Text("Total price", style: TextStyle(
+                                    fontSize: 14, color : Colors.grey.shade600), )
+                          ]
                         ),
                         SizedBox(
                           width: 250,
