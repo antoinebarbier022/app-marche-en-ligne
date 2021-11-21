@@ -36,28 +36,33 @@ class HomePage extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // SearchBar
-              const Padding(
-                padding: EdgeInsets.all(10.0),
-                child: CupertinoSearchTextField(),
-              ),
-              // Bouton : Store Departements
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  ElevatedButton(
-                    child: const Text("Store Departements"),
-                    onPressed: () => Navigator.push(
-                      context,
-                      CupertinoPageRoute(
-                          builder: (context) => StoreDepartementPage(
-                                title: "Store Departements",
-                              )),
+                // SearchBar
+              const Expanded(
+                child: Padding(
+                  padding: EdgeInsets.all(10.0),
+                  child: CupertinoSearchTextField(),
+                ),
+              ),
+                  // Bouton : Store Departements
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: ElevatedButton(
+                      child: const Text("Store Departements"),
+                      onPressed: () => Navigator.push(
+                        context,
+                        CupertinoPageRoute(
+                            builder: (context) => StoreDepartementPage(
+                                  title: "Store Departements",
+                                )),
+                      ),
                     ),
                   ),
                 ],
               ),
-
+              const SizedBox(height: 20),
               // Affichage des shopping list de l'utilisateur
               BlocBuilder<ShoppingListBloc, ShoppingListState>(
                 builder: (context, state) {
