@@ -45,7 +45,7 @@ class ProductDetailPage extends StatelessWidget {
               height: 10,
             ),
             Text(product.name, style: const TextStyle(fontSize: 18)),
-            Text("Price ${product.name}€",
+            Text("${product.price}€",
                 style: const TextStyle(fontWeight: FontWeight.bold)),
             const Text("per lb"),
             const SizedBox(
