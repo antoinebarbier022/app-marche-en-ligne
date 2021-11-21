@@ -10,7 +10,7 @@ part 'shop_state.dart';
 class ShopBloc extends Bloc<ShopEvent, ShopState> {
   //final ShopRepository shopRepository;
 
-  ShopBloc() : super(ShopLoadInProgress());
+  ShopBloc() : super(ShopLoadSuccess(Cart([])));
 
   @override
   Stream<ShopState> mapEventToState(ShopEvent event) async* {
@@ -47,7 +47,8 @@ class ShopBloc extends Bloc<ShopEvent, ShopState> {
   Stream<ShopState> _mapItemAddedToState(ItemAdded event) async* {
     final List<Item> listItems;
     // Si l'item est deja présent, on ne l'ajoute pas
-    if ((state as ShopLoadSuccess)
+    
+    if (( state is ShopLoadSuccess) && (state as ShopLoadSuccess)
         .cart
         .items
         .any((item) => item.product == event.product)) {
