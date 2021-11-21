@@ -13,6 +13,7 @@ class CartItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+        width: double.infinity,
         height: 130,
         padding: const EdgeInsets.all(10.0),
         child: Row(
@@ -46,9 +47,13 @@ class CartItem extends StatelessWidget {
                             Text("1 lb",
                                 style: TextStyle(color: Colors.grey[700])),
                           ]),
-                      Text("${product.price}€",
-                          style: const TextStyle(
-                              fontSize: 18, fontWeight: FontWeight.bold)),
+                      
+                          const Text("Quantité",
+                              style: TextStyle(
+                                  fontSize: 18, fontWeight: FontWeight.bold)),
+                          
+                        
+                      
                     ],
                     
                   ),
@@ -57,9 +62,20 @@ class CartItem extends StatelessWidget {
               ],
               
             ),
-            IconButton(
-              icon: const Icon(Icons.clear),
-              onPressed: () => BlocProvider.of<ShopBloc>(context).add(ItemDeleted(product)),
+            Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                IconButton(
+                  icon: const Icon(Icons.clear),
+                  onPressed: () => BlocProvider.of<ShopBloc>(context).add(ItemDeleted(product)),
+                ),
+                Container(
+                  margin: const EdgeInsets.all(10),
+                  child: Text("${product.price}€",
+                                style: const TextStyle(
+                                    fontSize: 18, fontWeight: FontWeight.bold)),
+                ),
+              ],
             )
           ],
         ));
