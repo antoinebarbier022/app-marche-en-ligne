@@ -14,7 +14,7 @@ class ShoppingListDetailsPage extends StatelessWidget {
         ),
         body: (shoppingList.products.isEmpty)
             ? Center(
-              child: Container(
+                child: Container(
                   margin: const EdgeInsets.only(
                       bottom: 120), // equivalant à la taille du footer + 50
                   child: Column(
@@ -35,22 +35,30 @@ class ShoppingListDetailsPage extends StatelessWidget {
                     ],
                   ),
                 ),
-            )
+              )
             : SingleChildScrollView(
                 child: Column(
                   children: [
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
-                        ElevatedButton.icon(
-                          icon: const Icon(Icons.mode_edit_outline_outlined),
-                          label: const Text("Edit"),
-                          onPressed: () {},
+                        Expanded(
+                          child: Container(
+                            margin: const EdgeInsets.all(10.0),
+                            child: ElevatedButton.icon(
+                              icon: const Icon(Icons.mode_edit_outline_outlined),
+                              label: const Text("Edit"),
+                              onPressed: () {},
+                            ),
+                          ),
                         ),
-                        ElevatedButton.icon(
-                          icon: const Icon(Icons.delete_outline),
-                          label: const Text("Remove"),
-                          onPressed: () {},
+                        Container(
+                          margin: const EdgeInsets.all(10.0),
+                          child: ElevatedButton.icon(
+                            icon: const Icon(Icons.delete_outline),
+                            label: const Text("Remove"),
+                            onPressed: () {},
+                          ),
                         )
                       ],
                     ),
