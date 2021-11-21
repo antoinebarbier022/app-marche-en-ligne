@@ -45,7 +45,25 @@ class ShoppingCartPage extends StatelessWidget {
                 );
               } else {
                 // Le panier est vide
-                return const Center(child: Text("Is Empty."));
+                return Center(
+                    child: Container(
+                  margin: const EdgeInsets.only(
+                      bottom: 120), // equivalant à la taille du footer + 50
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Image.asset(
+                        'assets/illustrations/EmptyCart.png',
+                        width: 200,
+                        fit: BoxFit.scaleDown,
+                      ),
+                      const Padding(
+                        padding: EdgeInsets.all(8.0),
+                        child: Text("Shopping Cart is Empty.", style: TextStyle(fontWeight: FontWeight.bold),),
+                      ),
+                    ],
+                  ),
+                ));
               }
             } else {
               // une erreur est survenue
@@ -65,7 +83,6 @@ class ShoppingCartPage extends StatelessWidget {
                   return Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
-
                         // Texte qui affiche le prix total du panier
                         Column(
                             mainAxisAlignment: MainAxisAlignment.center,
@@ -85,11 +102,15 @@ class ShoppingCartPage extends StatelessWidget {
                               )
                             ]),
                         // Bouton pour accéder au checkout
+                        
                         SizedBox(
                           width: 250,
                           child: ElevatedButton(
                             child: const Text("Checkout"),
-                            onPressed: () => null,
+                            onPressed: (state is ShopLoadSuccess)
+                                      ? 
+                                      (state.cart.items.isEmpty ? null : () {})
+                                      : null,
                           ),
                         ),
                       ]);
