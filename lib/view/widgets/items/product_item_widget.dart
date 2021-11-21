@@ -10,26 +10,11 @@ class ProductItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return LongPressDraggable(
+    return LongPressDraggable<Product>(
+      data: product,
       dragAnchorStrategy:
           pointerDragAnchorStrategy, // Permet d'avoir l'élement positionné sur la souris (en haut à gauche)
-      feedback: FractionalTranslation(
-        translation: const Offset(
-            -0.5, -0.5), // Permet de centrer l'element sur la souris
-        child: Container(
-          width: 50,
-          child: AspectRatio(
-            aspectRatio: 1 / 1,
-            child: Container(
-              decoration: BoxDecoration(
-                color: Theme.of(context).cardColor,
-                border: Border.all(color: Colors.black12, width: 1),
-                borderRadius: BorderRadius.circular(10),
-              ),
-            ),
-          ),
-        ),
-      ),
+      feedback: const DragingItem(),
       child: InkWell(
         borderRadius: BorderRadius.circular(10),
         child: Container(
@@ -74,6 +59,33 @@ class ProductItem extends StatelessWidget {
                     )),
           );
         },
+      ),
+    );
+  }
+}
+
+class DragingItem extends StatelessWidget {
+  const DragingItem({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return FractionalTranslation(
+      translation: const Offset(
+          -0.5, -0.5), // Permet de centrer l'element sur la souris
+      child: Container(
+        width: 50,
+        child: AspectRatio(
+          aspectRatio: 1 / 1,
+          child: Container(
+            decoration: BoxDecoration(
+              color: Theme.of(context).cardColor,
+              border: Border.all(color: Colors.black12, width: 1),
+              borderRadius: BorderRadius.circular(10),
+            ),
+          ),
+        ),
       ),
     );
   }
