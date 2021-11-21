@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'buisness_logic/bloc/departement_bloc.dart';
 import 'buisness_logic/bloc/product_bloc.dart';
 import 'buisness_logic/bloc/shop_bloc.dart';
+import 'buisness_logic/bloc/shopping_list_bloc.dart';
 import 'config/theme.dart';
 import 'view/pages/_pages.dart';
 
@@ -25,14 +26,21 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
    return MultiBlocProvider(
       providers: [
+        // Product Bloc
         BlocProvider<ProductBloc>(
           create: (BuildContext context) => ProductBloc(),
         ),
+        // Departemnt Bloc
         BlocProvider<DepartementBloc>(
           create: (BuildContext context) => DepartementBloc(),
         ),
+        //Shop Bloc (cart)
         BlocProvider<ShopBloc>(
           create: (BuildContext context) => ShopBloc(),
+        ),
+        // ShoppingList Bloc
+        BlocProvider<ShoppingListBloc>(
+          create: (BuildContext context) => ShoppingListBloc(),
         ),
       ],
       child: MaterialApp(

@@ -6,7 +6,7 @@ class CollectionList extends StatelessWidget {
   final Widget link;
   final bool isShopingList;
   final List<Product> listProduct; // liste des produits
-  final List<Shopping> listShoppingList; // liste des listes de shopping
+  final List<ShoppingList> listShoppingList; // liste des listes de shopping
 
   CollectionList(
       {Key? key,
@@ -99,9 +99,9 @@ class CollectionList extends StatelessWidget {
             itemBuilder: (context, index) {
               if (listShoppingList.isNotEmpty) {
                 return ShoppingItem(
-                  title: listShoppingList[index].title,
+                  title: listShoppingList[index].name,
                   color: Theme.of(context).primaryColorLight,
-                  nbItem: listShoppingList[index].nbItem,
+                  nbItem: listShoppingList[index].products.length,
                 );
               } else {
                 return ProductItem(

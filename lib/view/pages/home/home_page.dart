@@ -59,39 +59,45 @@ class HomePage extends StatelessWidget {
               ),
 
               // Affichage des shopping list de l'utilisateur
-              CollectionList(
-                id: '',
-                title: "Shopping List",
-                listShoppingList: list_shopping,
-                link: ShoppingListsPage(
-                  title: 'Shopping lists',
-                ),
+              BlocBuilder<ShoppingListBloc, ShoppingListState>(
+                builder: (context, state) {
+                  if (state is ShoppingListLoadSuccess) {
+                    return CollectionList(
+                      id: '',
+                      title: "Shopping List",
+                      listShoppingList: state.list,
+                      link: ShoppingListsPage(
+                        title: 'Shopping List',
+                      ),
+                    );
+                  } else {
+                    return Container();
+                  }
+                },
               ),
 
               // Affichage des produits rangés par département (departement = catégorie général de produits)
               BlocBuilder<DepartementBloc, DepartementState>(
                 builder: (context, departementsState) {
-                  
                   // Si on n'as pas encore récupérer les différents departement existant
                   // On affiche un indicateur de chargement
                   if (departementsState is DepartementsLoading) {
                     return const Center(child: CircularProgressIndicator());
 
-                  // Une fois les departements récupérer, on va récupérer tous les produits
+                    // Une fois les departements récupérer, on va récupérer tous les produits
                   } else if (departementsState is DepartementsLoaded) {
                     return BlocBuilder<ProductBloc, ProductState>(
                         builder: (context, productsState) {
-                      
                       // Si les produits ne sont pas encore chargé, on affiche l'indicateur de chargement
                       if (productsState is ProductsLoading) {
                         return const Center(child: CircularProgressIndicator());
 
-                      // Une fois les produits récupéré, on les affiches dans leurs départements
+                        // Une fois les produits récupéré, on les affiches dans leurs départements
                       } else if (productsState is ProductsLoaded) {
                         return SizedBox(
                           child: ListView.builder(
                             // On desactive le scroll de la liste car il y a déja celui de SingleChildScrollView
-                            physics: const NeverScrollableScrollPhysics(), 
+                            physics: const NeverScrollableScrollPhysics(),
                             shrinkWrap: true,
                             itemCount: departementsState.departements.length,
                             itemBuilder: (BuildContext context, int index) {
@@ -112,11 +118,10 @@ class HomePage extends StatelessWidget {
                                       departement:
                                           departementsState.departements[index],
                                     ));
-                              }else{
+                              } else {
                                 // Il n'existe pas de produits dans le département, on n'affiche rien
                                 return Container();
                               }
-                            
                             },
                           ),
                         );
