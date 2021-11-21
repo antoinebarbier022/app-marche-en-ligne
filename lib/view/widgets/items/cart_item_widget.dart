@@ -35,6 +35,7 @@ class _CartItemState extends State<CartItem> {
     });
   }
 
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -134,13 +135,20 @@ class _CartItemState extends State<CartItem> {
                                     _quantity == 0 ? "Remove" : "Update",
                                     style: const TextStyle(fontSize: 12)),
                                 onPressed: () {
-                                  if (_quantity == 0) {
+                                  var dataQuantity = _quantity;
+                                  setState(() {
+                                    _quantity = widget.quantity;
+                                  });
+                                  if (dataQuantity == 0) {
                                     // On delete l'item
                                     BlocProvider.of<ShopBloc>(context)
                                         .add(ItemDeleted(widget.product));
+
                                   } else {
-                                    BlocProvider.of<ShopBloc>(context)
-                      .add(ItemUpdated(Item(widget.product, _quantity)));
+                                    BlocProvider.of<ShopBloc>(context).add(
+                                        ItemUpdated(
+                                            Item(widget.product, dataQuantity)));
+
                                   }
                                 },
                               ),
@@ -168,7 +176,8 @@ class _CartItemState extends State<CartItem> {
                 Container(
                   margin: const EdgeInsets.only(
                       left: 10, right: 10, top: 10, bottom: 15),
-                  child: Text("${((widget.product.price)*(_quantity)).toStringAsFixed(2)}€",
+                  child: Text(
+                      "${((widget.product.price) * (_quantity)).toStringAsFixed(2)}€",
                       style: const TextStyle(
                           fontSize: 18, fontWeight: FontWeight.bold)),
                 ),
