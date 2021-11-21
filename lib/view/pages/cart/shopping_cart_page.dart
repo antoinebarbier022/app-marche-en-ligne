@@ -7,39 +7,58 @@ class ShoppingCartPage extends StatelessWidget {
 
   var list = [
     Product("Pomme", 2.4, "Popular", "test"),
-    Product("Banane", 5,  "Popular", "test"),
-    Product("Cerise", 2.4,  "Popular", "test"),
-    Product("Mangue", 2.4,  "Popular", "test"),
-    Product("Carotte", 2.4,  "Vegetables", "test"),
-    Product("Tomate", 2.4,  "Vegetables", "test"),
-    Product("Orange", 2.4,  "Popular", "test")
+    Product("Banane", 5, "Popular", "test"),
+    Product("Cerise", 2.4, "Popular", "test"),
+    Product("Mangue", 2.4, "Popular", "test"),
+    Product("Carotte", 2.4, "Vegetables", "test"),
+    Product("Tomate", 2.4, "Vegetables", "test"),
+    Product("Orange", 2.4, "Popular", "test")
   ];
 
   @override
   Widget build(BuildContext context) {
+    final shopBloc = BlocProvider.of<ShopBloc>(context);
+    shopBloc.add(ShopLoaded());
+
     return Scaffold(
         appBar: AppBar(
           centerTitle: true,
           title: const Text("Shopping Cart"),
           automaticallyImplyLeading: true,
         ),
-        body: ListView.separated(
-          physics: const NeverScrollableScrollPhysics(),
-          padding: const EdgeInsets.only(bottom: 70),
-          itemCount: list.length,
-          itemBuilder: (context, index) {
-            return CartItem(
-              product: list[index],
-              quantity: 1,
-            );
-          },
-          separatorBuilder: (BuildContext context, int index) {
-            return const Divider(
-              height: 0,
-              thickness: 1,
-              indent: 0,
-              endIndent: 0,
-            );
+        body: BlocBuilder<ShopBloc, ShopState>(
+          builder: (context, state) {
+            print(state);
+            if (state is ShopLoadInProgress) {
+              return const Center(child: CircularProgressIndicator());
+            } else if (state is ShopLoadSuccess) {
+              return ListView.separated(
+                physics: const NeverScrollableScrollPhysics(),
+                padding: const EdgeInsets.only(bottom: 70),
+                itemCount: state.cart.items.length,
+                itemBuilder: (context, index) {
+                  return CartItem(
+                    product: state.cart.items[index].product,
+                    quantity: state.cart.items[index].quantity,
+                  );
+                },
+                separatorBuilder: (BuildContext context, int index) {
+                  return const Divider(
+                    height: 0,
+                    thickness: 1,
+                    indent: 0,
+                    endIndent: 0,
+                  );
+                },
+              );
+
+            }else if ((state is ShopLoadFailure)){
+              return const Center(child: Text("errooor."));
+            } else {
+              
+              return const Center(child: Text("Is Empty."));
+            }
+            
           },
         ),
         bottomSheet: Container(
@@ -49,19 +68,19 @@ class ShoppingCartPage extends StatelessWidget {
             child: Padding(
               padding: const EdgeInsets.all(15.0),
               child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                Column(
-                  children: const [Text("Total price"), Text("32€")],
-                ),
-                SizedBox(
-                  width: 250,
-                  child: ElevatedButton(
-                    child: const Text("Checkout"),
-                    onPressed: () => null,
-                  ),
-                ),
-              ]),
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    Column(
+                      children: const [Text("Total price"), Text("32€")],
+                    ),
+                    SizedBox(
+                      width: 250,
+                      child: ElevatedButton(
+                        child: const Text("Checkout"),
+                        onPressed: () => null,
+                      ),
+                    ),
+                  ]),
             )));
   }
 }

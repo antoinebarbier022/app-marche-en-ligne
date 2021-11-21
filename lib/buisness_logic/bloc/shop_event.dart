@@ -30,15 +30,15 @@ class ItemAdded extends ShopEvent {
 }
 
 class ItemUpdated extends ShopEvent {
-  final Product product;
+  final Item item;
 
-  const ItemUpdated(this.product);
-
-  @override
-  List<Object> get props => [product];
+  const ItemUpdated(this.item);
 
   @override
-  String toString() => 'ItemUpdated { product: $product }';
+  List<Object> get props => [item];
+
+  @override
+  String toString() => 'ItemUpdated { product: ${item.product} -> ${item.quantity}}';
 }
 
 class ItemDeleted extends ShopEvent {

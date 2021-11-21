@@ -1,9 +1,16 @@
 part of '_models.dart';
 
 class Cart {
-  String name;
   // On associe le produit avec la quantité
-  Map<Product, String> items;
+  List<Item> items;
 
-  Cart(this.name, this.items);
+  Cart(this.items);
+
+
 }
+
+class Item{
+    Product product;
+    double quantity;
+    Item(this.product, this.quantity);
+  }

@@ -130,7 +130,7 @@ class ProductDetailPage extends StatelessWidget {
                 ),
                 ElevatedButton(
                   child: const Text("Add to cart"),
-                  onPressed: () => null,
+                  onPressed: () => BlocProvider.of<ShopBloc>(context).add(ItemAdded(product)),
                 )
               ],
             )));

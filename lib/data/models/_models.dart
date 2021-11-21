@@ -1,5 +1,6 @@
 // Ici on place les imports des models
 
+import 'package:app_market_online/buisness_logic/bloc/shop_bloc.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 
