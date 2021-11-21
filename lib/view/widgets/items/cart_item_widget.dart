@@ -43,37 +43,68 @@ class CartItem extends StatelessWidget {
                       Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text(product.name, style: const TextStyle(fontSize: 18)),
-                            Text("1 lb",
+                            Text(product.name,
+                                style: const TextStyle(fontSize: 18)),
+                            Text("x ${quantity.toInt()}",
                                 style: TextStyle(color: Colors.grey[700])),
+                            
                           ]),
-                      
-                          const Text("Quantité",
-                              style: TextStyle(
-                                  fontSize: 18, fontWeight: FontWeight.bold)),
-                          
-                        
-                      
+                          Row(
+                              children: [
+                                InkWell(
+                                  radius: 5,
+                                  child: Container(
+                                    padding: const EdgeInsets.all(3),
+                                    decoration: BoxDecoration(
+                                      color: Theme.of(context).primaryColor.withOpacity(0.12),
+                                      borderRadius: BorderRadius.circular(5),
+                                    ),
+                                    child:  Icon(Icons.remove, size: 20, color: Theme.of(context).primaryColor,),
+                                  ),onTap: (){
+
+                                  },
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Text("1",
+                                  style: TextStyle(color: Colors.grey[700])),
+                                ),
+                                InkWell(
+                                  radius: 5,
+                                  child: Container(
+                                    padding: const EdgeInsets.all(3),
+                                    decoration: BoxDecoration(
+                                      color: Theme.of(context).primaryColor,
+                                      borderRadius: BorderRadius.circular(5),
+                                    ),
+                                    child: const Icon(Icons.add, size: 20, color: Colors.white),
+                                  ),onTap: (){
+
+                                  },
+                                )
+                              ],
+                            ),
+                      /*Text("Quantité : ${quantity.toInt()}",
+                          style: const TextStyle(
+                              fontSize: 18, fontWeight: FontWeight.bold)),*/
                     ],
-                    
                   ),
                 ),
-                
               ],
-              
             ),
             Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 IconButton(
-                  icon: const Icon(Icons.clear),
-                  onPressed: () => BlocProvider.of<ShopBloc>(context).add(ItemDeleted(product)),
+                  icon: Icon(Icons.clear, color: Colors.grey[700]),
+                  onPressed: () => BlocProvider.of<ShopBloc>(context)
+                      .add(ItemDeleted(product)),
                 ),
                 Container(
                   margin: const EdgeInsets.all(10),
                   child: Text("${product.price}€",
-                                style: const TextStyle(
-                                    fontSize: 18, fontWeight: FontWeight.bold)),
+                      style: const TextStyle(
+                          fontSize: 18, fontWeight: FontWeight.bold)),
                 ),
               ],
             )
