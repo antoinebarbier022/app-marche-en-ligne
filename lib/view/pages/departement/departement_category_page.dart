@@ -1,5 +1,7 @@
 part of '../_pages.dart';
 
+/// Page qui affiche tous les produits contenue dans une catégorie appartenant à un département.
+
 class DepartementCategoryPage extends StatelessWidget {
   DepartementCategoryPage({Key? key, required this.departement, required this.category})
       : super(key: key);
@@ -30,7 +32,7 @@ class DepartementCategoryPage extends StatelessWidget {
                 itemCount: listProduct.length,
                 padding: const EdgeInsets.all(10),
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 3,
+                    crossAxisCount: 3, // On affiche 3 catégories par lignes
                     childAspectRatio: 0.75,
                     crossAxisSpacing: 4.0,
                     mainAxisSpacing: 4.0),

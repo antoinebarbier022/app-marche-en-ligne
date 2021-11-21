@@ -1,7 +1,7 @@
 part of '../_pages.dart';
 
 class DepartementDetailsPage extends StatelessWidget {
-  DepartementDetailsPage({Key? key, required this.departement})
+  const DepartementDetailsPage({Key? key, required this.departement})
       : super(key: key);
 
   final Departement departement;
@@ -21,12 +21,15 @@ class DepartementDetailsPage extends StatelessWidget {
         body: SingleChildScrollView(
             child:
                 Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+          // Search Bar
           const Padding(
             padding: EdgeInsets.all(10.0),
             child: CupertinoSearchTextField(),
           ),
-          // liste horizontale qui fait défiler les badges des catégories
+          // liste horizontale qui fait défiler la liste des noms de catégories du département
           CategoriesListBadge(departement: departement),
+
+          // Affichage de toutes les catégories du département avec leurs produits
           const SizedBox(height: 20),
           BlocBuilder<ProductBloc, ProductState>(
               builder: (context, productsState) {
@@ -39,19 +42,25 @@ class DepartementDetailsPage extends StatelessWidget {
                     shrinkWrap: true,
                     itemCount: departement.categories.length,
                     itemBuilder: (BuildContext context, int index) {
-                      return CollectionList(
-                          id: '',
-                          title: departement.categories[index].name,
-                          listProduct: productsState.products
-                              .where((i) =>
-                                  (i.category ==
-                                      departement.categories[index].name) &&
-                                  (i.departement == departement.name))
-                              .toList(),
-                          link: DepartementCategoryPage(
-                            departement: departement,
-                            category: departement.categories[index],
-                          ));
+                      var listProduitCategory = productsState.products
+                          .where((i) =>
+                              (i.category ==
+                                  departement.categories[index].name) &&
+                              (i.departement == departement.name))
+                          .toList();
+                      // Si la liste de produit de la catégorie n'est pas vide, on l'affiche
+                      if (listProduitCategory.isNotEmpty) {
+                        return CollectionList(
+                            id: '',
+                            title: departement.categories[index].name,
+                            listProduct: listProduitCategory,
+                            link: DepartementCategoryPage(
+                              departement: departement,
+                              category: departement.categories[index],
+                            ));
+                      }else{
+                        return Container();
+                      }
                     }),
               );
             } else {
@@ -91,7 +100,7 @@ class CategoriesListBadge extends StatelessWidget {
                 child: Center(
                     child: Padding(
                   padding: const EdgeInsets.only(left: 8, right: 8),
-                  child: Text(departement.categories[index].name),
+                  child: Text(departement.categories[index].name, style: TextStyle(color: Theme.of(context).primaryColorDark)),
                 ))),
             onTap: () {
               Navigator.push(

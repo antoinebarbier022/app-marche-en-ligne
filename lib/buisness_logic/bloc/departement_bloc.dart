@@ -21,7 +21,7 @@ class DepartementBloc extends Bloc<DepartementEvent, DepartementState> {
         Departement("Meat", "meat", AppColors.red, [Category("Pork"),Category("Chicken"),Category("Beef")]),
         Departement("Fruits", "fruits", AppColors.green, [Category("France"),Category("Espagne")]),
         Departement("Grains & Pasta", "grains", AppColors.orange, []),
-        Departement("Vegetables", "vegetables", AppColors.green, [Category("France"),Category("Espagne")]),
+        Departement("Vegetables", "vegetables", AppColors.green, [Category("France"),Category("Espagne"),Category("Chine")]),
         Departement("Cheese", "cheese", AppColors.blue, []),
         Departement("Bakery & Pastry", "bakery", AppColors.yellow, []),
         Departement("Seafood", "fish", AppColors.blue, []),

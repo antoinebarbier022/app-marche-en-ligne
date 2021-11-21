@@ -1,5 +1,6 @@
 part of '../_pages.dart';
 
+/// Page qui list tous les départements existant dans une grille
 
 class StoreDepartementPage extends StatelessWidget {
   StoreDepartementPage({Key? key, required this.title}) : super(key: key);
