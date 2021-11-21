@@ -48,15 +48,15 @@ class ShopBloc extends Bloc<ShopEvent, ShopState> {
     final List<Item> listItems;
     // Si l'item est deja présent, on ne l'ajoute pas
     
-    if (( state is ShopLoadSuccess) && (state as ShopLoadSuccess)
+    if ((state as ShopLoadSuccess)
         .cart
         .items
-        .any((item) => item.product == event.product)) {
+        .any((item) => item.product.name == event.item.product.name)) {
       print("L'item est déja dans le panier");
       listItems = List.from((state as ShopLoadSuccess).cart.items);
     } else {
       listItems = List.from((state as ShopLoadSuccess).cart.items)
-        ..add(Item(event.product, 1));
+        ..add(event.item);
     }
     final Cart updatedShop = Cart(listItems);
     print(updatedShop.items);
