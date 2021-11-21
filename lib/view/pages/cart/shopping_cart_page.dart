@@ -32,33 +32,32 @@ class ShoppingCartPage extends StatelessWidget {
             if (state is ShopLoadInProgress) {
               return const Center(child: CircularProgressIndicator());
             } else if (state is ShopLoadSuccess) {
-              return ListView.separated(
-                physics: const NeverScrollableScrollPhysics(),
-                padding: const EdgeInsets.only(bottom: 70),
-                itemCount: state.cart.items.length,
-                itemBuilder: (context, index) {
-                  return CartItem(
-                    product: state.cart.items[index].product,
-                    quantity: state.cart.items[index].quantity,
-                  );
-                },
-                separatorBuilder: (BuildContext context, int index) {
-                  return const Divider(
-                    height: 0,
-                    thickness: 1,
-                    indent: 0,
-                    endIndent: 0,
-                  );
-                },
-              );
-
-            }else if ((state is ShopLoadFailure)){
-              return const Center(child: Text("errooor."));
+              if (state.cart.items.isNotEmpty) {
+                return ListView.separated(
+                  physics: const NeverScrollableScrollPhysics(),
+                  padding: const EdgeInsets.only(bottom: 70),
+                  itemCount: state.cart.items.length,
+                  itemBuilder: (context, index) {
+                    return CartItem(
+                      product: state.cart.items[index].product,
+                      quantity: state.cart.items[index].quantity,
+                    );
+                  },
+                  separatorBuilder: (BuildContext context, int index) {
+                    return const Divider(
+                      height: 0,
+                      thickness: 1,
+                      indent: 0,
+                      endIndent: 0,
+                    );
+                  },
+                );
+              } else {
+                return const Center(child: Text("Is Empty."));
+              }
             } else {
-              
-              return const Center(child: Text("Is Empty."));
+              return const Center(child: Text("Error."));
             }
-            
           },
         ),
         bottomSheet: Container(
