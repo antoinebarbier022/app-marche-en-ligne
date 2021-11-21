@@ -6,6 +6,13 @@ class Cart {
 
   Cart(this.items);
 
+  double getTotalPrice(){
+    double sum = 0;
+    for (var element in items) {
+      sum += (element.quantity * element.product.price);
+    }
+    return sum;
+  }
 
 }
 
