@@ -45,15 +45,15 @@ class CollectionList extends StatelessWidget {
                           ),
                           child: IconButton(
                             icon: Icon(Icons.add_shopping_cart, size: 18),
-                            
-                    constraints: const BoxConstraints(),
+                            constraints: const BoxConstraints(),
                             color: Colors.white,
                             onPressed: () {
-                              ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Vous avez ajouté la liste "$title" dans votre panier.')));
+                              ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                                  content: Text(
+                                      'Vous avez ajouté la liste "$title" dans votre panier.')));
                             },
                           ),
                         ),
-                        
                         TextButton(
                           child: Text("${listProduct.length} items"),
                           onPressed: () {
@@ -85,8 +85,9 @@ class CollectionList extends StatelessWidget {
           ),
         ),
         Container(
-          margin: const EdgeInsets.only(bottom:20),
-          height: 150,
+          margin: const EdgeInsets.only(bottom: 20),
+          // si on affiche les produits d'une shopping liste mais qu'il n'y en a pas, alors on diminue la hauteur de l'affichage des items (car il n'y en a pas). On souhaite tout de même laisser afficher le titre de la shopping list
+          height: (isShopingList && listProduct.isEmpty) ? 0 : 150,
           child: ListView.separated(
             scrollDirection: Axis.horizontal,
             // Let the ListView know how many items it needs to build.
@@ -102,8 +103,7 @@ class CollectionList extends StatelessWidget {
                   shoppingList: listShoppingList[index],
                 );
               } else {
-                return ProductItem(
-                    product: listProduct[index]);
+                return ProductItem(product: listProduct[index]);
               }
             },
             separatorBuilder: (BuildContext context, int index) {
