@@ -1,19 +1,7 @@
 part of '../_pages.dart';
 
 class ShoppingCartPage extends StatelessWidget {
-  ShoppingCartPage({Key? key, required this.title}) : super(key: key);
-
-  final String title;
-
-  var list = [
-    Product("Pomme", 2.4, "Popular", "test"),
-    Product("Banane", 5, "Popular", "test"),
-    Product("Cerise", 2.4, "Popular", "test"),
-    Product("Mangue", 2.4, "Popular", "test"),
-    Product("Carotte", 2.4, "Vegetables", "test"),
-    Product("Tomate", 2.4, "Vegetables", "test"),
-    Product("Orange", 2.4, "Popular", "test")
-  ];
+  const ShoppingCartPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -26,12 +14,17 @@ class ShoppingCartPage extends StatelessWidget {
           title: const Text("Shopping Cart"),
           automaticallyImplyLeading: true,
         ),
+
+        // On recupérer le panier de l'utilisateur
         body: BlocBuilder<ShopBloc, ShopState>(
           builder: (context, state) {
-            print(state);
+            // Indicateur de chargement
             if (state is ShopLoadInProgress) {
               return const Center(child: CircularProgressIndicator());
+
+              // Si le panier est chargé alors
             } else if (state is ShopLoadSuccess) {
+              // Si le panier n'est pas vide on affiche la liste des items
               if (state.cart.items.isNotEmpty) {
                 return ListView.separated(
                   physics: const NeverScrollableScrollPhysics(),
@@ -43,23 +36,24 @@ class ShoppingCartPage extends StatelessWidget {
                       quantity: state.cart.items[index].quantity,
                     );
                   },
+                  // ligne de séparation des items
                   separatorBuilder: (BuildContext context, int index) {
                     return const Divider(
-                      height: 0,
                       thickness: 1,
-                      indent: 0,
-                      endIndent: 0,
                     );
                   },
                 );
               } else {
+                // Le panier est vide
                 return const Center(child: Text("Is Empty."));
               }
             } else {
+              // une erreur est survenue
               return const Center(child: Text("Error."));
             }
           },
         ),
+        // Bas de page (fixe) qui informe l'utilisateur du prix total du panier + accès au checkout
         bottomSheet: Container(
             width: double.infinity,
             height: 70,
@@ -71,16 +65,26 @@ class ShoppingCartPage extends StatelessWidget {
                   return Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
+
+                        // Texte qui affiche le prix total du panier
                         Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children:  [
-                            Text(state is ShopLoadSuccess ? "${state.cart.getTotalPrice().toStringAsFixed(2)}€" : "0€",  style: const TextStyle(
-                                    fontSize: 20, fontWeight: FontWeight.bold)),
-                            Text("Total price", style: TextStyle(
-                                    fontSize: 14, color : Colors.grey.shade600), )
-                          ]
-                        ),
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                  state is ShopLoadSuccess
+                                      ? "${state.cart.getTotalPrice().toStringAsFixed(2)}€"
+                                      : "0€",
+                                  style: const TextStyle(
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.bold)),
+                              Text(
+                                "Total price",
+                                style: TextStyle(
+                                    fontSize: 14, color: Colors.grey.shade600),
+                              )
+                            ]),
+                        // Bouton pour accéder au checkout
                         SizedBox(
                           width: 250,
                           child: ElevatedButton(

@@ -33,9 +33,7 @@ class AppBarCustom extends StatelessWidget implements PreferredSizeWidget {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => ShoppingCartPage(
-                                title: '',
-                              )),
+                          builder: (context) => ShoppingCartPage()),
                     );
                   },
                   icon: const Icon(Icons.shopping_cart_outlined),
@@ -57,9 +55,7 @@ class AppBarCustom extends StatelessWidget implements PreferredSizeWidget {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => ShoppingCartPage(
-                                title: '',
-                              )),
+                          builder: (context) => ShoppingCartPage()),
                     );
                   },
                   icon: const Icon(Icons.shopping_cart_outlined),

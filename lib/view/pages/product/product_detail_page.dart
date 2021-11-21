@@ -205,9 +205,7 @@ if ((state is ShopLoadSuccess) ) {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => ShoppingCartPage(
-                                          title: '',
-                                        )),
+                                    builder: (context) => ShoppingCartPage()),
                               );
                             },
                           ),
