@@ -59,7 +59,7 @@ class CartItem extends StatelessWidget {
             ),
             IconButton(
               icon: const Icon(Icons.clear),
-              onPressed: () {},
+              onPressed: () => BlocProvider.of<ShopBloc>(context).add(ItemDeleted(product)),
             )
           ],
         ));

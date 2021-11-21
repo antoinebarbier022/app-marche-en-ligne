@@ -29,9 +29,14 @@ class ShopBloc extends Bloc<ShopEvent, ShopState> {
   }
 
   Stream<ShopState> _mapShopLoadedToState() async* {
+    final cart;
     try {
-
-      final cart = Cart(List.from((state as ShopLoadSuccess).cart.items));
+      if(state is ShopLoadSuccess){
+        cart = Cart(List.from((state as ShopLoadSuccess).cart.items));
+      }else{
+        cart = Cart([]);
+      }
+      
       print("ok");
       yield ShopLoadSuccess(cart);
     } catch (_) {
