@@ -8,7 +8,7 @@ class SideBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width:250,
+      width: 250,
       child: Drawer(
         child: Material(
           color: Theme.of(context).primaryColorDark,
@@ -26,7 +26,8 @@ class SideBar extends StatelessWidget {
                   text: "Shopping Cart",
                   icon: Icons.shopping_cart,
                   context: context,
-                  link: ShoppingCartPage()),
+                  isShoppingCart: true,
+                  link: const ShoppingCartPage()),
               buildMenuItem(
                   text: "Shopping List",
                   icon: Icons.list,
@@ -38,27 +39,37 @@ class SideBar extends StatelessWidget {
                   text: "Recipes",
                   icon: Icons.menu_book,
                   context: context,
-                  link: HomePage(title: "Home",)),
+                  link: HomePage(
+                    title: "Home",
+                  )),
               buildMenuItem(
                   text: "Order History",
                   icon: Icons.history,
                   context: context,
-                  link: HomePage(title: "Home",)),
+                  link: HomePage(
+                    title: "Home",
+                  )),
               buildMenuItem(
                   text: "Login",
                   icon: Icons.login,
                   context: context,
-                  link: HomePage(title: "Home",)),
+                  link: HomePage(
+                    title: "Home",
+                  )),
               buildMenuItem(
                   text: "Help",
                   icon: Icons.help_center,
                   context: context,
-                  link: HomePage(title: "Home",)),
+                  link: HomePage(
+                    title: "Home",
+                  )),
               buildMenuItem(
                   text: "About",
                   icon: Icons.info,
                   context: context,
-                  link: HomePage(title: "Home",)),
+                  link: HomePage(
+                    title: "Home",
+                  )),
             ]).toList(),
           ),
         ),
@@ -70,6 +81,7 @@ class SideBar extends StatelessWidget {
 Widget buildMenuItem(
     {required String text,
     required IconData icon,
+    bool isShoppingCart = false,
     required BuildContext context,
     required Widget link}) {
   return ListTile(
@@ -77,6 +89,28 @@ Widget buildMenuItem(
     title: Text(
       text,
       style: const TextStyle(color: Colors.white),
+    ),
+    trailing: Visibility(
+      visible: isShoppingCart,
+      child: BlocBuilder<ShopBloc, ShopState>(
+        builder: (context, state) {
+          if (state is ShopLoadSuccess) {
+            return Container(
+              padding:
+                  const EdgeInsets.only(left: 15, right: 15, top: 5, bottom: 5),
+              decoration: BoxDecoration(
+                color: Colors.white.withOpacity(0.2),
+                borderRadius: BorderRadius.circular(15),
+              ),
+              child: Text("${state.cart.getTotalItems()}",
+                  style: const TextStyle(
+                      fontWeight: FontWeight.bold, color: Colors.white)),
+            );
+          } else {
+            return Container();
+          }
+        },
+      ),
     ),
     onTap: () {
       Navigator.push(
