@@ -26,3 +26,6 @@ part 'departement/departement_category_page.dart';
 // Shopping List
 part 'shoppingList/shopping_lists_page.dart';
 part 'shoppingList/shopping_list_details_page.dart';
+
+// errors
+part 'errors/not_found_page.dart';

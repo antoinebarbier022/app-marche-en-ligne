@@ -39,37 +39,27 @@ class SideBar extends StatelessWidget {
                   text: "Recipes",
                   icon: Icons.menu_book,
                   context: context,
-                  link: HomePage(
-                    title: "Home",
-                  )),
+                  link: const NotFoundPage()),
               buildMenuItem(
                   text: "Order History",
                   icon: Icons.history,
                   context: context,
-                  link: HomePage(
-                    title: "Home",
-                  )),
+                  link: const NotFoundPage()),
               buildMenuItem(
                   text: "Login",
                   icon: Icons.login,
                   context: context,
-                  link: HomePage(
-                    title: "Home",
-                  )),
+                  link: const NotFoundPage()),
               buildMenuItem(
                   text: "Help",
                   icon: Icons.help_center,
                   context: context,
-                  link: HomePage(
-                    title: "Home",
-                  )),
+                  link: const NotFoundPage()),
               buildMenuItem(
                   text: "About",
                   icon: Icons.info,
                   context: context,
-                  link: HomePage(
-                    title: "Home",
-                  )),
+                  link: const NotFoundPage()),
             ]).toList(),
           ),
         ),
