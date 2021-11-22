@@ -137,7 +137,7 @@ class _CartItemState extends State<CartItem> {
                                 onPressed: () {
                                   var dataQuantity = _quantity;
                                   setState(() {
-                                    _quantity = widget.quantity;
+                                    _quantity = dataQuantity;
                                   });
                                   if (dataQuantity == 0) {
                                     // On delete l'item
@@ -148,7 +148,6 @@ class _CartItemState extends State<CartItem> {
                                     BlocProvider.of<ShopBloc>(context).add(
                                         ItemUpdated(
                                             Item(widget.product, dataQuantity)));
-
                                   }
                                 },
                               ),
