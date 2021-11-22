@@ -86,14 +86,13 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                         InkWell(
                           child: Container(
                             padding: const EdgeInsets.only(
-                                left: 10, right: 10, top: 5, bottom: 5),
+                                left: 15, right: 13, top: 13, bottom: 13),
                             decoration: BoxDecoration(
-                              color: Colors.red.withOpacity(0.1),
-                              borderRadius: BorderRadius.circular(15),
+                              color: Colors.grey.withOpacity(0.1),
+                              borderRadius: BorderRadius.circular(20),
                             ),
                             child: const Icon(
                               Icons.playlist_add,
-                              color: Colors.red,
                             ),
                           ),
                           onTap: () => showDialog<String>(
@@ -147,11 +146,11 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                                         padding: const EdgeInsets.only(top: 20),
                                         child: RichText(
                                           textAlign: TextAlign.justify,
-                                          text: const TextSpan(
+                                          text: TextSpan(
                                             text:
                                                 "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In vel ligula non dolor volutpat dignissim. Ut vel tempor velit, quis vestibulum ante. Fusce eleifend tempus imperdiet. Mauris consequat interdum iaculis. Maecenas at hendrerit est, id pulvinar mauris. Nullam vel malesuada arcu. ",
                                             style:
-                                                TextStyle(color: Colors.black),
+                                                TextStyle(color: Colors.grey.shade800, height: 1.3),
                                           ),
                                         )),
                                     Container(
