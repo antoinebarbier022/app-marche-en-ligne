@@ -2,8 +2,10 @@ part of '../_widgets.dart';
 
 class ModalAddToShoppingList extends StatefulWidget {
   const ModalAddToShoppingList({
-    Key? key,
+    Key? key, required this.product,
   }) : super(key: key);
+
+  final Product product;
 
   @override
   State<ModalAddToShoppingList> createState() => _ModalAddToShoppingListState();
@@ -82,9 +84,10 @@ class _ModalAddToShoppingListState extends State<ModalAddToShoppingList> {
         ),
         ElevatedButton(
           onPressed: _shoppingListSelected!.isEmpty ? null : () {
+            BlocProvider.of<ShoppingListBloc>(context)
+              .add(ShoppingListProductAdded(_shoppingListSelected!, widget.product));
             // si on veut fermer la fenetre de dialogue avant d'ouvrir l'autre
-            //Navigator.pop(context);
-            
+            Navigator.pop(context);
           },
           child: const Text('Done'),
         ),

@@ -42,7 +42,7 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                 onPressed: () => showDialog<String>(
                       context: context,
                       builder: (BuildContext context) =>
-                          const ModalAddToShoppingList(),
+                          ModalAddToShoppingList(product: widget.product,),
                     ))
           ],
         ),

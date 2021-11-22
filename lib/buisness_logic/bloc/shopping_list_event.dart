@@ -43,4 +43,17 @@ class ShoppingListDeleted extends ShoppingListEvent {
   List<Object> get props => [shoppingList];
 }
 
+// Ajouter un produit dans une shopping list
 
+class ShoppingListProductAdded extends ShoppingListEvent {
+  final String shoppingListName;
+  final Product product;
+
+  const ShoppingListProductAdded(this.shoppingListName, this.product);
+
+  @override
+  List<Object> get props => [shoppingListName, product];
+
+  @override
+  String toString() => 'ShoppingListProductAdded { product: ${product.name}}';
+}
