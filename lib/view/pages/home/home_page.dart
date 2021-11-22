@@ -1,22 +1,9 @@
 part of '../_pages.dart';
 
-class Shopping {
-  String title;
-  int nbItem;
-
-  Shopping(this.title, this.nbItem);
-}
-
 class HomePage extends StatelessWidget {
   HomePage({Key? key, required this.title}) : super(key: key);
 
   final String title;
-
-  final list_shopping = [
-    Shopping("Evening Shopping list", 4),
-    Shopping("Weekend Shopping list", 6),
-    Shopping("Favorite product", 9),
-  ];
 
   @override
   Widget build(BuildContext context) {
