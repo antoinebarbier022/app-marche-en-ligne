@@ -45,7 +45,7 @@ class ProductItem extends StatelessWidget {
                 ),
                 Text(product.name, overflow: TextOverflow.ellipsis,),
                 Text(
-                  "${product.price}€/kg",
+                  "${product.price.toStringAsPrecision(3)}€/kg",
                   style: TextStyle(color: Colors.grey[600]),
                 ),
               ],
