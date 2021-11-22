@@ -1,6 +1,5 @@
 part of '../_widgets.dart';
 
-
 class ModalAddToShoppingList extends StatelessWidget {
   const ModalAddToShoppingList({
     Key? key,
@@ -47,32 +46,39 @@ class ModalAddToShoppingList extends StatelessWidget {
 
 // shopping list à afficher dans la fenetre de dialog
 Widget setupAlertDialoadContainer() {
-  var shoppinglist = ["Weekend Shopping list", "Favorites List"];
-  return Container(
-    width: 300.0,
-    decoration: BoxDecoration(
-      color: Colors.lightGreen.shade50,
-      borderRadius: BorderRadius.circular(10),
-    ),
-    child: ListView.separated(
-      shrinkWrap: true,
-      itemCount: shoppinglist.length,
-      itemBuilder: (BuildContext context, int index) {
-        return ListTile(
-          title: Text(shoppinglist[index]),
-          trailing: const Radio(
-            value: 1,
-            groupValue: true,
-            onChanged: null,
+  return BlocBuilder<ShoppingListBloc, ShoppingListState>(
+    builder: (context, state) {
+      if (state is ShoppingListLoadSuccess) {
+        return Container(
+          width: 300.0,
+          decoration: BoxDecoration(
+            color: Colors.lightGreen.shade50,
+            borderRadius: BorderRadius.circular(10),
+          ),
+          child: ListView.separated(
+            shrinkWrap: true,
+            itemCount: state.list.length,
+            itemBuilder: (BuildContext context, int index) {
+              return ListTile(
+                title: Text(state.list[index].name),
+                trailing: const Radio(
+                  value: 1,
+                  groupValue: true,
+                  onChanged: null,
+                ),
+              );
+            },
+            separatorBuilder: (BuildContext context, int index) {
+              return Divider(
+                color: Colors.grey[300],
+                thickness: 1,
+              );
+            },
           ),
         );
-      },
-      separatorBuilder: (BuildContext context, int index) {
-        return Divider(
-          color: Colors.grey[300],
-          thickness: 1,
-        );
-      },
-    ),
+      }else{
+        return const Text("Error");
+      }
+    },
   );
 }
