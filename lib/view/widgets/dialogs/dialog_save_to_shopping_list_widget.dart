@@ -88,6 +88,10 @@ class _ModalAddToShoppingListState extends State<ModalAddToShoppingList> {
               .add(ShoppingListProductAdded(_shoppingListSelected!, widget.product));
             // si on veut fermer la fenetre de dialogue avant d'ouvrir l'autre
             Navigator.pop(context);
+              ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                                content: Text(
+                                    'Vous avez ajouté [ 1 x ${widget.product.name} ] dans la liste [ $_shoppingListSelected ].')));
+                          
           },
           child: const Text('Done'),
         ),
