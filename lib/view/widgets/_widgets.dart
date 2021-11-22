@@ -1,5 +1,6 @@
 // Ici on place les imports des widgets
 import 'package:app_market_online/buisness_logic/bloc/shop_bloc.dart';
+import 'package:app_market_online/buisness_logic/bloc/shopping_list_bloc.dart';
 import 'package:app_market_online/config/theme.dart';
 import 'package:app_market_online/data/models/_models.dart';
 import 'package:app_market_online/view/pages/_pages.dart';
@@ -24,3 +25,4 @@ part 'list_widget.dart';
 // dialogs
 part 'dialogs/dialog_add_new_shopping_list_widget.dart';
 part 'dialogs/dialog_save_to_shopping_list_widget.dart';
+part 'dialogs/dialog_confirm_delete_widget.dart';

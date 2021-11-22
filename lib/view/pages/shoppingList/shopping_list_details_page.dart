@@ -20,6 +20,8 @@ class ShoppingListDetailsPage extends StatelessWidget {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
+                      // Bouton supprimer la liste
+                      RemoveButton(shoppingList: shoppingList),
                       Image.asset(
                         'assets/illustrations/Nothing.png',
                         width: 200,
@@ -46,20 +48,15 @@ class ShoppingListDetailsPage extends StatelessWidget {
                           child: Container(
                             margin: const EdgeInsets.all(10.0),
                             child: ElevatedButton.icon(
-                              icon: const Icon(Icons.mode_edit_outline_outlined),
+                              icon:
+                                  const Icon(Icons.mode_edit_outline_outlined),
                               label: const Text("Edit"),
                               onPressed: () {},
                             ),
                           ),
                         ),
-                        Container(
-                          margin: const EdgeInsets.all(10.0),
-                          child: ElevatedButton.icon(
-                            icon: const Icon(Icons.delete_outline),
-                            label: const Text("Remove"),
-                            onPressed: () {},
-                          ),
-                        )
+                        // Bouton supprimer la liste
+                        RemoveButton(shoppingList: shoppingList),
                       ],
                     ),
                     SizedBox(
@@ -83,5 +80,35 @@ class ShoppingListDetailsPage extends StatelessWidget {
                   ],
                 ),
               ));
+  }
+}
+
+class RemoveButton extends StatelessWidget {
+  const RemoveButton({
+    Key? key,
+    required this.shoppingList,
+  }) : super(key: key);
+
+  final ShoppingList shoppingList;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: const EdgeInsets.all(10.0),
+      child: ElevatedButton.icon(
+        icon: const Icon(Icons.delete_outline),
+        label: const Text("Remove"),
+        onPressed: () {
+          // Suppression de la liste
+          BlocProvider.of<ShoppingListBloc>(context)
+              .add(ShoppingListDeleted(shoppingList));
+          // On revient à la page précédente
+          Navigator.pop(context);
+          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+              content: Text(
+                  'Vous avez supprimé la liste : "${shoppingList.name}".')));
+        },
+      ),
+    );
   }
 }

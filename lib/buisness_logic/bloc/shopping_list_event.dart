@@ -33,33 +33,14 @@ class ShoppingListAdded extends ShoppingListEvent {
   String toString() => 'ShoppingListAdded { shopping list: ${shoppingList.name}}';
 }
 
-// Produit ajouté dans la shopping list
-class ProductShoppingListAdded extends ShoppingListEvent {
-  final Product product;
-
-  const ProductShoppingListAdded(this.product);
-
-  @override
-  List<Object> get props => [product];
-
-  @override
-  String toString() => 'ProductShoppingListAdded { product: ${product.name}}';
-}
-
-// Produit supprimé dans la shopping list
-class ProductShoppingListDeleted extends ShoppingListEvent {
-  final Product product;
-
-  const ProductShoppingListDeleted(this.product);
-
-  @override
-  List<Object> get props => [product];
-
-  @override
-  String toString() => 'ProductShoppingListDeleted { product: ${product.name}}';
-}
-
 // Suppression de la shopping liste
-class ShoppingListDeleted extends ShoppingListEvent {}
+class ShoppingListDeleted extends ShoppingListEvent {
+  final ShoppingList shoppingList;
+
+  const ShoppingListDeleted(this.shoppingList);
+
+  @override
+  List<Object> get props => [shoppingList];
+}
 
 
