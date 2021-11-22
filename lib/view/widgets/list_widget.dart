@@ -38,20 +38,25 @@ class CollectionList extends StatelessWidget {
                   Visibility(
                     child: Row(
                       children: [
-                        Container(
-                          decoration: ShapeDecoration(
-                            color: Theme.of(context).primaryColor,
-                            shape: const CircleBorder(),
-                          ),
-                          child: IconButton(
-                            icon: Icon(Icons.add_shopping_cart, size: 18),
-                            constraints: const BoxConstraints(),
-                            color: Colors.white,
-                            onPressed: () {
-                              ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                                  content: Text(
-                                      'Vous avez ajouté la liste "$title" dans votre panier.')));
-                            },
+
+                        //on affiche l'icon d'ajout de la liste dans le panier si il y a des produits
+                        Visibility(
+                          visible: listProduct.isNotEmpty,
+                          child: Container(
+                            decoration: ShapeDecoration(
+                              color: Theme.of(context).primaryColor,
+                              shape: const CircleBorder(),
+                            ),
+                            child: IconButton(
+                              icon: Icon(Icons.add_shopping_cart, size: 18),
+                              constraints: const BoxConstraints(),
+                              color: Colors.white,
+                              onPressed: () {
+                                ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                                    content: Text(
+                                        'Vous avez ajouté la liste "$title" dans votre panier.')));
+                              },
+                            ),
                           ),
                         ),
                         TextButton(
