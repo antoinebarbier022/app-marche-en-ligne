@@ -22,18 +22,26 @@ class ShoppingListDetailsPage extends StatelessWidget {
                     children: [
                       // Bouton supprimer la liste
                       RemoveButton(shoppingList: shoppingList),
-                      Image.asset(
-                        'assets/illustrations/Nothing.png',
-                        width: 200,
-                        fit: BoxFit.scaleDown,
-                      ),
-                      const Padding(
-                        padding: EdgeInsets.all(8.0),
-                        child: Text(
-                          "This Shopping List is Empty.",
-                          style: TextStyle(fontWeight: FontWeight.bold),
+                      Expanded(
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Image.asset(
+                              'assets/illustrations/Nothing.png',
+                              width: 200,
+                              fit: BoxFit.scaleDown,
+                            ),
+                            const Padding(
+                          padding: EdgeInsets.all(8.0),
+                          child: Text(
+                            "This Shopping List is Empty.",
+                            style: TextStyle(fontWeight: FontWeight.bold),
+                          ),
+                        ),
+                          ],
                         ),
                       ),
+                      
                     ],
                   ),
                 ),
