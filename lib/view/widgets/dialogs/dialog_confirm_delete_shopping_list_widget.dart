@@ -1,12 +1,12 @@
 part of '../_widgets.dart';
 
 
-class ModalConfirmDelete extends StatelessWidget {
- const ModalConfirmDelete({
-    Key? key, required this.stringDataToDelete,
+class ModalConfirmDeleteShoppingList extends StatelessWidget {
+ const ModalConfirmDeleteShoppingList({
+    Key? key, required this.shoppingList,
   }) : super(key: key);
 
-  final stringDataToDelete;
+  final shoppingList;
 
   @override
   Widget build(BuildContext context) {
@@ -22,10 +22,10 @@ class ModalConfirmDelete extends StatelessWidget {
               Navigator.pop(context);
             },
           ),
-           Text("Want to delete '$stringDataToDelete'?"),
+           const Text("Want to delete ?"),
         ],
       ),
-      content: Text("Are you sure you want to remove '$stringDataToDelete'?"),
+      content: Text("Are you sure you want to remove '${shoppingList.name}'?"),
       actions: [
         Container(
           width: double.infinity,
@@ -33,6 +33,16 @@ class ModalConfirmDelete extends StatelessWidget {
             onPressed: () {
               // si on veut fermer la fenetre de dialogue avant d'ouvrir l'autre
               //Navigator.pop(context);
+              // Suppression de la liste
+          BlocProvider.of<ShoppingListBloc>(context)
+              .add(ShoppingListDeleted(shoppingList));
+          // On ferme le popup
+          Navigator.pop(context);
+          // On revient à la page précédente
+          Navigator.pop(context);
+          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+              content: Text(
+                  'Vous avez supprimé la liste "${shoppingList.name}".')));
               
             },
             child: const Text('Delete'),

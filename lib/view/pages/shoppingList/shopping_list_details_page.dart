@@ -98,16 +98,11 @@ class RemoveButton extends StatelessWidget {
       child: ElevatedButton.icon(
         icon: const Icon(Icons.delete_outline),
         label: const Text("Remove"),
-        onPressed: () {
-          // Suppression de la liste
-          BlocProvider.of<ShoppingListBloc>(context)
-              .add(ShoppingListDeleted(shoppingList));
-          // On revient à la page précédente
-          Navigator.pop(context);
-          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-              content: Text(
-                  'Vous avez supprimé la liste : "${shoppingList.name}".')));
-        },
+        onPressed: () => showDialog<String>(
+            context: context,
+            builder: (BuildContext context) => ModalConfirmDeleteShoppingList(
+                  shoppingList: shoppingList,
+                )),
       ),
     );
   }
