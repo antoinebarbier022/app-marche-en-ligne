@@ -71,18 +71,6 @@ class _ModalAddToShoppingListState extends State<ModalAddToShoppingList> {
       actionsAlignment: MainAxisAlignment.spaceBetween,
       actions: [
         ElevatedButton(
-          onPressed: () {
-            // si on veut fermer la fenetre de dialogue avant d'ouvrir l'autre
-            //Navigator.pop(context);
-            showDialog<String>(
-              context: context,
-              builder: (BuildContext context) =>
-                  const ModalAddNewShoppingList(),
-            );
-          },
-          child: const Text('New shopping list'),
-        ),
-        ElevatedButton(
           onPressed: _shoppingListSelected!.isEmpty ? null : () {
             BlocProvider.of<ShoppingListBloc>(context)
               .add(ShoppingListProductAdded(_shoppingListSelected!, widget.product));
@@ -94,6 +82,18 @@ class _ModalAddToShoppingListState extends State<ModalAddToShoppingList> {
                           
           },
           child: const Text('Done'),
+        ),
+        ElevatedButton(
+          onPressed: () {
+            // si on veut fermer la fenetre de dialogue avant d'ouvrir l'autre
+            //Navigator.pop(context);
+            showDialog<String>(
+              context: context,
+              builder: (BuildContext context) =>
+                  const ModalAddNewShoppingList(),
+            );
+          },
+          child: const Text('New shopping list'),
         ),
       ],
     );
