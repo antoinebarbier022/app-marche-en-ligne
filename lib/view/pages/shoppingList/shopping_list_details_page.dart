@@ -32,16 +32,15 @@ class ShoppingListDetailsPage extends StatelessWidget {
                               fit: BoxFit.scaleDown,
                             ),
                             const Padding(
-                          padding: EdgeInsets.all(8.0),
-                          child: Text(
-                            "This Shopping List is Empty.",
-                            style: TextStyle(fontWeight: FontWeight.bold),
-                          ),
-                        ),
+                              padding: EdgeInsets.all(8.0),
+                              child: Text(
+                                "This Shopping List is Empty.",
+                                style: TextStyle(fontWeight: FontWeight.bold),
+                              ),
+                            ),
                           ],
                         ),
                       ),
-                      
                     ],
                   ),
                 ),
@@ -59,7 +58,12 @@ class ShoppingListDetailsPage extends StatelessWidget {
                               icon:
                                   const Icon(Icons.mode_edit_outline_outlined),
                               label: const Text("Edit"),
-                              onPressed: () {},
+                              onPressed: () => showDialog<String>(
+                                  context: context,
+                                  builder: (BuildContext context) =>
+                                      ModalEditShoppingList(
+                                        shoppingList: shoppingList,
+                                      )),
                             ),
                           ),
                         ),
@@ -68,20 +72,30 @@ class ShoppingListDetailsPage extends StatelessWidget {
                       ],
                     ),
                     SizedBox(
-                      child: GridView.builder(
-                        physics: const NeverScrollableScrollPhysics(),
-                        shrinkWrap: true,
-                        itemCount: shoppingList.products.length,
-                        padding: const EdgeInsets.all(10),
-                        gridDelegate:
-                            const SliverGridDelegateWithFixedCrossAxisCount(
-                                crossAxisCount: 3,
-                                childAspectRatio: 0.75,
-                                crossAxisSpacing: 4.0,
-                                mainAxisSpacing: 4.0),
-                        itemBuilder: (BuildContext context, int index) {
-                          return ProductItem(
-                              product: shoppingList.products[index]);
+                      child: BlocBuilder<ShoppingListBloc, ShoppingListState>(
+                        builder: (context, state) {
+                          if (state is ShoppingListLoadSuccess) {
+                            int indexCurrentShoppingList = state.list.indexOf(shoppingList);
+                            
+                            return GridView.builder(
+                              physics: const NeverScrollableScrollPhysics(),
+                              shrinkWrap: true,
+                              itemCount: state.list[indexCurrentShoppingList].products.length,
+                              padding: const EdgeInsets.all(10),
+                              gridDelegate:
+                                  const SliverGridDelegateWithFixedCrossAxisCount(
+                                      crossAxisCount: 3,
+                                      childAspectRatio: 0.75,
+                                      crossAxisSpacing: 4.0,
+                                      mainAxisSpacing: 4.0),
+                              itemBuilder: (BuildContext context, int index) {
+                                return ProductItem(
+                                    product: state.list[indexCurrentShoppingList].products[index]);
+                              },
+                            );
+                          } else {
+                            return const Text("Loading ...");
+                          }
                         },
                       ),
                     ),

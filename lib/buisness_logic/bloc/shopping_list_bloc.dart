@@ -39,6 +39,9 @@ class ShoppingListBloc extends Bloc<ShoppingListEvent, ShoppingListState> {
       // Ajout d'un produit dans une shopping list
     } else if (event is ShoppingListProductAdded) {
       yield* _mapProductAddedShoppingListToState(event);
+      // Suppression d'un produit dans une shopping list
+    } else if (event is ShoppingListProductDeleted) {
+      yield* _mapProductDeletedShoppingListToState(event);
     }
   }
 
@@ -93,4 +96,25 @@ class ShoppingListBloc extends Bloc<ShoppingListEvent, ShoppingListState> {
     }
     yield ShoppingListLoadSuccess(updatedShoppingList);
   }
+
+  Stream<ShoppingListState> _mapProductDeletedShoppingListToState(
+      ShoppingListProductDeleted event) async* {
+    
+      final List<ShoppingList> updatedShoppingList =
+          List.from((state as ShoppingListLoadSuccess).list);
+
+      int index = (state as ShoppingListLoadSuccess)
+          .list
+          .indexWhere((element) => element.name == event.shoppingListName);
+
+      // on charge la liste qui ne contient pas le produit supprimé
+      updatedShoppingList[index].products = (state as ShoppingListLoadSuccess)
+          .list[index]
+          .products
+          .where((element) => element.name != event.product.name)
+          .toList();
+      yield ShoppingListLoadSuccess(updatedShoppingList);
+      //_saveShop(updatedShop);
+    }
+  
 }
