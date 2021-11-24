@@ -42,7 +42,7 @@ class ShoppingListDetailsPage extends StatelessWidget {
                   if (state is ShoppingListLoadSuccess) {
                     int indexCurrentShoppingList =
                         state.list.indexOf(shoppingList);
-                    if (state
+                    if (indexCurrentShoppingList > 0  && state
                         .list[indexCurrentShoppingList].products.isNotEmpty) {
                       return GridView.builder(
                         physics: const NeverScrollableScrollPhysics(),
