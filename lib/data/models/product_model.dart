@@ -7,5 +7,5 @@ class Product {
   String category;
   double price;
 
-  Product({this.name = "name", this.urlImage = "assets/fruits.png", this.price = 0, this.departement = "", this.category = ""});
+  Product({this.name = "name", this.urlImage = "http://via.placeholder.com/500x500", this.price = 0, this.departement = "", this.category = ""});
 }

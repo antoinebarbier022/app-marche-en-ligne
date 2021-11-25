@@ -12,6 +12,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 // generals
 part 'appbar_widget.dart';
 part 'sidebar_widget.dart';
+part 'image_product_network_widget.dart';
 
 // items
 part 'items/shopping_item_widget.dart';

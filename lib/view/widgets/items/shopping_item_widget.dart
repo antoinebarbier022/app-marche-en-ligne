@@ -34,33 +34,32 @@ class ShoppingItem extends StatelessWidget {
                       color: Theme.of(context).primaryColorLight,
                       borderRadius: BorderRadius.circular(5),
                     ),
-                    child: shoppingList.products.isEmpty? null : Image.asset(
-                      shoppingList.products[0].urlImage,
-                      fit: BoxFit.scaleDown,
-                    ),
+                    child: shoppingList.products.isEmpty
+                        ? null
+                        : ImageNetworkProduct(
+                              url: shoppingList.products[0].urlImage),
                   ),
                   Container(
-                    padding: const EdgeInsets.all(5),
-                    decoration: BoxDecoration(
-                      color: Theme.of(context).primaryColorLight,
-                      borderRadius: BorderRadius.circular(5),
-                    ),
-                    child: shoppingList.products.length < 2 ? null : Image.asset(
-                      shoppingList.products[1].urlImage,
-                      fit: BoxFit.scaleDown,
-                    ),
-                  ),
+                      padding: const EdgeInsets.all(5),
+                      decoration: BoxDecoration(
+                        color: Theme.of(context).primaryColorLight,
+                        borderRadius: BorderRadius.circular(5),
+                      ),
+                      child: shoppingList.products.length < 2
+                          ? null
+                          : ImageNetworkProduct(
+                              url: shoppingList.products[1].urlImage)),
                   Container(
-                    padding: const EdgeInsets.all(5),
-                    decoration: BoxDecoration(
-                      color: Theme.of(context).primaryColorLight,
-                      borderRadius: BorderRadius.circular(5),
-                    ),
-                    child: shoppingList.products.length < 3 ? null : Image.asset(
-                      shoppingList.products[2].urlImage,
-                      fit: BoxFit.scaleDown,
-                    ),
-                  ),
+                      padding: const EdgeInsets.all(5),
+                      decoration: BoxDecoration(
+                        color: Theme.of(context).primaryColorLight,
+                        borderRadius: BorderRadius.circular(5),
+                      ),
+                      child: shoppingList.products.length < 3
+                          ? null
+                          : ImageNetworkProduct(
+                              url: shoppingList.products[2].urlImage,
+                            )),
                   Container(
                     padding: const EdgeInsets.all(5),
                     decoration: BoxDecoration(
@@ -69,10 +68,10 @@ class ShoppingItem extends StatelessWidget {
                     ),
                     // Si on a plus de 4 produits, on affiche seulement les 3 premiers produits et le dernier container affiche le nombre de produit en plus dans la liste
                     child: shoppingList.products.length < 5
-                        ? (shoppingList.products.length < 4 ? null : Image.asset(
-                      shoppingList.products[3].urlImage,
-                      fit: BoxFit.scaleDown,
-                    ))
+                        ? (shoppingList.products.length < 4
+                            ? null
+                            : ImageNetworkProduct(
+                              url: shoppingList.products[3].urlImage))
                         : Center(
                             child: Text(
                             "+${shoppingList.products.length - 3}",

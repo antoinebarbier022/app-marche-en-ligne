@@ -58,10 +58,7 @@ class _CartItemState extends State<CartItem> {
                       color: Theme.of(context).primaryColorLight,
                       borderRadius: BorderRadius.circular(5),
                     ),
-                    child: Image.asset(
-                      widget.product.urlImage,
-                      fit: BoxFit.scaleDown,
-                    ),
+                    child: ImageNetworkProduct(url: widget.product.urlImage,)
                   ),
                 ),
                 Container(

@@ -40,10 +40,7 @@ class ProductItem extends StatelessWidget {
                         ),
                       ],
                     ),
-                    child: Image.asset(
-                      product.urlImage,
-                      fit: BoxFit.scaleDown,
-                    ),
+                    child: ImageNetworkProduct(url: product.urlImage,)
                   ),
                 ),
                 const SizedBox(

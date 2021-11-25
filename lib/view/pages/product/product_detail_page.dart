@@ -50,10 +50,7 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                       color: Theme.of(context).primaryColorLight,
                       borderRadius: BorderRadius.circular(10),
                     ),
-                    child: Image.asset(
-                  widget.product.urlImage,
-                  fit: BoxFit.scaleDown,
-                ),
+                    child: ImageNetworkProduct(url: widget.product.urlImage,)
                   ),
                 ),
               ),
