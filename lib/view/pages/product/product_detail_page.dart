@@ -42,6 +42,7 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
             children: [
               Container(
                 width: 150,
+                padding: const EdgeInsets.all(15),
                 child: AspectRatio(
                   aspectRatio: 1 / 1,
                   child: Container(
@@ -49,6 +50,10 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                       color: Theme.of(context).primaryColorLight,
                       borderRadius: BorderRadius.circular(10),
                     ),
+                    child: Image.asset(
+                  widget.product.urlImage,
+                  fit: BoxFit.scaleDown,
+                ),
                   ),
                 ),
               ),
@@ -59,7 +64,7 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                   color: Theme.of(context).cardColor,
                   borderRadius: BorderRadius.circular(30),
                 ),
-                padding: const EdgeInsets.all(30.0),
+                padding: const EdgeInsets.only(left:30.0, right:30.0, top:20.0, bottom:30.0),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
