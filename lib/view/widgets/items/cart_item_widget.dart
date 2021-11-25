@@ -40,7 +40,7 @@ class _CartItemState extends State<CartItem> {
     return Container(
         width: double.infinity,
         height: 130,
-        padding: const EdgeInsets.all(5.0),
+        padding: const EdgeInsets.all(10.0),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -52,7 +52,7 @@ class _CartItemState extends State<CartItem> {
                 AspectRatio(
                   aspectRatio: 1 / 1,
                   child: Container(
-                    padding: const EdgeInsets.all(15),
+                    padding: const EdgeInsets.all(5),
                     margin: const EdgeInsets.all(10),
                     decoration: BoxDecoration(
                       color: Theme.of(context).primaryColorLight,

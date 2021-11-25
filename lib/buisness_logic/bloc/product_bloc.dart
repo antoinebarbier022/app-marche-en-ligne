@@ -38,7 +38,9 @@ class ProductBloc extends Bloc<ProductEvent, ProductState> {
         Product(name: "Cote de Boeuf 100g", price: 2.4, departement: "Meat", category: "Beef", urlImage: "https://www.mabonneviande.com/6801/cote-de-boeuf-race-viande-sud-ouest-france.jpg"),
         Product(name: "Boeuf 200g", price: 2.4, departement: "Meat", category: "Beef", urlImage: "https://www.mabonneviande.com/6801/cote-de-boeuf-race-viande-sud-ouest-france.jpg"),
         Product(name: "Poulet 100g", price: 2.4, departement: "Meat", category: "Chicken", urlImage: "https://img-3.journaldesfemmes.fr/G5gSARARCFnGYvIEA9SE0rJdoFY=/1500x/smart/04e0cb38f29d48fb8e88390bba19304c/ccmcms-jdf/10661697.jpg"),
-        Product(name: "Cuisse de poulet 200g", price: 2.4, departement: "Meat", category: "Chicken", urlImage: "https://thumbs.dreamstime.com/b/viande-de-poulet-32456382.jpg")
+        Product(name: "Cuisse de poulet 200g", price: 2.4, departement: "Meat", category: "Chicken", urlImage: "https://thumbs.dreamstime.com/b/viande-de-poulet-32456382.jpg"),
+        // Cheese
+        Product(name: "Camembert", price: 2.4, departement: "Cheese", category: "France", urlImage: "https://www.lineaires.com/var/site/storage/images/_aliases/large/4/3/3/1/3751334-1-fre-FR/camembert%20extra%20fondant.jpg")
       ];
       yield ProductsLoaded(products: newState);
     } else {

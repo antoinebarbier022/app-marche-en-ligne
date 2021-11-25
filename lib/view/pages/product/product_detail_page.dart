@@ -37,28 +37,24 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
         ),
         body: SingleChildScrollView(
             child: Container(
-          color: Theme.of(context).primaryColorLight,
+          color:  Colors.white, //Theme.of(context).backgroundColor,
           child: Column(
             children: [
               Container(
-                width: 150,
-                padding: const EdgeInsets.all(15),
-                child: AspectRatio(
-                  aspectRatio: 1 / 1,
-                  child: Container(
-                    decoration: BoxDecoration(
-                      color: Theme.of(context).primaryColorLight,
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    child: ImageNetworkProduct(url: widget.product.urlImage,)
+                height: 150,
+                padding: const EdgeInsets.all(5),
+                child: Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10),
                   ),
+                  child: ImageNetworkProduct(url: widget.product.urlImage,)
                 ),
               ),
 
               // Section content
               Container(
                 decoration: BoxDecoration(
-                  color: Theme.of(context).cardColor,
+                  color: Colors.grey[100], //Theme.of(context).cardColor,
                   borderRadius: BorderRadius.circular(30),
                 ),
                 padding: const EdgeInsets.only(left:30.0, right:30.0, top:20.0, bottom:30.0),
