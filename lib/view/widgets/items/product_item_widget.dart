@@ -87,6 +87,7 @@ class DragingItem extends StatelessWidget {
         child: AspectRatio(
           aspectRatio: 1 / 1,
           child: Container(
+            padding: const EdgeInsets.all(5),
             decoration: BoxDecoration(
               color: Theme.of(context).cardColor,
               border: Border.all(color: Colors.black12, width: 1),

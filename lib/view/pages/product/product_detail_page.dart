@@ -162,21 +162,17 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                                                 height: 1.3),
                                           ),
                                         )),
-                                    Container(
-                                      child: const Center(
-                                        child: Text('Display Tab 2',
-                                            style: TextStyle(
-                                                fontSize: 22,
-                                                fontWeight: FontWeight.bold)),
-                                      ),
+                                    const Center(
+                                      child: Text('Not yet implemented.',
+                                          style: TextStyle(
+                                              fontSize: 22,
+                                              fontWeight: FontWeight.bold)),
                                     ),
-                                    Container(
-                                      child: const Center(
-                                        child: Text('Display Tab 3',
-                                            style: TextStyle(
-                                                fontSize: 22,
-                                                fontWeight: FontWeight.bold)),
-                                      ),
+                                    const Center(
+                                      child: Text('Not yet implemented.',
+                                          style: TextStyle(
+                                              fontSize: 22,
+                                              fontWeight: FontWeight.bold)),
                                     ),
                                   ]))
                             ])),
@@ -195,48 +191,65 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
 
               return Container(
                   width: double.infinity,
+                  margin: const EdgeInsets.all(10),
+                  padding: const EdgeInsets.only(left: 20, right: 20),
                   height: 60,
-                  color: Colors.grey[200],
+                  decoration: BoxDecoration(
+                    color: Colors.white, //Theme.of(context).cardColor,
+                    borderRadius: BorderRadius.circular(8),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.grey.shade300,
+                        spreadRadius: 5,
+                        blurRadius: 10,
+                        offset:
+                            const Offset(0, -4), // changes position of shadow
+                      ),
+                    ],
+                  ),
                   child: Row(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
-                      Container(
-                        height: 40,
-                        decoration: BoxDecoration(
-                          border: Border.all(color: Colors.grey),
-                          borderRadius: BorderRadius.circular(5),
-                        ),
-                        child: Row(
-                          children: [
-                            InkWell(
-                              child: Container(
-                                  padding: const EdgeInsets.all(10),
-                                  child: const Icon(Icons.remove)),
-                              onTap: () {
-                                _decrementQuantity();
-                              },
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.all(10.0),
-                              child: Text("${_quantity.toInt()}",
-                                  style: const TextStyle(
-                                      fontSize: 18,
-                                      fontWeight: FontWeight.bold)),
-                            ),
-                            InkWell(
-                              child: Container(
-                                  padding: const EdgeInsets.all(10),
-                                  child: const Icon(Icons.add)),
-                              onTap: () {
-                                _incrementQuantity();
-                              },
-                            ),
-                          ],
-                        ),
+                      Row(
+                        children: [
+                          InkWell(
+                            child: Container(
+                                padding: const EdgeInsets.all(5),
+                                decoration: BoxDecoration(
+                                  color: Theme.of(context).primaryColorLight,
+                                  borderRadius: BorderRadius.circular(8),
+                                ),
+                                child: Icon(Icons.remove, color: Theme.of(context).primaryColorDark)),
+                            onTap: () {
+                              _decrementQuantity();
+                            },
+                          ),
+                          Container(
+                            padding: const EdgeInsets.all(10),
+                            child: Text("${_quantity.toInt()}",
+                                style:  TextStyle(
+                                  color: Colors.grey.shade800,
+                                    fontSize: 18, fontWeight: FontWeight.bold)),
+                          ),
+                          InkWell(
+                            child: Container(
+                                padding: const EdgeInsets.all(5),
+                                decoration: BoxDecoration(
+                                  color: Theme.of(context).primaryColor,
+                                  borderRadius: BorderRadius.circular(8),
+                                ),
+                                child: const Icon(Icons.add, color: Colors.white)),
+                            onTap: () {
+                              _incrementQuantity();
+                            },
+                          ),
+                        ],
                       ),
-                      SizedBox(
-                        width: 150,
+                      const SizedBox(
+                        width: 20,
+                      ),
+                      Expanded(
                         child: ElevatedButton(
                           child: const Text("Add to cart"),
                           onPressed: () {

@@ -59,7 +59,10 @@ class ShoppingCartPage extends StatelessWidget {
                       ),
                       const Padding(
                         padding: EdgeInsets.all(8.0),
-                        child: Text("Shopping Cart is Empty.", style: TextStyle(fontWeight: FontWeight.bold),),
+                        child: Text(
+                          "Shopping Cart is Empty.",
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                        ),
                       ),
                     ],
                   ),
@@ -74,8 +77,20 @@ class ShoppingCartPage extends StatelessWidget {
         // Bas de page (fixe) qui informe l'utilisateur du prix total du panier + accès au checkout
         bottomSheet: Container(
             width: double.infinity,
-            height: 70,
-            color: Colors.grey[200],
+            margin: const EdgeInsets.all(10),
+            height: 60,
+            decoration: BoxDecoration(
+              color: Colors.white, //Theme.of(context).cardColor,
+              borderRadius: BorderRadius.circular(8),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.grey.shade300,
+                  spreadRadius: 5,
+                  blurRadius: 10,
+                  offset: const Offset(0, -4), // changes position of shadow
+                ),
+              ],
+            ),
             child: Padding(
               padding: const EdgeInsets.all(5.0),
               child: BlocBuilder<ShopBloc, ShopState>(
@@ -102,15 +117,14 @@ class ShoppingCartPage extends StatelessWidget {
                               )
                             ]),
                         // Bouton pour accéder au checkout
-                        
+
                         SizedBox(
                           width: 250,
                           child: ElevatedButton(
                             child: const Text("Checkout"),
                             onPressed: (state is ShopLoadSuccess)
-                                      ? 
-                                      (state.cart.items.isEmpty ? null : () {})
-                                      : null,
+                                ? (state.cart.items.isEmpty ? null : () {})
+                                : null,
                           ),
                         ),
                       ]);
