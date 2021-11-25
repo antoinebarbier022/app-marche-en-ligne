@@ -55,7 +55,7 @@ class _CartItemState extends State<CartItem> {
                     padding: const EdgeInsets.all(5),
                     margin: const EdgeInsets.all(10),
                     decoration: BoxDecoration(
-                      color: Theme.of(context).primaryColorLight,
+                      border: Border.all(color: Colors.black12, width: 1),
                       borderRadius: BorderRadius.circular(5),
                     ),
                     child: ImageNetworkProduct(url: widget.product.urlImage,)

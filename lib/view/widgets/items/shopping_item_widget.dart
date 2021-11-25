@@ -31,7 +31,7 @@ class ShoppingItem extends StatelessWidget {
                   Container(
                     padding: const EdgeInsets.all(5),
                     decoration: BoxDecoration(
-                      color: Theme.of(context).primaryColorLight,
+                      border: Border.all(color: Colors.black12, width: 1),
                       borderRadius: BorderRadius.circular(5),
                     ),
                     child: shoppingList.products.isEmpty
@@ -42,7 +42,7 @@ class ShoppingItem extends StatelessWidget {
                   Container(
                       padding: const EdgeInsets.all(5),
                       decoration: BoxDecoration(
-                        color: Theme.of(context).primaryColorLight,
+                        border: Border.all(color: Colors.black12, width: 1),
                         borderRadius: BorderRadius.circular(5),
                       ),
                       child: shoppingList.products.length < 2
@@ -52,7 +52,7 @@ class ShoppingItem extends StatelessWidget {
                   Container(
                       padding: const EdgeInsets.all(5),
                       decoration: BoxDecoration(
-                        color: Theme.of(context).primaryColorLight,
+                        border: Border.all(color: Colors.black12, width: 1),
                         borderRadius: BorderRadius.circular(5),
                       ),
                       child: shoppingList.products.length < 3
@@ -63,7 +63,7 @@ class ShoppingItem extends StatelessWidget {
                   Container(
                     padding: const EdgeInsets.all(5),
                     decoration: BoxDecoration(
-                      color: Theme.of(context).primaryColorLight,
+                      border: Border.all(color: Colors.black12, width: 1),
                       borderRadius: BorderRadius.circular(5),
                     ),
                     // Si on a plus de 4 produits, on affiche seulement les 3 premiers produits et le dernier container affiche le nombre de produit en plus dans la liste

@@ -12,7 +12,7 @@ class ImageNetworkProduct extends StatelessWidget {
   Widget build(BuildContext context) {
     return Image.network(
         url,
-        fit: BoxFit.scaleDown,
+        fit: BoxFit.fitHeight,
         errorBuilder: (BuildContext context, Object exception,
             StackTrace? stackTrace) {
           return const Text('Error.');

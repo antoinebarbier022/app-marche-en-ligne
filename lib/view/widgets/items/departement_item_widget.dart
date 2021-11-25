@@ -21,7 +21,7 @@ class DepartementItem extends StatelessWidget {
           child: Container(
             padding: const EdgeInsets.all(10.0),
             decoration: BoxDecoration(
-              color: departement.color,
+              color: Theme.of(context).primaryColorLight.withOpacity(0.5),//departement.color,
               borderRadius: BorderRadius.circular(10),
               boxShadow: [
                         BoxShadow(

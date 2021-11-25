@@ -14,7 +14,7 @@ class ProductItem extends StatelessWidget {
       data: product,
       dragAnchorStrategy:
           pointerDragAnchorStrategy, // Permet d'avoir l'élement positionné sur la souris (en haut à gauche)
-      feedback: const DragingItem(),
+      feedback: DragingItem(urlImage : product.urlImage),
       child: InkWell(
         borderRadius: BorderRadius.circular(10),
         child: Container(
@@ -72,15 +72,17 @@ class ProductItem extends StatelessWidget {
 
 class DragingItem extends StatelessWidget {
   const DragingItem({
-    Key? key,
+    Key? key, required this.urlImage,
   }) : super(key: key);
+
+  final String urlImage;
 
   @override
   Widget build(BuildContext context) {
     return FractionalTranslation(
       translation:
           const Offset(-0.5, -0.5), // Permet de centrer l'element sur la souris
-      child: Container(
+      child: SizedBox(
         width: 50,
         child: AspectRatio(
           aspectRatio: 1 / 1,
@@ -90,6 +92,7 @@ class DragingItem extends StatelessWidget {
               border: Border.all(color: Colors.black12, width: 1),
               borderRadius: BorderRadius.circular(10),
             ),
+            child: ImageNetworkProduct(url: urlImage,),
           ),
         ),
       ),

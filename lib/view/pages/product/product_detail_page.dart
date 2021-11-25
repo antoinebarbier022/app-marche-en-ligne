@@ -37,18 +37,19 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
         ),
         body: SingleChildScrollView(
             child: Container(
-          color:  Colors.white, //Theme.of(context).backgroundColor,
+          color: Colors.white, //Theme.of(context).backgroundColor,
           child: Column(
             children: [
               Container(
                 height: 150,
                 padding: const EdgeInsets.all(5),
                 child: Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  child: ImageNetworkProduct(url: widget.product.urlImage,)
-                ),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    child: ImageNetworkProduct(
+                      url: widget.product.urlImage,
+                    )),
               ),
 
               // Section content
@@ -56,8 +57,17 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                 decoration: BoxDecoration(
                   color: Colors.grey[100], //Theme.of(context).cardColor,
                   borderRadius: BorderRadius.circular(30),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.grey.shade300,
+                      spreadRadius: 5,
+                      blurRadius: 20,
+                      offset: const Offset(0, -4), // changes position of shadow
+                    ),
+                  ],
                 ),
-                padding: const EdgeInsets.only(left:30.0, right:30.0, top:20.0, bottom:30.0),
+                padding: const EdgeInsets.only(
+                    left: 30.0, right: 30.0, top: 20.0, bottom: 30.0),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -147,8 +157,9 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                                           text: TextSpan(
                                             text:
                                                 "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In vel ligula non dolor volutpat dignissim. Ut vel tempor velit, quis vestibulum ante. Fusce eleifend tempus imperdiet. Mauris consequat interdum iaculis. Maecenas at hendrerit est, id pulvinar mauris. Nullam vel malesuada arcu. ",
-                                            style:
-                                                TextStyle(color: Colors.grey.shade800, height: 1.3),
+                                            style: TextStyle(
+                                                color: Colors.grey.shade800,
+                                                height: 1.3),
                                           ),
                                         )),
                                     Container(
