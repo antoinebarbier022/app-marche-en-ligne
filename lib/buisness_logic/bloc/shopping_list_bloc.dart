@@ -12,16 +12,7 @@ class ShoppingListBloc extends Bloc<ShoppingListEvent, ShoppingListState> {
 
   ShoppingListBloc()
       : super(ShoppingListLoadSuccess([
-          ShoppingList("Evening Shopping list", [
-            Product(name: "Carottes", price: 2.4, departement: "Vegetables",category: "France"),
-            Product(name: "Tomates", price: 2.4, departement: "Vegetables",category: "France"),
-            Product(name: "Concombre", price: 2.4, departement: "Vegetables",category: "Espagne"),
-            Product(name: "Beterave", price: 2.4, departement: "Vegetables",category: "Espagne"),
-            Product(name: "Avocat", price: 2.4, departement: "Vegetables",category: "France"),
-            Product(name: "Salade", price: 2.4, departement: "Vegetables",category: "France"),
-            Product(name: "Courgette",price: 2.4, departement: "Vegetables",category: "France"),
-            Product(name: "Poivron", price: 2.4, departement: "Vegetables",category: "Espagne"),
-          ]),
+          ShoppingList("Evening Shopping list", []),
           ShoppingList("Weekend Shopping list", []),
           ShoppingList("Favorite product", [])
         ]));
