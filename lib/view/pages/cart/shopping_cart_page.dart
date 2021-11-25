@@ -27,7 +27,7 @@ class ShoppingCartPage extends StatelessWidget {
               // Si le panier n'est pas vide on affiche la liste des items
               if (state.cart.items.isNotEmpty) {
                 return ListView.separated(
-                  physics: const NeverScrollableScrollPhysics(),
+                  
                   padding: const EdgeInsets.only(bottom: 70),
                   itemCount: state.cart.items.length,
                   itemBuilder: (context, index) {
