@@ -26,7 +26,7 @@ class ProductItem extends StatelessWidget {
                 AspectRatio(
                   aspectRatio: 1 / 1,
                   child: Container(
-                    padding: const EdgeInsets.all(15),
+                    padding: const EdgeInsets.all(5),
                     decoration: BoxDecoration(
                       color: Theme.of(context).cardColor,
                       borderRadius: BorderRadius.circular(10),

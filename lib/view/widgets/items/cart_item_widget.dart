@@ -40,7 +40,7 @@ class _CartItemState extends State<CartItem> {
     return Container(
         width: double.infinity,
         height: 130,
-        padding: const EdgeInsets.all(10.0),
+        padding: const EdgeInsets.all(5.0),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
