@@ -35,22 +35,24 @@ class ProductItem extends StatelessWidget {
                           color: Colors.grey.withOpacity(0.1),
                           spreadRadius: 1,
                           blurRadius: 8,
-                          offset: const Offset(5, 10), // changes position of shadow
+                          offset:
+                              const Offset(5, 10), // changes position of shadow
                         ),
-                        
                       ],
                     ),
                     child: Image.asset(
-                  product.urlImage,
-                  
-                  fit: BoxFit.scaleDown,
-                ),
+                      product.urlImage,
+                      fit: BoxFit.scaleDown,
+                    ),
                   ),
                 ),
                 const SizedBox(
                   height: 5,
                 ),
-                Text(product.name, overflow: TextOverflow.ellipsis,),
+                Text(
+                  product.name,
+                  overflow: TextOverflow.ellipsis,
+                ),
                 Text(
                   "${product.price.toStringAsPrecision(3)}€/kg",
                   style: TextStyle(color: Colors.grey[600]),
@@ -79,8 +81,8 @@ class DragingItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FractionalTranslation(
-      translation: const Offset(
-          -0.5, -0.5), // Permet de centrer l'element sur la souris
+      translation:
+          const Offset(-0.5, -0.5), // Permet de centrer l'element sur la souris
       child: Container(
         width: 50,
         child: AspectRatio(

@@ -29,47 +29,75 @@ class ShoppingItem extends StatelessWidget {
                 ),
                 children: [
                   Container(
-                  decoration: BoxDecoration(
-                    color: Theme.of(context).primaryColorLight,
-                    borderRadius: BorderRadius.circular(5),
+                    padding: const EdgeInsets.all(5),
+                    decoration: BoxDecoration(
+                      color: Theme.of(context).primaryColorLight,
+                      borderRadius: BorderRadius.circular(5),
+                    ),
+                    child: shoppingList.products.isEmpty? null : Image.asset(
+                      shoppingList.products[0].urlImage,
+                      fit: BoxFit.scaleDown,
+                    ),
                   ),
-                ),
                   Container(
-                  decoration: BoxDecoration(
-                    color: Theme.of(context).primaryColorLight,
-                    borderRadius: BorderRadius.circular(5),
+                    padding: const EdgeInsets.all(5),
+                    decoration: BoxDecoration(
+                      color: Theme.of(context).primaryColorLight,
+                      borderRadius: BorderRadius.circular(5),
+                    ),
+                    child: shoppingList.products.length < 2 ? null : Image.asset(
+                      shoppingList.products[1].urlImage,
+                      fit: BoxFit.scaleDown,
+                    ),
                   ),
-                ),
                   Container(
-                  decoration: BoxDecoration(
-                    color: Theme.of(context).primaryColorLight,
-                    borderRadius: BorderRadius.circular(5),
+                    padding: const EdgeInsets.all(5),
+                    decoration: BoxDecoration(
+                      color: Theme.of(context).primaryColorLight,
+                      borderRadius: BorderRadius.circular(5),
+                    ),
+                    child: shoppingList.products.length < 3 ? null : Image.asset(
+                      shoppingList.products[2].urlImage,
+                      fit: BoxFit.scaleDown,
+                    ),
                   ),
-                ),
                   Container(
-                    
-                  decoration: BoxDecoration(
-                    color: Theme.of(context).primaryColorLight,
-                    borderRadius: BorderRadius.circular(5),
+                    padding: const EdgeInsets.all(5),
+                    decoration: BoxDecoration(
+                      color: Theme.of(context).primaryColorLight,
+                      borderRadius: BorderRadius.circular(5),
+                    ),
+                    // Si on a plus de 4 produits, on affiche seulement les 3 premiers produits et le dernier container affiche le nombre de produit en plus dans la liste
+                    child: shoppingList.products.length < 5
+                        ? (shoppingList.products.length < 4 ? null : Image.asset(
+                      shoppingList.products[3].urlImage,
+                      fit: BoxFit.scaleDown,
+                    ))
+                        : Center(
+                            child: Text(
+                            "+${shoppingList.products.length - 3}",
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                                color: Theme.of(context).primaryColorDark,
+                                fontWeight: FontWeight.bold),
+                          )),
                   ),
-                  child: Center(child: Text("+${shoppingList.products.length}", textAlign: TextAlign.center, style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold), )),
-                ),
                 ],
               ),
               const SizedBox(
-                height:5,
+                height: 5,
               ),
               Text(shoppingList.name),
             ],
           )),
-      onTap: (){
+      onTap: () {
         Navigator.push(
-            context,
-            CupertinoPageRoute(
-                builder: (context) => ShoppingListDetailsPage(
-                      shoppingList: shoppingList,
-                    )),
-          );
+          context,
+          CupertinoPageRoute(
+              builder: (context) => ShoppingListDetailsPage(
+                    shoppingList: shoppingList,
+                  )),
+        );
       },
     );
   }
