@@ -35,7 +35,6 @@ class _CartItemState extends State<CartItem> {
     });
   }
 
-
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -53,10 +52,15 @@ class _CartItemState extends State<CartItem> {
                 AspectRatio(
                   aspectRatio: 1 / 1,
                   child: Container(
+                    padding: const EdgeInsets.all(15),
                     margin: const EdgeInsets.all(10),
                     decoration: BoxDecoration(
                       color: Theme.of(context).primaryColorLight,
                       borderRadius: BorderRadius.circular(5),
+                    ),
+                    child: Image.asset(
+                      widget.product.urlImage,
+                      fit: BoxFit.scaleDown,
                     ),
                   ),
                 ),
@@ -143,11 +147,10 @@ class _CartItemState extends State<CartItem> {
                                     // On delete l'item
                                     BlocProvider.of<ShopBloc>(context)
                                         .add(ItemDeleted(widget.product));
-
                                   } else {
                                     BlocProvider.of<ShopBloc>(context).add(
-                                        ItemUpdated(
-                                            Item(widget.product, dataQuantity)));
+                                        ItemUpdated(Item(
+                                            widget.product, dataQuantity)));
                                   }
                                 },
                               ),
