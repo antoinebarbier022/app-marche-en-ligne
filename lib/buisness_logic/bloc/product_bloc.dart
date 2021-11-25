@@ -17,28 +17,28 @@ class ProductBloc extends Bloc<ProductEvent, ProductState> {
       yield ProductsLoading();
       List<Product> newState = [
         // vegetables
-        Product("Carotte", 2.4, "Vegetables", "France"),
-        Product("Tomate", 2.4, "Vegetables", "France"),
-        Product("Concombre", 2.4, "Vegetables", "Espagne"),
-        Product("Beterave", 2.4, "Vegetables", "Espagne"),
-        Product("Avocat", 2.4, "Vegetables", "France"),
-        Product("Salade", 2.4, "Vegetables", "France"),
-        Product("Courgette", 2.4, "Vegetables", "France"),
-        Product("Poivron", 2.4, "Vegetables", "Espagne"),
-        Product("Pommes de terre", 2.4, "Vegetables", "France"),
-        Product("Choux", 2.4, "Vegetables", "Espagne"),
+        Product(name: "Carotte", price: 2.4, departement: "Vegetables", category: "France"),
+        Product(name: "Tomate", price: 2.4, departement: "Vegetables", category: "France"),
+        Product(name: "Concombre", price: 2.4, departement: "Vegetables", category: "Espagne"),
+        Product(name: "Beterave", price: 2.4, departement: "Vegetables", category: "Espagne"),
+        Product(name: "Avocat", price: 2.4, departement: "Vegetables", category: "France"),
+        Product(name: "Salade", price: 2.4, departement: "Vegetables", category: "France"),
+        Product(name: "Courgette", price: 2.4, departement: "Vegetables", category: "France"),
+        Product(name: "Poivron", price: 2.4, departement: "Vegetables", category: "Espagne"),
+        Product(name: "Pommes de terre", price: 2.4, departement: "Vegetables", category: "France"),
+        Product(name: "Choux", price: 2.4, departement: "Vegetables", category: "Espagne"),
         // fruits
-        Product("Pomme", 2.4, "Fruits", "France"),
-        Product("Banane", 5, "Fruits", "France"),
-        Product("Cerise", 2.4, "Fruits", "Espagne"),
-        Product("Mangue", 2.4, "Fruits", "Espagne"),
+        Product(name: "Pomme", price: 2.4, departement: "Fruits", category: "France"),
+        Product(name: "Banane", price: 2.4, departement: "Fruits", category: "France"),
+        Product(name: "Cerise", price: 2.4, departement: "Fruits", category: "Espagne"),
+        Product(name: "Mangue", price: 2.4, departement: "Fruits", category: "Espagne"),
         // meats
-        Product("Porc 100g", 2.4, "Meat", "Pork"),
-        Product("Porc 200g", 2.4, "Meat", "Pork"),
-        Product("Boeuf 100g", 2.4, "Meat", "Beef"),
-        Product("Boeuf 200g", 2.4, "Meat", "Beef"),
-        Product("Poulet 100g", 2.4, "Meat", "Chicken"),
-        Product("Cuisse de poulet 200g", 2.4, "Meat", "Chicken")
+        Product(name: "Porc 100g", price: 2.4, departement: "Meat", category: "Pork"),
+        Product(name: "Porc 200g", price: 2.4, departement: "Meat", category: "Pork"),
+        Product(name: "Boeuf 100g", price: 2.4, departement: "Meat", category: "Beef"),
+        Product(name: "Boeuf 200g", price: 2.4, departement: "Meat", category: "Beef"),
+        Product(name: "Poulet 100g", price: 2.4, departement: "Meat", category: "Chicken"),
+        Product(name: "Cuisse de poulet 200g", price: 2.4, departement: "Meat", category: "Chicken")
       ];
       yield ProductsLoaded(products: newState);
     } else {

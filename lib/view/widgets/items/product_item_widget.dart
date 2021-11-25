@@ -26,6 +26,7 @@ class ProductItem extends StatelessWidget {
                 AspectRatio(
                   aspectRatio: 1 / 1,
                   child: Container(
+                    padding: const EdgeInsets.all(15),
                     decoration: BoxDecoration(
                       color: Theme.of(context).cardColor,
                       borderRadius: BorderRadius.circular(10),
@@ -36,8 +37,14 @@ class ProductItem extends StatelessWidget {
                           blurRadius: 8,
                           offset: const Offset(5, 10), // changes position of shadow
                         ),
+                        
                       ],
                     ),
+                    child: Image.asset(
+                  product.urlImage,
+                  
+                  fit: BoxFit.scaleDown,
+                ),
                   ),
                 ),
                 const SizedBox(
