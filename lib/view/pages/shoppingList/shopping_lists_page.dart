@@ -1,7 +1,7 @@
 part of '../_pages.dart';
 
 class ShoppingListsPage extends StatelessWidget {
-  ShoppingListsPage({Key? key, required this.title}) : super(key: key);
+  const ShoppingListsPage({Key? key, required this.title}) : super(key: key);
 
   final String title;
 

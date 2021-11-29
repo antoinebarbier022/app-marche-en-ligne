@@ -8,7 +8,7 @@ class CollectionList extends StatelessWidget {
   final List<Product> listProduct; // liste des produits
   final List<ShoppingList> listShoppingList; // liste des listes de shopping
 
-  CollectionList(
+  const CollectionList(
       {Key? key,
       required this.id,
       required this.title,
@@ -48,7 +48,7 @@ class CollectionList extends StatelessWidget {
                               shape: const CircleBorder(),
                             ),
                             child: IconButton(
-                              icon: Icon(Icons.add_shopping_cart, size: 18),
+                              icon: const Icon(Icons.add_shopping_cart, size: 18),
                               constraints: const BoxConstraints(),
                               color: Colors.white,
                               onPressed: () {

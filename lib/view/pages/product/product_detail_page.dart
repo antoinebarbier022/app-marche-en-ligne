@@ -185,10 +185,6 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
         bottomSheet: BlocBuilder<ShopBloc, ShopState>(
           builder: (context, state) {
             if ((state is ShopLoadSuccess)) {
-              bool productIsInCart = state.cart.items
-                  .any((item) => item.product.name == widget.product.name);
-              // si le produit n'est pas dans le panier
-
               return Container(
                   width: double.infinity,
                   margin: const EdgeInsets.all(10),

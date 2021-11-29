@@ -6,6 +6,7 @@ class ModalConfirmDeleteShoppingList extends StatelessWidget {
     Key? key, required this.shoppingList,
   }) : super(key: key);
 
+  // ignore: prefer_typing_uninitialized_variables
   final shoppingList;
 
   @override
@@ -27,7 +28,7 @@ class ModalConfirmDeleteShoppingList extends StatelessWidget {
       ),
       content: Text("Are you sure you want to remove '${shoppingList.name}'?"),
       actions: [
-        Container(
+        SizedBox(
           width: double.infinity,
           child: ElevatedButton(
             onPressed: () {

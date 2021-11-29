@@ -19,7 +19,7 @@ class SideBar extends StatelessWidget {
                   text: "Store",
                   icon: Icons.store,
                   context: context,
-                  link: HomePage(
+                  link: const HomePage(
                     title: 'Home',
                   )),
               buildMenuItem(
@@ -32,7 +32,7 @@ class SideBar extends StatelessWidget {
                   text: "Shopping List",
                   icon: Icons.list,
                   context: context,
-                  link: ShoppingListsPage(
+                  link: const ShoppingListsPage(
                     title: 'Shopping Lists',
                   )),
               buildMenuItem(

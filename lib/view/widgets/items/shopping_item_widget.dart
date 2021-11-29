@@ -1,7 +1,7 @@
 part of '../_widgets.dart';
 
 class ShoppingItem extends StatelessWidget {
-  ShoppingItem({
+  const ShoppingItem({
     Key? key,
     required this.shoppingList,
   }) : super(key: key);

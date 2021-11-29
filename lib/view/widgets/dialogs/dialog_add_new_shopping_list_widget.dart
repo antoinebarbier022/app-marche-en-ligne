@@ -60,7 +60,7 @@ class _ModalAddNewShoppingListState extends State<ModalAddNewShoppingList> {
           ),
         ),
         actions: [
-          Container(
+          SizedBox(
             width: double.infinity,
             child: ElevatedButton(
               onPressed: () {

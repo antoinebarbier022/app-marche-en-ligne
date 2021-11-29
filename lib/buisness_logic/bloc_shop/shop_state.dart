@@ -10,7 +10,6 @@ part of 'shop_bloc.dart';
 @immutable
 abstract class ShopState {
   const ShopState();
-  @override
   List<Object> get props => [];
 }
 

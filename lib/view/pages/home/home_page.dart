@@ -1,7 +1,7 @@
 part of '../_pages.dart';
 
 class HomePage extends StatelessWidget {
-  HomePage({Key? key, required this.title}) : super(key: key);
+  const HomePage({Key? key, required this.title}) : super(key: key);
 
   final String title;
 
@@ -41,7 +41,7 @@ class HomePage extends StatelessWidget {
                       onPressed: () => Navigator.push(
                         context,
                         CupertinoPageRoute(
-                            builder: (context) => StoreDepartementPage(
+                            builder: (context) => const StoreDepartementPage(
                                   title: "Store Departements",
                                 )),
                       ),
@@ -58,7 +58,7 @@ class HomePage extends StatelessWidget {
                       id: '',
                       title: "Shopping List",
                       listShoppingList: state.list,
-                      link: ShoppingListsPage(
+                      link: const ShoppingListsPage(
                         title: 'Shopping List',
                       ),
                     );

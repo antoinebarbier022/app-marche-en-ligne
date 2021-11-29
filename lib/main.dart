@@ -1,7 +1,10 @@
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import 'buisness_logic/bloc_departement/departement_bloc.dart';
+import 'buisness_logic/bloc_product/product_bloc.dart';
+import 'buisness_logic/bloc_shop/shop_bloc.dart';
+import 'buisness_logic/bloc_shopping_list/shopping_list_bloc.dart';
 import 'config/theme.dart';
 import 'view/pages/_pages.dart';
 
@@ -46,7 +49,7 @@ class MyApp extends StatelessWidget {
           primarySwatch: AppColors.primaryColor,
           //scaffoldBackgroundColor: Colors.grey[50]
         ),
-        home: HomePage(title: 'Online Market'),
+        home: const HomePage(title: 'Online Market'),
       ),
     );
   }

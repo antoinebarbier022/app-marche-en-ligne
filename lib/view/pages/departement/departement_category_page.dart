@@ -3,7 +3,7 @@ part of '../_pages.dart';
 /// Page qui affiche tous les produits contenue dans une catégorie appartenant à un département.
 
 class DepartementCategoryPage extends StatelessWidget {
-  DepartementCategoryPage({Key? key, required this.departement, required this.category})
+  const DepartementCategoryPage({Key? key, required this.departement, required this.category})
       : super(key: key);
 
   final Departement departement;

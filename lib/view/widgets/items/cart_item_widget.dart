@@ -124,7 +124,7 @@ class _CartItemState extends State<CartItem> {
                           // On affiche le bouton update si la quantité réel est différente de la quantité voulue
                           Visibility(
                             visible: (widget.quantity != _quantity),
-                            child: Container(
+                            child: SizedBox(
                               height: 30,
                               child: TextButton(
                                 style: _quantity == 0

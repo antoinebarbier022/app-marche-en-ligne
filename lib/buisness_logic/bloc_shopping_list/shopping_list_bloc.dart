@@ -52,7 +52,7 @@ class ShoppingListBloc extends Bloc<ShoppingListEvent, ShoppingListState> {
     if ((state as ShoppingListLoadSuccess)
         .list
         .any((element) => element.name == event.shoppingList.name)) {
-      print("Le nom de cette liste existe déjà");
+          // le nom de cette liste existe déjà
       updatedShoppingList = List.from((state as ShoppingListLoadSuccess).list);
     } else {
       updatedShoppingList = List.from((state as ShoppingListLoadSuccess).list)
