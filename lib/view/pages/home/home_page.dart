@@ -15,7 +15,7 @@ class HomePage extends StatelessWidget {
 
     return Scaffold(
         appBar: const AppBarCustom(
-          title: 'Good Market',
+          title: 'Carrefour Montpellier',
         ),
         // Menu latérale gauche
         drawer: const SideBar(),
