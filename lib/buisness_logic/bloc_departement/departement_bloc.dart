@@ -17,18 +17,18 @@ class DepartementBloc extends Bloc<DepartementEvent, DepartementState> {
       // chargement des produits
       yield DepartementsLoading();
       List<Departement> newState = [
-        Departement("Popular", "star", AppColors.brown, []),
-        Departement("Meat", "meat", AppColors.red, [Category("Pork"),Category("Chicken"),Category("Beef")]),
-        Departement("Fruits", "fruits", AppColors.green, [Category("France"),Category("Espagne")]),
-        Departement("Grains & Pasta", "grains", AppColors.orange, []),
-        Departement("Vegetables", "vegetables", AppColors.green, [Category("France"),Category("Espagne"),Category("Chine")]),
-        Departement("Cheese", "cheese", AppColors.blue, [Category("France")]),
-        Departement("Bakery & Pastry", "bakery", AppColors.yellow, []),
-        Departement("Seafood", "fish", AppColors.blue, []),
-        Departement("Dairy & Eggs", "dairy", AppColors.purple, []),
-        Departement("Nuts & Seeds", "nuts", AppColors.brown, []),
-        Departement("Beverages", "beverages", AppColors.green, []),
-        Departement("Japan food", "sushi", AppColors.orange, []),
+        Departement(name :"Popular", image: "star", color: AppColors.brown, categories :[]),
+        Departement(name :"Meat", image: "meat", color: AppColors.red, categories :[Category("Pork"),Category("Chicken"),Category("Beef")]),
+        Departement(name :"Fruits", image: "fruits", color: AppColors.green, categories :[Category("France"),Category("Espagne")]),
+        Departement(name :"Grains & Pasta", image: "grains", color: AppColors.orange, categories :[]),
+        Departement(name :"Vegetables", image: "vegetables", color: AppColors.green, categories :[Category("France"),Category("Espagne"),Category("Chine")]),
+        Departement(name :"Cheese", image: "cheese", color: AppColors.blue, categories :[Category("France")]),
+        Departement(name :"Bakery & Pastry", image: "bakery", color: AppColors.yellow, categories :[]),
+        Departement(name :"Seafood", image: "fish", color: AppColors.blue, categories :[]),
+        Departement(name :"Dairy & Eggs",image:  "dairy", color: AppColors.purple, categories :[]),
+        Departement(name :"Nuts & Seeds", image: "nuts", color: AppColors.brown, categories :[]),
+        Departement(name :"Beverages", image: "beverages", color: AppColors.green, categories :[]),
+        Departement(name :"Japan food", image: "sushi", color: AppColors.orange, categories :[]),
       ];
 
       yield DepartementsLoaded(departements: newState);

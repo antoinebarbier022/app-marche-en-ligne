@@ -1,9 +1,4 @@
-
-
 part of '_data_providers.dart';
-
-
-final FirebaseFirestore firestore = FirebaseFirestore.instance;
 
 
 class ProductProvider {
