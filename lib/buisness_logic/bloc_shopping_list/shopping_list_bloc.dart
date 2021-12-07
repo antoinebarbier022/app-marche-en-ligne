@@ -102,7 +102,7 @@ class ShoppingListBloc extends Bloc<ShoppingListEvent, ShoppingListState> {
       updatedShoppingList[index].products = (state as ShoppingListLoadSuccess)
           .list[index]
           .products
-          .where((element) => element.name != event.product.name)
+          .where((element) => element!.name != event.product.name)
           .toList();
       yield ShoppingListLoadSuccess(updatedShoppingList);
       //_saveShop(updatedShop);

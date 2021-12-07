@@ -5,7 +5,7 @@ class CollectionList extends StatelessWidget {
   final String title;
   final Widget link;
   final bool isShopingList;
-  final List<Product> listProduct; // liste des produits
+  final List<Product?> listProduct; // liste des produits
   final List<ShoppingList> listShoppingList; // liste des listes de shopping
 
   const CollectionList(

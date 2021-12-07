@@ -6,7 +6,7 @@ class ProductItem extends StatelessWidget {
     required this.product,
   }) : super(key: key);
 
-  final Product product;
+  final Product? product;
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +14,7 @@ class ProductItem extends StatelessWidget {
       data: product,
       dragAnchorStrategy:
           pointerDragAnchorStrategy, // Permet d'avoir l'élement positionné sur la souris (en haut à gauche)
-      feedback: DragingItem(urlImage : product.urlImage),
+      feedback: DragingItem(urlImage : product!.urlImage),
       child: InkWell(
         borderRadius: BorderRadius.circular(10),
         child: Container(
@@ -40,18 +40,18 @@ class ProductItem extends StatelessWidget {
                         ),
                       ],
                     ),
-                    child: ImageNetworkProduct(url: product.urlImage,)
+                    child: ImageNetworkProduct(url: product!.urlImage,)
                   ),
                 ),
                 const SizedBox(
                   height: 5,
                 ),
                 Text(
-                  product.name,
+                  product!.name,
                   overflow: TextOverflow.ellipsis,
                 ),
                 Text(
-                  "${product.price.toStringAsPrecision(3)}€/kg",
+                  "${product!.price.toStringAsPrecision(3)}€/kg",
                   style: TextStyle(color: Colors.grey[600]),
                 ),
               ],

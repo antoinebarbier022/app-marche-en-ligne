@@ -49,10 +49,10 @@ class ShopBloc extends Bloc<ShopEvent, ShopState> {
     if ((state as ShopLoadSuccess)
         .cart
         .items
-        .any((item) => item.product.name == event.item.product.name)) {
+        .any((item) => item.product!.name == event.item.product!.name)) {
 
       listItems = List.from((state as ShopLoadSuccess).cart.items);
-      listItems[listItems.indexWhere((item) => item.product.name == event.item.product.name)].quantity += event.item.quantity;
+      listItems[listItems.indexWhere((item) => item.product!.name == event.item.product!.name)].quantity += event.item.quantity;
     } else {
       listItems = List.from((state as ShopLoadSuccess).cart.items)
         ..add(event.item);
@@ -67,7 +67,7 @@ class ShopBloc extends Bloc<ShopEvent, ShopState> {
     if (state is ShopLoadSuccess) {
       final List<Item> listItems =
           (state as ShopLoadSuccess).cart.items.map((element) {
-        return element.product.name == event.item.product.name
+        return element.product!.name == event.item.product!.name
             ? event.item
             : element;
       }).toList();
@@ -84,7 +84,7 @@ class ShopBloc extends Bloc<ShopEvent, ShopState> {
       final List<Item> updatedShop = (state as ShopLoadSuccess)
           .cart
           .items
-          .where((element) => element.product.name != event.product.name)
+          .where((element) => element.product!.name != event.product!.name)
           .toList();
       yield ShopLoadSuccess(Cart(updatedShop));
       //_saveShop(updatedShop);

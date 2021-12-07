@@ -42,7 +42,7 @@ class ModalEditShoppingList extends StatelessWidget {
                   itemBuilder: (BuildContext context, int index) {
                     var productElement = state.list[indexCurrentShoppingList].products[index];
                     return ListTile(
-                      title: Text(productElement.name),
+                      title: Text(productElement!.name),
                       trailing: IconButton(
                         icon: const Icon(Icons.delete),
                         onPressed: () {

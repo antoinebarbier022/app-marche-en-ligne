@@ -38,7 +38,7 @@ class ShoppingItem extends StatelessWidget {
                     child: shoppingList.products.isEmpty
                         ? null
                         : ImageNetworkProduct(
-                              url: shoppingList.products[0].urlImage),
+                              url: shoppingList.products[0]!.urlImage),
                   ),
                   Container(
                       padding: const EdgeInsets.all(5),
@@ -50,7 +50,7 @@ class ShoppingItem extends StatelessWidget {
                       child: shoppingList.products.length < 2
                           ? null
                           : ImageNetworkProduct(
-                              url: shoppingList.products[1].urlImage)),
+                              url: shoppingList.products[1]!.urlImage)),
                   Container(
                       padding: const EdgeInsets.all(5),
                       decoration: BoxDecoration(
@@ -61,7 +61,7 @@ class ShoppingItem extends StatelessWidget {
                       child: shoppingList.products.length < 3
                           ? null
                           : ImageNetworkProduct(
-                              url: shoppingList.products[2].urlImage,
+                              url: shoppingList.products[2]!.urlImage,
                             )),
                   Container(
                     padding: const EdgeInsets.all(5),
@@ -75,7 +75,7 @@ class ShoppingItem extends StatelessWidget {
                         ? (shoppingList.products.length < 4
                             ? null
                             : ImageNetworkProduct(
-                              url: shoppingList.products[3].urlImage))
+                              url: shoppingList.products[3]!.urlImage))
                         : Center(
                             child: Text(
                             "+${shoppingList.products.length - 3}",

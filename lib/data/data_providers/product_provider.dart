@@ -1,6 +1,6 @@
 
 
-part of 'data_providers.dart';
+part of '_data_providers.dart';
 
 
 final FirebaseFirestore firestore = FirebaseFirestore.instance;
@@ -21,6 +21,7 @@ class ProductProvider {
     );
   }
 
+// pas besoins 
   // --- GET ALL BY DEPARTEMENT ---
   Query getAllProductsByDepartement(String departement) {
     return ProductProvider.getGroupCollection()
@@ -30,6 +31,7 @@ class ProductProvider {
     );
   }
 
+// pas besoins 
     // --- GET ALL BY CATEGORY ---
   Query getAllProductsByCategory(String category) {
     return ProductProvider.getGroupCollection()

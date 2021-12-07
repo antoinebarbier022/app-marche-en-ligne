@@ -44,7 +44,7 @@ class DepartementDetailsPage extends StatelessWidget {
                     itemBuilder: (BuildContext context, int index) {
                       var listProduitCategory = productsState.products
                           .where((i) =>
-                              (i.category ==
+                              (i!.category ==
                                   departement.categories[index].name) &&
                               (i.departement == departement.name))
                           .toList();

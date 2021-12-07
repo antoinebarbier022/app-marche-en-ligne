@@ -24,7 +24,7 @@ class DepartementCategoryPage extends StatelessWidget {
               return const Center(child: CircularProgressIndicator());
             } else if (state is ProductsLoaded) {
               var listProduct = state.products.where((i) =>
-                                          (i.departement ==
+                                          (i!.departement ==
                                           departement.name) && (i.category ==
                                           category.name) )
                                       .toList();

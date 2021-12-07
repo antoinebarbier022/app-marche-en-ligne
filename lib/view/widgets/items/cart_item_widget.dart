@@ -7,7 +7,7 @@ class CartItem extends StatefulWidget {
     required this.quantity,
   }) : super(key: key);
 
-  final Product product;
+  final Product? product;
   final double quantity;
 
   @override
@@ -73,7 +73,7 @@ class _CartItemState extends State<CartItem> {
                       //border: Border.all(color: Colors.black12, width: 1),
                       borderRadius: BorderRadius.circular(5),
                     ),
-                    child: ImageNetworkProduct(url: widget.product.urlImage,)
+                    child: ImageNetworkProduct(url: widget.product!.urlImage,)
                   ),
                 ),
                 Container(
@@ -86,7 +86,7 @@ class _CartItemState extends State<CartItem> {
                         
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text(widget.product.name,
+                            Text(widget.product!.name,
                             overflow: TextOverflow.fade,
                                 style: const TextStyle(fontSize: 18)),
                             Text("x ${widget.quantity.toInt()}",
@@ -193,7 +193,7 @@ class _CartItemState extends State<CartItem> {
                   margin: const EdgeInsets.only(
                       left: 10, right: 10, top: 10, bottom: 15),
                   child: Text(
-                      "${((widget.product.price) * (_quantity)).toStringAsFixed(2)}€",
+                      "${((widget.product!.price) * (_quantity)).toStringAsFixed(2)}€",
                       style: const TextStyle(
                           fontSize: 18, fontWeight: FontWeight.bold)),
                 ),

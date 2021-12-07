@@ -1,3 +1,4 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -6,17 +7,15 @@ import 'buisness_logic/bloc_product/product_bloc.dart';
 import 'buisness_logic/bloc_shop/shop_bloc.dart';
 import 'buisness_logic/bloc_shopping_list/shopping_list_bloc.dart';
 import 'config/theme.dart';
+import 'data/repositories/_repositories.dart';
 import 'view/pages/_pages.dart';
 
-/*void main() async {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   runApp(const MyApp());
-}*/
-
-void main() {
-  runApp(const MyApp());
 }
+
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
@@ -27,7 +26,7 @@ class MyApp extends StatelessWidget {
       providers: [
         // Product Bloc
         BlocProvider<ProductBloc>(
-          create: (BuildContext context) => ProductBloc(),
+          create: (BuildContext context) => ProductBloc(ProductRepository()),
         ),
         // Departemnt Bloc
         BlocProvider<DepartementBloc>(

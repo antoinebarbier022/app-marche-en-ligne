@@ -5,7 +5,7 @@ class ModalAddToShoppingList extends StatefulWidget {
     Key? key, required this.product,
   }) : super(key: key);
 
-  final Product product;
+  final Product? product;
 
   @override
   State<ModalAddToShoppingList> createState() => _ModalAddToShoppingListState();
@@ -78,7 +78,7 @@ class _ModalAddToShoppingListState extends State<ModalAddToShoppingList> {
             Navigator.pop(context);
               ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                                 content: Text(
-                                    'Vous avez ajouté [ 1 x ${widget.product.name} ] dans la liste [ $_shoppingListSelected ].')));
+                                    'Vous avez ajouté [ 1 x ${widget.product!.name} ] dans la liste [ $_shoppingListSelected ].')));
                           
           },
           child: const Text('Done'),

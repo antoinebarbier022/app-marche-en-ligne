@@ -95,7 +95,7 @@ class HomePage extends StatelessWidget {
                             itemBuilder: (BuildContext context, int index) {
                               var listProducts = productsState.products
                                   .where((i) =>
-                                      i.departement ==
+                                      i?.departement ==
                                       departementsState
                                           .departements[index].name)
                                   .toList();

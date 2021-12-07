@@ -9,7 +9,7 @@ class Cart {
   double getTotalPrice(){
     double sum = 0;
     for (var element in items) {
-      sum += (element.quantity * element.product.price);
+      sum += (element.quantity * element.product!.price);
     }
     return sum;
   }
@@ -25,7 +25,7 @@ class Cart {
 }
 
 class Item{
-    Product product;
+    Product? product;
     double quantity;
     Item(this.product, this.quantity);
   }

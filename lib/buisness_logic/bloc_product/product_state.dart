@@ -8,7 +8,7 @@ class ProductsInitial extends ProductState {
 }
 
 class ProductsLoaded extends ProductState {
-  final List<Product> products;
+  final List<Product?> products;
 
   ProductsLoaded({required this.products});
 }

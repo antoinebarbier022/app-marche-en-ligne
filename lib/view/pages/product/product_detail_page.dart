@@ -3,7 +3,7 @@ part of '../_pages.dart';
 class ProductDetailPage extends StatefulWidget {
   const ProductDetailPage({Key? key, required this.product}) : super(key: key);
 
-  final Product product;
+  final Product? product;
 
   @override
   // ignore: no_logic_in_create_state
@@ -48,7 +48,7 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                       borderRadius: BorderRadius.circular(10),
                     ),
                     child: ImageNetworkProduct(
-                      url: widget.product.urlImage,
+                      url: widget.product!.urlImage,
                     )),
               ),
 
@@ -83,7 +83,7 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                             borderRadius: BorderRadius.circular(15),
                           ),
                           child: Text(
-                              "€${widget.product.price.toStringAsPrecision(3)}",
+                              "€${widget.product!.price.toStringAsPrecision(3)}",
                               style: TextStyle(
                                   fontSize: 20,
                                   fontWeight: FontWeight.bold,
@@ -117,10 +117,10 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                       height: 20,
                     ),
                     // Nom du produit
-                    Text(widget.product.name,
+                    Text(widget.product!.name,
                         style: const TextStyle(
                             fontSize: 24, fontWeight: FontWeight.w900)),
-                    Text(widget.product.departement,
+                    Text(widget.product!.departement,
                         style: TextStyle(
                             color: Colors.grey[600],
                             fontSize: 16,
@@ -253,7 +253,7 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                                 ItemAdded(Item(widget.product, _quantity)));
                             ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                                 content: Text(
-                                    'Vous avez ajouté [ ${_quantity.toInt()} x ${widget.product.name} ] dans votre panier.')));
+                                    'Vous avez ajouté [ ${_quantity.toInt()} x ${widget.product!.name} ] dans votre panier.')));
                           },
                         ),
                       )

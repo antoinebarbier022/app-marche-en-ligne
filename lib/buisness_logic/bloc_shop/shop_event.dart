@@ -42,12 +42,12 @@ class ItemUpdated extends ShopEvent {
 }
 
 class ItemDeleted extends ShopEvent {
-  final Product product;
+  final Product? product;
 
   const ItemDeleted(this.product);
 
   @override
-  List<Object> get props => [product];
+  List<Object> get props => [product as Object];
 
   @override
   String toString() => 'ItemDeleted { product: $product }';

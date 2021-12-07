@@ -1,4 +1,5 @@
 import 'package:app_market_online/data/models/_models.dart';
+import 'package:app_market_online/data/repositories/_repositories.dart';
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:meta/meta.dart';
@@ -7,7 +8,9 @@ part 'product_event.dart';
 part 'product_state.dart';
 
 class ProductBloc extends Bloc<ProductEvent, ProductState> {
-  ProductBloc() : super(ProductsInitial());
+  ProductRepository repository;
+
+  ProductBloc(this.repository) : super(ProductsInitial());
   ProductState get initialState => ProductsInitial();
 
   @override
@@ -15,7 +18,9 @@ class ProductBloc extends Bloc<ProductEvent, ProductState> {
     if (event is GetAllProducts) {
       // chargement des produits
       yield ProductsLoading();
-      List<Product> newState = [
+      List<Product?> newState = await repository.getProductsList();
+      print(newState);
+      /*[
         // vegetables
         Product(name: "Carotte", price: 2.4, departement: "Vegetables", category: "France", urlImage: "https://static.greenweez.com/images/products/119000/600/fruits-legumes-locaux-idf-bio-copie-produit-concombre-long-ile-de-france.jpg"),
         Product(name: "Tomate", price: 2.4, departement: "Vegetables", category: "France", urlImage: "https://img-3.journaldesfemmes.fr/jHMgoBkfJoViJ6FW4_bLUh_4Sfw=/1500x/smart/c56b0b2648d747c28d82300380c1a207/ccmcms-jdf/10523670.jpg"),
@@ -41,7 +46,7 @@ class ProductBloc extends Bloc<ProductEvent, ProductState> {
         Product(name: "Cuisse de poulet 200g", price: 2.4, departement: "Meat", category: "Chicken", urlImage: "https://thumbs.dreamstime.com/b/viande-de-poulet-32456382.jpg"),
         // Cheese
         Product(name: "Camembert", price: 2.4, departement: "Cheese", category: "France", urlImage: "https://www.lineaires.com/var/site/storage/images/_aliases/large/4/3/3/1/3751334-1-fre-FR/camembert%20extra%20fondant.jpg")
-      ];
+      ];*/
       yield ProductsLoaded(products: newState);
     } else {
       yield ProductsNotLoaded();
