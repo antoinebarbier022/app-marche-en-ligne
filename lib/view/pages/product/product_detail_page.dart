@@ -155,8 +155,7 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                                         child: RichText(
                                           textAlign: TextAlign.justify,
                                           text: TextSpan(
-                                            text:
-                                                "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In vel ligula non dolor volutpat dignissim. Ut vel tempor velit, quis vestibulum ante. Fusce eleifend tempus imperdiet. Mauris consequat interdum iaculis. Maecenas at hendrerit est, id pulvinar mauris. Nullam vel malesuada arcu. ",
+                                            text: widget.product!.description.isNotEmpty ? widget.product!.description : "Aucune description.",
                                             style: TextStyle(
                                                 color: Colors.grey.shade800,
                                                 height: 1.3),
