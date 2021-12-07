@@ -1,5 +1,6 @@
 import 'package:app_market_online/config/theme.dart';
 import 'package:app_market_online/data/models/_models.dart';
+import 'package:app_market_online/data/repositories/_repositories.dart';
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:meta/meta.dart';
@@ -8,7 +9,9 @@ part 'departement_event.dart';
 part 'departement_state.dart';
 
 class DepartementBloc extends Bloc<DepartementEvent, DepartementState> {
-  DepartementBloc() : super(DepartementsInitial());
+  DepartementRepository repository;
+
+  DepartementBloc(this.repository) : super(DepartementsInitial());
   DepartementState get initialState => DepartementsInitial();
 
   @override
@@ -16,7 +19,9 @@ class DepartementBloc extends Bloc<DepartementEvent, DepartementState> {
     if (event is GetAllDepartements) {
       // chargement des produits
       yield DepartementsLoading();
-      List<Departement> newState = [
+      List<Departement?> newState = await repository.getDepartementsList();
+      print(newState);
+      /*[
         Departement(name :"Popular", image: "star", color: AppColors.brown, categories :[]),
         Departement(name :"Meat", image: "meat", color: AppColors.red, categories :[Category("Pork"),Category("Chicken"),Category("Beef")]),
         Departement(name :"Fruits", image: "fruits", color: AppColors.green, categories :[Category("France"),Category("Espagne")]),
@@ -29,7 +34,7 @@ class DepartementBloc extends Bloc<DepartementEvent, DepartementState> {
         Departement(name :"Nuts & Seeds", image: "nuts", color: AppColors.brown, categories :[]),
         Departement(name :"Beverages", image: "beverages", color: AppColors.green, categories :[]),
         Departement(name :"Japan food", image: "sushi", color: AppColors.orange, categories :[]),
-      ];
+      ];*/
 
       yield DepartementsLoaded(departements: newState);
     } else {

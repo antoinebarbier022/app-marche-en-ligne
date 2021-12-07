@@ -7,7 +7,7 @@ class DepartementItem extends StatelessWidget {
   }) : super(key: key);
 
 
-  final Departement departement;
+  final Departement? departement;
 
   @override
   Widget build(BuildContext context) {
@@ -36,13 +36,13 @@ class DepartementItem extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 Image.asset(
-                  'assets/${departement.image}.png',
+                  'assets/${departement!.image}.png',
                   width: 60,
                   fit: BoxFit.scaleDown,
                 ),
                 Center(
                     child: Text(
-                  departement.name,
+                  departement!.name,
                   overflow: TextOverflow.ellipsis,
                   textAlign: TextAlign.center,
                 )),

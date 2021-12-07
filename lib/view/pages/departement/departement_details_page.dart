@@ -4,7 +4,7 @@ class DepartementDetailsPage extends StatelessWidget {
   const DepartementDetailsPage({Key? key, required this.departement})
       : super(key: key);
 
-  final Departement departement;
+  final Departement? departement;
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +16,7 @@ class DepartementDetailsPage extends StatelessWidget {
 
     return Scaffold(
         appBar: AppBarCustom(
-          title: departement.name,
+          title: departement!.name,
         ),
         body: SingleChildScrollView(
             child:
@@ -27,7 +27,8 @@ class DepartementDetailsPage extends StatelessWidget {
             child: CupertinoSearchTextField(),
           ),
           // liste horizontale qui fait défiler la liste des noms de catégories du département
-          CategoriesListBadge(departement: departement),
+          
+          (departement!.categories != null )? CategoriesListBadge(departement: departement) : Container(),
 
           // Affichage de toutes les catégories du département avec leurs produits
           const SizedBox(height: 20),
@@ -36,33 +37,37 @@ class DepartementDetailsPage extends StatelessWidget {
             if (productsState is ProductsLoading) {
               return const Center(child: CircularProgressIndicator());
             } else if (productsState is ProductsLoaded) {
-              return SizedBox(
-                child: ListView.builder(
-                    physics: const NeverScrollableScrollPhysics(),
-                    shrinkWrap: true,
-                    itemCount: departement.categories.length,
-                    itemBuilder: (BuildContext context, int index) {
-                      var listProduitCategory = productsState.products
-                          .where((i) =>
-                              (i!.category ==
-                                  departement.categories[index].name) &&
-                              (i.departement == departement.name))
-                          .toList();
-                      // Si la liste de produit de la catégorie n'est pas vide, on l'affiche
-                      if (listProduitCategory.isNotEmpty) {
-                        return CollectionList(
-                            id: '',
-                            title: departement.categories[index].name,
-                            listProduct: listProduitCategory,
-                            link: DepartementCategoryPage(
-                              departement: departement,
-                              category: departement.categories[index],
-                            ));
-                      }else{
-                        return Container();
-                      }
-                    }),
-              );
+              if (departement!.categories != null) {
+                return SizedBox(
+                  child: ListView.builder(
+                      physics: const NeverScrollableScrollPhysics(),
+                      shrinkWrap: true,
+                      itemCount: departement!.categories!.length,
+                      itemBuilder: (BuildContext context, int index) {
+                        var listProduitCategory = productsState.products
+                            .where((i) =>
+                                (i!.category ==
+                                    departement!.categories![index]) &&
+                                (i.departement == departement!.name))
+                            .toList();
+                        // Si la liste de produit de la catégorie n'est pas vide, on l'affiche
+                        if (listProduitCategory.isNotEmpty) {
+                          return CollectionList(
+                              id: '',
+                              title: departement!.categories![index],
+                              listProduct: listProduitCategory,
+                              link: DepartementCategoryPage(
+                                departement: departement,
+                                category: departement!.categories![index],
+                              ));
+                        } else {
+                          return Container();
+                        }
+                      }),
+                );
+              } else {
+                return const Center(child: Text("Is Empty."));
+              }
             } else {
               return const Center(child: Text("Is Empty."));
             }
@@ -77,7 +82,7 @@ class CategoriesListBadge extends StatelessWidget {
     required this.departement,
   }) : super(key: key);
 
-  final Departement departement;
+  final Departement? departement;
 
   @override
   Widget build(BuildContext context) {
@@ -86,7 +91,7 @@ class CategoriesListBadge extends StatelessWidget {
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
         shrinkWrap: true,
-        itemCount: departement.categories.length,
+        itemCount: departement!.categories!.length,
         itemBuilder: (BuildContext context, int index) {
           return InkWell(
             borderRadius: BorderRadius.circular(10),
@@ -100,7 +105,9 @@ class CategoriesListBadge extends StatelessWidget {
                 child: Center(
                     child: Padding(
                   padding: const EdgeInsets.only(left: 8, right: 8),
-                  child: Text(departement.categories[index].name, style: TextStyle(color: Theme.of(context).primaryColorDark)),
+                  child: Text(departement!.categories![index],
+                      style:
+                          TextStyle(color: Theme.of(context).primaryColorDark)),
                 ))),
             onTap: () {
               Navigator.push(
@@ -108,7 +115,7 @@ class CategoriesListBadge extends StatelessWidget {
                 CupertinoPageRoute(
                     builder: (context) => DepartementCategoryPage(
                           departement: departement,
-                          category: departement.categories[index],
+                          category: departement!.categories![index],
                         )),
               );
             },

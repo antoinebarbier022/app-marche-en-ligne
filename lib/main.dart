@@ -30,7 +30,7 @@ class MyApp extends StatelessWidget {
         ),
         // Departemnt Bloc
         BlocProvider<DepartementBloc>(
-          create: (BuildContext context) => DepartementBloc(),
+          create: (BuildContext context) => DepartementBloc(DepartementRepository()),
         ),
         //Shop Bloc (cart)
         BlocProvider<ShopBloc>(

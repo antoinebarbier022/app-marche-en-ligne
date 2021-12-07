@@ -97,14 +97,14 @@ class HomePage extends StatelessWidget {
                                   .where((i) =>
                                       i?.departement ==
                                       departementsState
-                                          .departements[index].name)
+                                          .departements[index]!.name)
                                   .toList();
                               // Si il existe des produits dans le departement, on créer la CollectionList
                               if (listProducts.isNotEmpty) {
                                 return CollectionList(
                                     id: '',
                                     title: departementsState
-                                        .departements[index].name,
+                                        .departements[index]!.name,
                                     listProduct: listProducts,
                                     link: DepartementDetailsPage(
                                       departement:
