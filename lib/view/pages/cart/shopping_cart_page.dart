@@ -28,19 +28,18 @@ class ShoppingCartPage extends StatelessWidget {
               if (state.cart.items.isNotEmpty) {
                 return ListView.separated(
                   
-                  padding: const EdgeInsets.only(bottom: 70),
+                  padding: const EdgeInsets.only(top:15, bottom: 70),
                   itemCount: state.cart.items.length,
                   itemBuilder: (context, index) {
                     return CartItem(
+                      
                       product: state.cart.items[index].product,
                       quantity: state.cart.items[index].quantity,
                     );
                   },
                   // ligne de séparation des items
                   separatorBuilder: (BuildContext context, int index) {
-                    return const Divider(
-                      thickness: 1,
-                    );
+                    return const SizedBox(height: 15,);
                   },
                 );
               } else {

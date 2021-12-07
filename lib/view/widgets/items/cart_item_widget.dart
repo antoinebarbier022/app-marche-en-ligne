@@ -38,9 +38,24 @@ class _CartItemState extends State<CartItem> {
   @override
   Widget build(BuildContext context) {
     return Container(
+      margin: const EdgeInsets.only(left: 15, right:15),
+      decoration: BoxDecoration(
+        color: Colors.white,
+          //border: Border.all(color: Colors.black12, width: 1),
+          borderRadius: BorderRadius.circular(10),
+          boxShadow: [
+                BoxShadow(
+                  color: Colors.grey.shade300,
+                  spreadRadius: 5,
+                  blurRadius: 10,
+                  offset: const Offset(0, -4), // changes position of shadow
+                ),
+              ],
+        ),
+      
         width: double.infinity,
         height: 130,
-        padding: const EdgeInsets.all(10.0),
+        padding: const EdgeInsets.all(5.0),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -55,7 +70,7 @@ class _CartItemState extends State<CartItem> {
                     padding: const EdgeInsets.all(5),
                     margin: const EdgeInsets.all(10),
                     decoration: BoxDecoration(
-                      border: Border.all(color: Colors.black12, width: 1),
+                      //border: Border.all(color: Colors.black12, width: 1),
                       borderRadius: BorderRadius.circular(5),
                     ),
                     child: ImageNetworkProduct(url: widget.product.urlImage,)
@@ -68,9 +83,11 @@ class _CartItemState extends State<CartItem> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Column(
+                        
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(widget.product.name,
+                            overflow: TextOverflow.fade,
                                 style: const TextStyle(fontSize: 18)),
                             Text("x ${widget.quantity.toInt()}",
                                 style: TextStyle(color: Colors.grey[700])),

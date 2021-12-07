@@ -31,6 +31,7 @@ class ShoppingItem extends StatelessWidget {
                   Container(
                     padding: const EdgeInsets.all(5),
                     decoration: BoxDecoration(
+                      color: Theme.of(context).primaryColorLight,
                       border: Border.all(color: Colors.black12, width: 1),
                       borderRadius: BorderRadius.circular(5),
                     ),
@@ -42,6 +43,7 @@ class ShoppingItem extends StatelessWidget {
                   Container(
                       padding: const EdgeInsets.all(5),
                       decoration: BoxDecoration(
+                        color: Theme.of(context).primaryColorLight,
                         border: Border.all(color: Colors.black12, width: 1),
                         borderRadius: BorderRadius.circular(5),
                       ),
@@ -52,6 +54,7 @@ class ShoppingItem extends StatelessWidget {
                   Container(
                       padding: const EdgeInsets.all(5),
                       decoration: BoxDecoration(
+                        color: Theme.of(context).primaryColorLight,
                         border: Border.all(color: Colors.black12, width: 1),
                         borderRadius: BorderRadius.circular(5),
                       ),
@@ -63,6 +66,7 @@ class ShoppingItem extends StatelessWidget {
                   Container(
                     padding: const EdgeInsets.all(5),
                     decoration: BoxDecoration(
+                      color: Theme.of(context).primaryColorLight,
                       border: Border.all(color: Colors.black12, width: 1),
                       borderRadius: BorderRadius.circular(5),
                     ),
