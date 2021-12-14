@@ -11,8 +11,8 @@ class DepartementDetailsPage extends StatelessWidget {
     final productsBloc = BlocProvider.of<ProductBloc>(context);
     productsBloc.add(GetAllProducts());
 
-    final departementsBloc = BlocProvider.of<DepartementBloc>(context);
-    departementsBloc.add(GetAllDepartements());
+    final categoriesBloc = BlocProvider.of<CategoryBloc>(context);
+    categoriesBloc.add(GetAllCategories());
 
     return Scaffold(
         appBar: AppBarCustom(
@@ -27,51 +27,67 @@ class DepartementDetailsPage extends StatelessWidget {
             child: CupertinoSearchTextField(),
           ),
           // liste horizontale qui fait défiler la liste des noms de catégories du département
-          
-          (departement!.categories != null )? CategoriesListBadge(departement: departement) : Container(),
 
           // Affichage de toutes les catégories du département avec leurs produits
           const SizedBox(height: 20),
-          BlocBuilder<ProductBloc, ProductState>(
-              builder: (context, productsState) {
-            if (productsState is ProductsLoading) {
-              return const Center(child: CircularProgressIndicator());
-            } else if (productsState is ProductsLoaded) {
-              if (departement!.categories != null) {
-                return SizedBox(
-                  child: ListView.builder(
-                      physics: const NeverScrollableScrollPhysics(),
-                      shrinkWrap: true,
-                      itemCount: departement!.categories!.length,
-                      itemBuilder: (BuildContext context, int index) {
-                        var listProduitCategory = productsState.products
-                            .where((i) =>
-                                (i!.category ==
-                                    departement!.categories![index]) &&
-                                (i.departement == departement!.name))
-                            .toList();
-                        // Si la liste de produit de la catégorie n'est pas vide, on l'affiche
-                        if (listProduitCategory.isNotEmpty) {
-                          return CollectionList(
-                              id: '',
-                              title: departement!.categories![index],
-                              listProduct: listProduitCategory,
-                              link: DepartementCategoryPage(
-                                departement: departement,
-                                category: departement!.categories![index],
-                              ));
-                        } else {
-                          return Container();
-                        }
-                      }),
-                );
+          BlocBuilder<CategoryBloc, CategoryState>(
+            builder: (context, stateCategory) {
+              if (stateCategory is CategoriesLoaded) {
+                var categoriesFromThisDepartement = stateCategory.categories
+                    .where((i) => i?.departement == departement!.name)
+                    .toList();
+
+                return BlocBuilder<ProductBloc, ProductState>(
+                    builder: (context, productsState) {
+                  if (productsState is ProductsLoading) {
+                    return const Center(child: CircularProgressIndicator());
+                  } else if (productsState is ProductsLoaded) {
+                    if (categoriesFromThisDepartement.isNotEmpty) {
+                      return SizedBox(
+                        child: ListView.builder(
+                            physics: const NeverScrollableScrollPhysics(),
+                            shrinkWrap: true,
+                            itemCount: categoriesFromThisDepartement.length,
+                            itemBuilder: (BuildContext context, int index) {
+                              var listProduitCategory = productsState.products
+                                  .where((i) =>
+                                      (i!.category ==
+                                          categoriesFromThisDepartement[index]!
+                                              .name) &&
+                                      (i.departement == departement!.name))
+                                  .toList();
+                              // Si la liste de produit de la catégorie n'est pas vide, on l'affiche
+                              if (listProduitCategory.isNotEmpty) {
+                                return CollectionList(
+                                    id: '',
+                                    title: categoriesFromThisDepartement[index]!
+                                        .name,
+                                    listProduct: listProduitCategory,
+                                    link: DepartementCategoryPage(
+                                      departement: departement,
+                                      category:
+                                          categoriesFromThisDepartement[index]!
+                                              .name,
+                                    ));
+                              } else {
+                                return Container();
+                              }
+                            }),
+                      );
+                    } else {
+                      return const Center(child: Text("Is Empty."));
+                    }
+                  } else {
+                    return const Center(child: Text("Is Empty."));
+                  }
+                });
+              }else if(stateCategory is CategoriesLoading){
+                return const Center(child: CircularProgressIndicator());
               } else {
                 return const Center(child: Text("Is Empty."));
               }
-            } else {
-              return const Center(child: Text("Is Empty."));
-            }
-          })
+            },
+          )
         ])));
   }
 }
@@ -88,38 +104,50 @@ class CategoriesListBadge extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       height: 40,
-      child: ListView.builder(
-        scrollDirection: Axis.horizontal,
-        shrinkWrap: true,
-        itemCount: departement!.categories!.length,
-        itemBuilder: (BuildContext context, int index) {
-          return InkWell(
-            borderRadius: BorderRadius.circular(10),
-            child: Container(
-                margin: const EdgeInsets.all(5),
-                padding: const EdgeInsets.all(5),
-                decoration: BoxDecoration(
-                  color: Theme.of(context).primaryColorLight,
+      child: BlocBuilder<CategoryBloc, CategoryState>(
+        builder: (context, state) {
+          if (state is CategoriesLoaded) {
+            var categoriesFromThisDepartement = state.categories
+                    .where((i) => i?.departement == departement!.name)
+                    .toList();
+
+            return ListView.builder(
+              scrollDirection: Axis.horizontal,
+              shrinkWrap: true,
+              itemCount: categoriesFromThisDepartement.length,
+              itemBuilder: (BuildContext context, int index) {
+                return InkWell(
                   borderRadius: BorderRadius.circular(10),
-                ),
-                child: Center(
-                    child: Padding(
-                  padding: const EdgeInsets.only(left: 8, right: 8),
-                  child: Text(departement!.categories![index],
-                      style:
-                          TextStyle(color: Theme.of(context).primaryColorDark)),
-                ))),
-            onTap: () {
-              Navigator.push(
-                context,
-                CupertinoPageRoute(
-                    builder: (context) => DepartementCategoryPage(
-                          departement: departement,
-                          category: departement!.categories![index],
-                        )),
-              );
-            },
-          );
+                  child: Container(
+                      margin: const EdgeInsets.all(5),
+                      padding: const EdgeInsets.all(5),
+                      decoration: BoxDecoration(
+                        color: Theme.of(context).primaryColorLight,
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      child: Center(
+                          child: Padding(
+                        padding: const EdgeInsets.only(left: 8, right: 8),
+                        child: Text(categoriesFromThisDepartement[index]!.name,
+                            style: TextStyle(
+                                color: Theme.of(context).primaryColorDark)),
+                      ))),
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      CupertinoPageRoute(
+                          builder: (context) => DepartementCategoryPage(
+                                departement: departement,
+                                category: categoriesFromThisDepartement[index]!.name,
+                              )),
+                    );
+                  },
+                );
+              },
+            );
+          } else {
+            return const Center(child: Text("Is Empty."));
+          }
         },
       ),
     );

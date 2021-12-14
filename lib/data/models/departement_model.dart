@@ -4,9 +4,8 @@ class Departement {
   String name;
   String image;
   Color? color;
-  List<String>? categories;
 
-  Departement({required this.name, required this.image, this.color,  this.categories});
+  Departement({required this.name, required this.image, this.color});
 
   Map<String, dynamic> toJson() => _departementToJson(this);
 
@@ -14,7 +13,6 @@ class Departement {
       : this(
           name: json["name"] as String,
           image: json["image"] as String,
-          //categories : json["image"] as List<String>
         );
 
   @override
@@ -23,7 +21,7 @@ class Departement {
   Map<String, dynamic> _departementToJson(Departement instance) => <String, dynamic>{
         'name': instance.name,
         'image': instance.image,
-        //'departement' : instance.categories,
+        //'categories' : instance.categories,
  
       };
 }

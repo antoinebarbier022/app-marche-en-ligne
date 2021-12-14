@@ -1,3 +1,4 @@
+import 'package:app_market_online/buisness_logic/bloc_category/category_bloc.dart';
 import 'package:app_market_online/buisness_logic/bloc_shop/shop_bloc.dart';
 import 'package:app_market_online/buisness_logic/bloc_departement/departement_bloc.dart';
 import 'package:app_market_online/buisness_logic/bloc_product/product_bloc.dart';

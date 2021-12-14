@@ -2,6 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import 'buisness_logic/bloc_category/category_bloc.dart';
 import 'buisness_logic/bloc_departement/departement_bloc.dart';
 import 'buisness_logic/bloc_product/product_bloc.dart';
 import 'buisness_logic/bloc_shop/shop_bloc.dart';
@@ -28,9 +29,13 @@ class MyApp extends StatelessWidget {
         BlocProvider<ProductBloc>(
           create: (BuildContext context) => ProductBloc(ProductRepository()),
         ),
-        // Departemnt Bloc
+        // Departement Bloc
         BlocProvider<DepartementBloc>(
           create: (BuildContext context) => DepartementBloc(DepartementRepository()),
+        ),
+        // Category Bloc Bloc
+        BlocProvider<CategoryBloc>(
+          create: (BuildContext context) => CategoryBloc(CategoryRepository()),
         ),
         //Shop Bloc (cart)
         BlocProvider<ShopBloc>(
