@@ -42,7 +42,7 @@ class MyApp extends StatelessWidget {
         ),
         //Shop Bloc (cart)
         BlocProvider<ShopBloc>(
-          create: (BuildContext context) => ShopBloc(),
+          create: (BuildContext context) => ShopBloc(CartRepository()),
         ),
         // ShoppingList Bloc
         BlocProvider<ShoppingListBloc>(

@@ -43,14 +43,13 @@ class Item{
     Item({required this.product, required this.quantity});
 
     factory Item.fromJson(Map<String, dynamic> json) => Item(
-        //product: json["id"],
-        product: null,
+        product: Product.fromJson(json["product"]),
         quantity: json["quantity"],
     );
 
     Map<String, dynamic> toJson() => {
         "quantity": quantity,
-        "product": product!.name,
+        "product": product!.toJson(),
     };
 
 

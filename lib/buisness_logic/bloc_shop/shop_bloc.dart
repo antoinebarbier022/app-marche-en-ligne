@@ -1,4 +1,5 @@
 import 'package:app_market_online/data/models/_models.dart';
+import 'package:app_market_online/data/repositories/_repositories.dart';
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
 
@@ -8,9 +9,9 @@ part 'shop_state.dart';
 /// Exemple de bloc pattern : https://bloclibrary.dev/#/fluttershoptutorial
 
 class ShopBloc extends Bloc<ShopEvent, ShopState> {
-  //final ShopRepository shopRepository;
+  CartRepository cartRepository;
 
-  ShopBloc() : super(ShopLoadSuccess(Cart(items: [])));
+  ShopBloc(this.cartRepository) : super(ShopLoadSuccess(Cart(items: [])));
 
   @override
   Stream<ShopState> mapEventToState(ShopEvent event) async* {
@@ -45,15 +46,18 @@ class ShopBloc extends Bloc<ShopEvent, ShopState> {
   Stream<ShopState> _mapItemAddedToState(ItemAdded event) async* {
     final List<Item> listItems;
     // Si l'item est deja présent, on ne l'ajoute pas
-    
     if ((state as ShopLoadSuccess)
         .cart
         .items
         .any((item) => item.product!.name == event.item.product!.name)) {
 
       listItems = List.from((state as ShopLoadSuccess).cart.items);
-      listItems[listItems.indexWhere((item) => item.product!.name == event.item.product!.name)].quantity += event.item.quantity;
+      double newQuantity = (listItems[listItems.indexWhere((item) => item.product!.name == event.item.product!.name)].quantity += event.item.quantity);
+    // Ajout dans firebase
+    cartRepository.updateItemInCart("userTest", event.item.product!.name, newQuantity);
     } else {
+      // Ajout dans firebase
+    cartRepository.addItemInCart("userTest", Item(product: event.item.product, quantity: 1));
       listItems = List.from((state as ShopLoadSuccess).cart.items)
         ..add(event.item);
     }
@@ -76,6 +80,13 @@ class ShopBloc extends Bloc<ShopEvent, ShopState> {
 
       yield ShopLoadSuccess(updatedShop);
       //_saveShop(updatedShop);
+      // MAJ quantité
+      if(event.item.quantity >= 1){
+        cartRepository.addItemInCart("userTest", Item(product: event.item.product, quantity: event.item.quantity));
+      }else{
+        cartRepository.deleteItemInCart("userTest", event.item.product!.name,);
+      }
+      
     }
   }
 
@@ -87,6 +98,8 @@ class ShopBloc extends Bloc<ShopEvent, ShopState> {
           .where((element) => element.product!.name != event.product!.name)
           .toList();
       yield ShopLoadSuccess(Cart(items: updatedShop));
+      // delete dans firebase
+      cartRepository.deleteItemInCart("userTest", event.product!.name,);
       //_saveShop(updatedShop);
     }
   }
