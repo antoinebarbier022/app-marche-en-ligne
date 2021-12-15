@@ -29,11 +29,11 @@ class DepartementDetailsPage extends StatelessWidget {
             padding: EdgeInsets.all(10.0),
             child: CupertinoSearchTextField(),
           ),*/
-
+          const SizedBox(height: 10),
           // liste horizontale qui fait défiler la liste des noms de catégories du département
           CategoriesListBadge(departement: departement,),
           // Affichage de toutes les catégories du département avec leurs produits
-          const SizedBox(height: 20),
+          const SizedBox(height: 10),
           BlocBuilder<CategoryBloc, CategoryState>(
             builder: (context, stateCategory) {
               if (stateCategory is CategoriesLoaded) {
@@ -107,7 +107,7 @@ class CategoriesListBadge extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 40,
+      height: 30,
       child: BlocBuilder<CategoryBloc, CategoryState>(
         builder: (context, state) {
           if (state is CategoriesLoaded) {
@@ -123,7 +123,7 @@ class CategoriesListBadge extends StatelessWidget {
                 return InkWell(
                   borderRadius: BorderRadius.circular(10),
                   child: Container(
-                      margin: const EdgeInsets.all(5),
+                      margin: const EdgeInsets.only(left:10),
                       padding: const EdgeInsets.all(5),
                       decoration: BoxDecoration(
                         color: Theme.of(context).primaryColorLight,
