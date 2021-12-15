@@ -249,7 +249,7 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                           child: const Text("Add to cart"),
                           onPressed: () {
                             BlocProvider.of<ShopBloc>(context).add(
-                                ItemAdded(Item(widget.product, _quantity)));
+                                ItemAdded(Item(product: widget.product, quantity: _quantity)));
                             ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                                 content: Text(
                                     'Vous avez ajouté [ ${_quantity.toInt()} x ${widget.product!.name} ] dans votre panier.')));

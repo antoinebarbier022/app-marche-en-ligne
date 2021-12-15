@@ -164,7 +164,7 @@ class _CartItemState extends State<CartItem> {
                                   } else {
                                     BlocProvider.of<ShopBloc>(context).add(
                                         ItemUpdated(Item(
-                                            widget.product, dataQuantity)));
+                                            product: widget.product, quantity: dataQuantity)));
                                   }
                                 },
                               ),

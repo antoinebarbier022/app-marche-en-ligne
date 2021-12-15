@@ -72,7 +72,7 @@ class AppBarCustom extends StatelessWidget implements PreferredSizeWidget {
           // Lorsque le produuit est au dessus du panier et laché alors il est accepté, et on execute l'action dans le bloc
         }, onAccept: (product) {
           // On rajoute 1 item (si il existe déjà dans le panier au augmente la quantité de 1)
-          BlocProvider.of<ShopBloc>(context).add(ItemAdded(Item(product, 1)));
+          BlocProvider.of<ShopBloc>(context).add(ItemAdded(Item(product: product, quantity: 1)));
           ScaffoldMessenger.of(context).showSnackBar(SnackBar(
               content: Text(
                   'Vous avez ajouté le produit : "${product.name}" dans votre panier.')));

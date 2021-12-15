@@ -10,7 +10,7 @@ part 'shop_state.dart';
 class ShopBloc extends Bloc<ShopEvent, ShopState> {
   //final ShopRepository shopRepository;
 
-  ShopBloc() : super(ShopLoadSuccess(Cart([])));
+  ShopBloc() : super(ShopLoadSuccess(Cart(items: [])));
 
   @override
   Stream<ShopState> mapEventToState(ShopEvent event) async* {
@@ -28,12 +28,12 @@ class ShopBloc extends Bloc<ShopEvent, ShopState> {
   }
 
   Stream<ShopState> _mapShopLoadedToState() async* {
-    var cart = Cart([]);
+    var cart = Cart(items: []);
     try {
       if (state is ShopLoadSuccess) {
-        cart = Cart(List.from((state as ShopLoadSuccess).cart.items));
+        cart = Cart(items: List.from((state as ShopLoadSuccess).cart.items));
       } else {
-        cart = Cart([]);
+        cart = Cart(items: []);
       }
 
       yield ShopLoadSuccess(cart);
@@ -57,7 +57,7 @@ class ShopBloc extends Bloc<ShopEvent, ShopState> {
       listItems = List.from((state as ShopLoadSuccess).cart.items)
         ..add(event.item);
     }
-    final Cart updatedShop = Cart(listItems);
+    final Cart updatedShop = Cart(items: listItems);
 
     yield ShopLoadSuccess(updatedShop);
     //_saveShop(updatedShop);
@@ -72,7 +72,7 @@ class ShopBloc extends Bloc<ShopEvent, ShopState> {
             : element;
       }).toList();
 
-      final Cart updatedShop = Cart(listItems);
+      final Cart updatedShop = Cart(items: listItems);
 
       yield ShopLoadSuccess(updatedShop);
       //_saveShop(updatedShop);
@@ -86,14 +86,14 @@ class ShopBloc extends Bloc<ShopEvent, ShopState> {
           .items
           .where((element) => element.product!.name != event.product!.name)
           .toList();
-      yield ShopLoadSuccess(Cart(updatedShop));
+      yield ShopLoadSuccess(Cart(items: updatedShop));
       //_saveShop(updatedShop);
     }
   }
 
   Stream<ShopState> _mapClearShopToState() async* {
     if (state is ShopLoadSuccess) {
-      yield ShopLoadSuccess(Cart([]));
+      yield ShopLoadSuccess(Cart(items: []));
       //_saveShop(updatedShop);
     }
   }
