@@ -40,12 +40,12 @@ class _CartItemState extends State<CartItem> {
     return Container(
       margin: const EdgeInsets.only(left: 15, right:15),
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: Theme.of(context).cardColor,
           //border: Border.all(color: Colors.black12, width: 1),
           borderRadius: BorderRadius.circular(10),
           boxShadow: [
                 BoxShadow(
-                  color: Colors.grey.shade300,
+                  color: Theme.of(context).brightness == Brightness.light ? Colors.grey.shade300 : Colors.black45,
                   spreadRadius: 5,
                   blurRadius: 10,
                   offset: const Offset(0, -4), // changes position of shadow
@@ -90,7 +90,7 @@ class _CartItemState extends State<CartItem> {
                             overflow: TextOverflow.fade,
                                 style: const TextStyle(fontSize: 18)),
                             Text("x ${widget.quantity.toInt()}",
-                                style: TextStyle(color: Colors.grey[700])),
+                                style: TextStyle(color: Theme.of(context).hintColor)),
                           ]),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -102,8 +102,8 @@ class _CartItemState extends State<CartItem> {
                               padding: const EdgeInsets.all(3),
                               decoration: BoxDecoration(
                                 color: Theme.of(context)
-                                    .primaryColor
-                                    .withOpacity(0.12),
+                                    .primaryColorLight
+                                    .withOpacity(0.5),
                                 borderRadius: BorderRadius.circular(5),
                               ),
                               child: Icon(
@@ -119,7 +119,7 @@ class _CartItemState extends State<CartItem> {
                           Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: Text("${_quantity.toInt()}",
-                                style: TextStyle(color: Colors.grey[700])),
+                                style: TextStyle(color: Theme.of(context).hintColor)),
                           ),
                           InkWell(
                             radius: 5,
@@ -185,7 +185,7 @@ class _CartItemState extends State<CartItem> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 IconButton(
-                  icon: Icon(Icons.clear, color: Colors.grey[700]),
+                  icon: Icon(Icons.clear, color: Theme.of(context).brightness == Brightness.light ? Colors.grey[700] : Colors.grey[100],),
                   onPressed: () => BlocProvider.of<ShopBloc>(context)
                       .add(ItemDeleted(widget.product)),
                 ),

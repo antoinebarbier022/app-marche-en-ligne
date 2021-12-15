@@ -79,11 +79,11 @@ class ShoppingCartPage extends StatelessWidget {
             margin: const EdgeInsets.all(10),
             height: 60,
             decoration: BoxDecoration(
-              color: Colors.white, //Theme.of(context).cardColor,
+              color: Theme.of(context).cardColor,
               borderRadius: BorderRadius.circular(8),
               boxShadow: [
                 BoxShadow(
-                  color: Colors.grey.shade300,
+                  color: Theme.of(context).brightness == Brightness.light ? Colors.grey.shade300 : Colors.black45,
                   spreadRadius: 5,
                   blurRadius: 10,
                   offset: const Offset(0, -4), // changes position of shadow

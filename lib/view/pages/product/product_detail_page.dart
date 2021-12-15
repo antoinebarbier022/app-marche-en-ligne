@@ -37,7 +37,7 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
         ),
         body: SingleChildScrollView(
             child: Container(
-          color: Colors.white, //Theme.of(context).backgroundColor,
+          color: Theme.of(context).cardColor, //Theme.of(context).backgroundColor,
           child: Column(
             children: [
               Container(
@@ -55,11 +55,11 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
               // Section content
               Container(
                 decoration: BoxDecoration(
-                  color: Colors.grey[100], //Theme.of(context).cardColor,
+                  color: Theme.of(context).cardColor, // Colors.grey[100],
                   borderRadius: BorderRadius.circular(30),
                   boxShadow: [
                     BoxShadow(
-                      color: Colors.grey.shade300,
+                      color: Theme.of(context).brightness == Brightness.light ? Colors.grey.shade300 : Colors.black45 ,
                       spreadRadius: 5,
                       blurRadius: 20,
                       offset: const Offset(0, -4), // changes position of shadow
@@ -79,7 +79,7 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                               left: 10, right: 10, top: 5, bottom: 5),
                           decoration: BoxDecoration(
                             color:
-                                Theme.of(context).primaryColor.withOpacity(0.2),
+                                Theme.of(context).indicatorColor.withOpacity(0.2),
                             borderRadius: BorderRadius.circular(15),
                           ),
                           child: Text(
@@ -87,7 +87,7 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                               style: TextStyle(
                                   fontSize: 20,
                                   fontWeight: FontWeight.bold,
-                                  color: Theme.of(context).primaryColorDark)),
+                                  color: Theme.of(context).indicatorColor)),
                         ),
 
                         // Ajout du produit dans une liste
@@ -135,8 +135,8 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                             crossAxisAlignment: CrossAxisAlignment.stretch,
                             children: <Widget>[
                               TabBar(
-                                labelColor: Theme.of(context).primaryColor,
-                                unselectedLabelColor: Colors.black,
+                                labelColor: Theme.of(context).indicatorColor,
+                                unselectedLabelColor: Theme.of(context).hintColor,
                                 tabs: const [
                                   Tab(text: 'Details'),
                                   Tab(text: 'Nutrition'),
@@ -157,7 +157,7 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                                           text: TextSpan(
                                             text: widget.product!.description.isNotEmpty ? widget.product!.description : "Aucune description.",
                                             style: TextStyle(
-                                                color: Colors.grey.shade800,
+                                                color: Theme.of(context).brightness == Brightness.light ? Colors.grey.shade800 : Colors.grey.shade100,
                                                 height: 1.3),
                                           ),
                                         )),
@@ -190,11 +190,11 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                   padding: const EdgeInsets.only(left: 20, right: 20),
                   height: 60,
                   decoration: BoxDecoration(
-                    color: Colors.white, //Theme.of(context).cardColor,
+                    color: Theme.of(context).cardColor, //Theme.of(context).cardColor,
                     borderRadius: BorderRadius.circular(8),
                     boxShadow: [
                       BoxShadow(
-                        color: Colors.grey.shade300,
+                        color: Theme.of(context).brightness == Brightness.light ? Colors.grey.shade300 : Colors.black45 ,
                         spreadRadius: 5,
                         blurRadius: 10,
                         offset:
@@ -224,7 +224,7 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                             padding: const EdgeInsets.all(10),
                             child: Text("${_quantity.toInt()}",
                                 style:  TextStyle(
-                                  color: Colors.grey.shade800,
+                                  color: Theme.of(context).brightness == Brightness.light ? Colors.grey.shade800 : Colors.grey.shade100,
                                     fontSize: 18, fontWeight: FontWeight.bold)),
                           ),
                           InkWell(

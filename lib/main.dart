@@ -50,9 +50,16 @@ class MyApp extends StatelessWidget {
         title: 'Online Market',
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
+          brightness: Brightness.light,
           primarySwatch: AppColors.primaryColor,
           //scaffoldBackgroundColor: Colors.grey[50]
         ),
+        darkTheme: ThemeData(
+              brightness: Brightness.dark,
+         
+              
+            ),
+
         home: const HomePage(title: 'Online Market'),
       ),
     );

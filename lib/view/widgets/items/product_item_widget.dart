@@ -52,7 +52,7 @@ class ProductItem extends StatelessWidget {
                 ),
                 Text(
                   "${product!.price.toStringAsPrecision(3)}€/kg",
-                  style: TextStyle(color: Colors.grey[600]),
+                  style: TextStyle(color: Theme.of(context).hintColor),
                 ),
               ],
             )),
