@@ -32,8 +32,8 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: const AppBarCustom(
-          title: "Product Detail",
+        appBar: AppBarCustom(
+          title: widget.product!.name,
         ),
         body: SingleChildScrollView(
             child: Container(
@@ -56,13 +56,16 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
               Container(
                 decoration: BoxDecoration(
                   color: Theme.of(context).cardColor, // Colors.grey[100],
-                  borderRadius: BorderRadius.circular(30),
+                  borderRadius: const BorderRadius.only(
+                              topLeft: Radius.circular(30),
+                              topRight: Radius.circular(30),
+                            ),
                   boxShadow: [
                     BoxShadow(
-                      color: Theme.of(context).brightness == Brightness.light ? Colors.grey.shade300 : Colors.black45 ,
-                      spreadRadius: 5,
-                      blurRadius: 20,
-                      offset: const Offset(0, -4), // changes position of shadow
+                      color: Theme.of(context).brightness == Brightness.light ? Colors.grey.shade300 : Colors.black38 ,
+                      spreadRadius: 0,
+                      blurRadius: 8,
+                      offset: const Offset(0, -12), // changes position of shadow
                     ),
                   ],
                 ),
@@ -181,6 +184,8 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
             ],
           ),
         )),
+       
+        backgroundColor: Theme.of(context).cardColor,
         bottomSheet: BlocBuilder<ShopBloc, ShopState>(
           builder: (context, state) {
             if ((state is ShopLoadSuccess)) {

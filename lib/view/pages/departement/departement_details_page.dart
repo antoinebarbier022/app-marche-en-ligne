@@ -120,32 +120,34 @@ class CategoriesListBadge extends StatelessWidget {
               shrinkWrap: true,
               itemCount: categoriesFromThisDepartement.length,
               itemBuilder: (BuildContext context, int index) {
-                return InkWell(
-                  borderRadius: BorderRadius.circular(10),
-                  child: Container(
-                      margin: const EdgeInsets.only(left:10),
-                      padding: const EdgeInsets.all(5),
-                      decoration: BoxDecoration(
-                        color: Theme.of(context).primaryColorLight,
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      child: Center(
-                          child: Padding(
-                        padding: const EdgeInsets.only(left: 8, right: 8),
-                        child: Text(categoriesFromThisDepartement[index]!.name,
-                            style: TextStyle(
-                                color: Theme.of(context).primaryColorDark)),
-                      ))),
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      CupertinoPageRoute(
-                          builder: (context) => DepartementCategoryPage(
-                                departement: departement,
-                                category: categoriesFromThisDepartement[index]!.name,
-                              )),
-                    );
-                  },
+                return Container(
+                  margin: const EdgeInsets.only(left:10),
+                  child: InkWell(
+                    borderRadius: BorderRadius.circular(10),
+                    child: Container(
+                        padding: const EdgeInsets.all(5),
+                        decoration: BoxDecoration(
+                          color: Theme.of(context).primaryColorLight,
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        child: Center(
+                            child: Padding(
+                          padding: const EdgeInsets.only(left: 8, right: 8),
+                          child: Text(categoriesFromThisDepartement[index]!.name,
+                              style: TextStyle(
+                                  color: Theme.of(context).primaryColorDark)),
+                        ))),
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        CupertinoPageRoute(
+                            builder: (context) => DepartementCategoryPage(
+                                  departement: departement,
+                                  category: categoriesFromThisDepartement[index]!.name,
+                                )),
+                      );
+                    },
+                  ),
                 );
               },
             );
