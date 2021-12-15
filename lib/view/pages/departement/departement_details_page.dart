@@ -27,7 +27,7 @@ class DepartementDetailsPage extends StatelessWidget {
             child: CupertinoSearchTextField(),
           ),
           // liste horizontale qui fait défiler la liste des noms de catégories du département
-
+          CategoriesListBadge(departement: departement,),
           // Affichage de toutes les catégories du département avec leurs produits
           const SizedBox(height: 20),
           BlocBuilder<CategoryBloc, CategoryState>(
