@@ -20,7 +20,12 @@ class SideBar extends StatelessWidget {
                   visible: (user != null),
                   child: Container(
                     padding: const EdgeInsets.all(10),
-                    child: Text(user == null ? "" : user.uid),
+                    child: Column(
+                      children: [
+                        Text(user == null ? "" : user.uid),
+                        Text(user == null ? "" : user.email!),
+                      ],
+                    ),
                   ),
                 ),
                 ListView(

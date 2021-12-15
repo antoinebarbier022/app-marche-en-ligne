@@ -36,47 +36,6 @@ class _AuthenticateState extends State<Authenticate> {
             Column(
               children: [
                 Container(
-                  padding:
-                      const EdgeInsets.symmetric(vertical: 20, horizontal: 50),
-                  child: ElevatedButton(
-                    onPressed: () async {
-                      dynamic result = await _auth.signInAnnonyme();
-                      if (result == null) {
-                        // ignore: avoid_print
-                        print("error sign in ");
-                      } else {
-                        // ignore: avoid_print
-                        print("sign in");
-                        // ignore: avoid_print
-                        print(result.uid);
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) {
-                              return StreamProvider<UserModel?>.value(
-                                value: AuthService().user,
-                                initialData: null,
-                                child: const HomePage(
-                                  title: "Yes",
-                                ),
-                              );
-                            },
-                          ),
-                        );
-                        /*    
-                      Navigator.push(
-                        context,
-                        CupertinoPageRoute(
-                            builder: (context) => const HomePage(
-                                  title: "Yes",
-                                )),
-                      );*/
-                      }
-                    },
-                    child: Text(user == null ? "Sign in annonymous" : user.uid),
-                  ),
-                ),
-                Container(
                   padding: const EdgeInsets.symmetric(
                       vertical: 20.0, horizontal: 50.0),
                   child: Form(
@@ -102,15 +61,75 @@ class _AuthenticateState extends State<Authenticate> {
                           },
                         ),
                         const SizedBox(height: 20.0),
-                        ElevatedButton(
-                            child: const Text(
-                              'Sign In',
-                              style: TextStyle(color: Colors.white),
+                        Row(
+                          children: [
+                            Container(
+                              padding: const EdgeInsets.symmetric(
+                                  vertical: 20, horizontal: 50),
+                              child: ElevatedButton(
+                                onPressed: () async {
+                                  dynamic result = await _auth.signInAnnonyme();
+                                  if (result == null) {
+                                    ScaffoldMessenger.of(context).showSnackBar(
+                                        const SnackBar(
+                                            content: Text("Erreur : Email incorrect ou mot de passe invalide")));
+                                    print("error sign in ");
+                                  } else {
+                                    print("sign in");
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) {
+                                          return StreamProvider<
+                                              UserModel?>.value(
+                                            value: AuthService().user,
+                                            initialData: null,
+                                            child: const HomePage(),
+                                          );
+                                        },
+                                      ),
+                                    );
+                                  }
+                                },
+                                child: const Text("Sign in annonymous"),
+                              ),
                             ),
-                            onPressed: () async {
-                              print(email);
-                              print(password);
-                            }),
+                            ElevatedButton(
+                                child: const Text(
+                                  'Sign In',
+                                  style: TextStyle(color: Colors.white),
+                                ),
+                                onPressed: () async {
+                                  print(email);
+                                  print(password);
+                                  dynamic result =
+                                      await _auth.signWithEmailAndPassword(
+                                          email, password);
+                                  
+                                  if (result == null) {
+                                    print("error");  
+                                    ScaffoldMessenger.of(context).showSnackBar(
+                                        const SnackBar(
+                                            content: Text("Erreur : Email incorrect ou mot de passe invalide")));
+                                  } else {
+                                    print("sign in");
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) {
+                                          return StreamProvider<
+                                              UserModel?>.value(
+                                            value: AuthService().user,
+                                            initialData: null,
+                                            child: const HomePage(),
+                                          );
+                                        },
+                                      ),
+                                    );
+                                  }
+                                }),
+                          ],
+                        ),
                       ],
                     ),
                   ),
@@ -118,56 +137,81 @@ class _AuthenticateState extends State<Authenticate> {
               ],
             ),
             Container(
-                  padding: const EdgeInsets.symmetric(
-                      vertical: 20.0, horizontal: 50.0),
-                  child: Form(
-                    child: Column(
-                      children: <Widget>[
-                        const SizedBox(height: 20.0),
-                        TextFormField(
-                          decoration: const InputDecoration(
-                            labelText: 'Email',
-                          ),
-                          onChanged: (val) {
-                            setState(() => email = val);
-                          },
-                        ),
-                        const SizedBox(height: 20.0),
-                        TextFormField(
-                          decoration: const InputDecoration(
-                            labelText: 'Password',
-                          ),
-                          obscureText: true, // password
-                          onChanged: (val) {
-                            setState(() => password = val);
-                          },
-                        ),
-                        const SizedBox(height: 20.0),
-                        TextFormField(
-                          decoration: const InputDecoration(
-                            labelText: 'Confirm passwword',
-                          ),
-                          obscureText: true, // password
-                          onChanged: (val) {
-                            setState(() => confirmPassword = val);
-                          },
-                        ),
-                        const SizedBox(height: 20.0),
-                        ElevatedButton(
-                            child: const Text(
-                              'Register',
-                              style: TextStyle(color: Colors.white),
-                            ),
-                            onPressed: () async {
-                              print(email);
-                              print(password);
-                              print(confirmPassword);
-                            }),
-                      ],
+              padding:
+                  const EdgeInsets.symmetric(vertical: 20.0, horizontal: 50.0),
+              child: Form(
+                child: Column(
+                  children: <Widget>[
+                    const SizedBox(height: 20.0),
+                    TextFormField(
+                      decoration: const InputDecoration(
+                        labelText: 'Email',
+                      ),
+                      onChanged: (val) {
+                        setState(() => email = val);
+                      },
                     ),
-                  ),
+                    const SizedBox(height: 20.0),
+                    TextFormField(
+                      decoration: const InputDecoration(
+                        labelText: 'Password',
+                      ),
+                      obscureText: true, // password
+                      onChanged: (val) {
+                        setState(() => password = val);
+                      },
+                    ),
+                    const SizedBox(height: 20.0),
+                    TextFormField(
+                      decoration: const InputDecoration(
+                        labelText: 'Confirm passwword',
+                      ),
+                      obscureText: true, // password
+                      onChanged: (val) {
+                        setState(() => confirmPassword = val);
+                      },
+                    ),
+                    const SizedBox(height: 20.0),
+                    ElevatedButton(
+                        child: const Text(
+                          'Register',
+                          style: TextStyle(color: Colors.white),
+                        ),
+                        onPressed: () async {
+                                  print(email);
+                                  print(password);
+                                  dynamic result =
+                                      await _auth.registerWithEmailAndPassword(
+                                          email, password);
+                                  
+                                  if (result == null) {
+                                    ScaffoldMessenger.of(context).showSnackBar(
+                                        const SnackBar(
+                                            content: Text("Erreur : Email incorrect ou mot de passe invalide")));
+                                  
+                                    
+                                    print("error");  
+                                  } else {
+                                    print("register");
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) {
+                                          return StreamProvider<
+                                              UserModel?>.value(
+                                            value: AuthService().user,
+                                            initialData: null,
+                                            child: const HomePage(),
+                                          );
+                                        },
+                                      ),
+                                    );
+                                  }
+                                }),
+                  ],
                 ),
-              
+              ),
+            ),
           ],
         ),
       ),
