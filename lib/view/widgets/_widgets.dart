@@ -8,6 +8,8 @@ import 'package:badges/badges.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:app_market_online/services/auth.dart';
+import 'package:provider/provider.dart';
 
 // generals
 part 'appbar_widget.dart';

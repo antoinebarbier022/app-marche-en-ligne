@@ -6,6 +6,9 @@ class BuildingPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    final user = Provider.of<UserModel?>(context);
+    print(user);
     return Scaffold(
         appBar: const AppBarCustom(
           title: '',

@@ -7,3 +7,4 @@ part 'departement_model.dart';
 part 'shopping_list_model.dart';
 part 'cart_model.dart';
 part 'category_model.dart';
+part 'user_model.dart';

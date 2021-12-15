@@ -1,7 +1,7 @@
 part of '../_pages.dart';
 
 class HomePage extends StatelessWidget {
-  const HomePage({Key? key, required this.title}) : super(key: key);
+  const HomePage({Key? key, this.title = ""}) : super(key: key);
 
   final String title;
 
@@ -12,6 +12,8 @@ class HomePage extends StatelessWidget {
 
     final departementsBloc = BlocProvider.of<DepartementBloc>(context);
     departementsBloc.add(GetAllDepartements());
+    final user = Provider.of<UserModel?>(context);
+    final AuthService _auth = AuthService();
 
     return Scaffold(
 

@@ -1,6 +1,9 @@
+import 'package:app_market_online/data/models/_models.dart';
+import 'package:app_market_online/services/auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:provider/provider.dart';
 
 import 'buisness_logic/bloc_category/category_bloc.dart';
 import 'buisness_logic/bloc_departement/departement_bloc.dart';
@@ -17,13 +20,12 @@ void main() async {
   runApp(const MyApp());
 }
 
-
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-   return MultiBlocProvider(
+    return MultiBlocProvider(
       providers: [
         // Product Bloc
         BlocProvider<ProductBloc>(
@@ -31,7 +33,8 @@ class MyApp extends StatelessWidget {
         ),
         // Departement Bloc
         BlocProvider<DepartementBloc>(
-          create: (BuildContext context) => DepartementBloc(DepartementRepository()),
+          create: (BuildContext context) =>
+              DepartementBloc(DepartementRepository()),
         ),
         // Category Bloc Bloc
         BlocProvider<CategoryBloc>(
@@ -45,24 +48,42 @@ class MyApp extends StatelessWidget {
         BlocProvider<ShoppingListBloc>(
           create: (BuildContext context) => ShoppingListBloc(),
         ),
+
+
       ],
       child: MaterialApp(
-        title: 'Online Market',
-        debugShowCheckedModeBanner: false,
-        theme: ThemeData(
-          brightness: Brightness.light,
-          primarySwatch: AppColors.primaryColor,
-        ),
-        darkTheme: ThemeData(
+          title: 'Online Market',
+          debugShowCheckedModeBanner: false,
+          theme: ThemeData(
+            brightness: Brightness.light,
+            primarySwatch: AppColors.primaryColor,
+          ),
+          darkTheme: ThemeData(
               brightness: Brightness.dark,
               primarySwatch: AppColors.primaryColor,
               indicatorColor: AppColors.primaryColor,
-              bottomSheetTheme: BottomSheetThemeData(backgroundColor: Colors.grey[800])
-              
-            ),
-
-        home: const HomePage(title: 'Online Market'),
-      ),
+              bottomSheetTheme:
+                  BottomSheetThemeData(backgroundColor: Colors.grey[800])),
+          home: StreamProvider<UserModel?>.value(
+            value: AuthService().user,
+            initialData: null, // il n'est pas authentifier
+            child: const HomePage(title: 'Online Market'),
+          )),
     );
+  }
+}
+
+class Wrapper extends StatelessWidget {
+  const Wrapper({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    final user = Provider.of<UserModel?>(context);
+
+    if (user == null) {
+      return const Authenticate();
+    } else {
+      return const HomePage(title: 'Online Market');
+    }
   }
 }
