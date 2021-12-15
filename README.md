@@ -1,16 +1,19 @@
-# app_market_online
+# Application Flutter - Marché en ligne
 
-A new Flutter project.
 
-## Getting Started
+## Les fonctionnalités
+L'application marché en ligne contient les fonctionnalités suivantes : 
+- Les produits sont rangées par departements et catégories,
+- Visualisation/creation/suppression/edition de listes de produits,
+- Ajout/suppression/edition d'un item au panier,
+- Ajouter une liste de produit dans le panier,
+- Recherches de produits,
+- Drag and Drop d'un produit dans le panier
+- Mode sombre et clair (automatique en fonction du mode de l'appareil).
 
-This project is a starting point for a Flutter application.
 
-A few resources to get you started if this is your first Flutter project:
+## Informations
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+L'application fonctionne avec une base de données Firebase configuré pour : ```android et web.```
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+
