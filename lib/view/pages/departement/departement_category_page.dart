@@ -6,6 +6,7 @@ class DepartementCategoryPage extends StatelessWidget {
   const DepartementCategoryPage({Key? key, required this.departement, required this.category})
       : super(key: key);
 
+
   final Departement? departement;
   final String? category;
 
@@ -16,7 +17,7 @@ class DepartementCategoryPage extends StatelessWidget {
 
     return Scaffold(
         appBar: AppBarCustom(
-          title: departement!.name,
+          title: departement!.name + " (" + category! +")",
         ),
         body: BlocBuilder<ProductBloc, ProductState>(
           builder: (context, state) {
