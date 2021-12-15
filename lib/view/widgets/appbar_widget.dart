@@ -4,9 +4,11 @@ class AppBarCustom extends StatelessWidget implements PreferredSizeWidget {
   const AppBarCustom({
     Key? key,
     required this.title,
+    this.search = false,
   }) : super(key: key);
 
   final String title;
+  final bool search;
 
   @override
   Widget build(BuildContext context) {
@@ -15,6 +17,14 @@ class AppBarCustom extends StatelessWidget implements PreferredSizeWidget {
       title: Text(title),
       automaticallyImplyLeading: true,
       actions: [
+        Visibility(
+          visible: search,
+          child: IconButton(
+              icon: const Icon(Icons.search),
+              onPressed: () {
+                showSearch(context: context, delegate: DataSearch());
+              }),
+        ),
         // On récupère le nombre d'item dans le panier
         DragTarget<Product>(builder: (context, candidateItems, rejectedItems) {
           return BlocBuilder<ShopBloc, ShopState>(
@@ -73,4 +83,98 @@ class AppBarCustom extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   Size get preferredSize => const Size.fromHeight(50);
+}
+
+class DataSearch extends SearchDelegate<String> {
+  final products = ["Apple", "Banana", "Orange"];
+  final recentProducts = [];
+  @override
+  List<Widget>? buildActions(BuildContext context) {
+    // actions for app bar
+    return [
+      IconButton(
+        icon: const Icon(Icons.clear),
+        onPressed: () {
+          query = "";
+        },
+      )
+    ];
+  }
+
+  @override
+  Widget? buildLeading(BuildContext context) {
+    // leading icon on the left of the app bar
+    return IconButton(
+      icon: AnimatedIcon(
+        icon: AnimatedIcons.menu_arrow,
+        progress: transitionAnimation,
+      ),
+      onPressed: () {
+        close(context, "");
+      },
+    );
+  }
+
+  @override
+  Widget buildResults(BuildContext context) {
+    // show some result based on the selection
+    return Container();
+  }
+
+  @override
+  Widget buildSuggestions(BuildContext context) {
+    final productsBloc = BlocProvider.of<ProductBloc>(context);
+    productsBloc.add(GetAllProducts());
+    // show hen someone searches for something
+
+    return BlocBuilder<ProductBloc, ProductState>(
+      builder: (context, state) {
+        if (state is ProductsLoaded) {
+          final suggestionList = query.isEmpty
+              ? state.products // Tous les produits sont afficher
+              : state.products.where((p) => p!.name.startsWith(query)).toList();
+
+          if (suggestionList.isEmpty) {
+            return const Center(child: Text("Aucun résultat."));
+          } else {
+            return ListView.builder(
+              itemBuilder: (context, index) => ListTile(
+                  onTap: () {
+                    // On renvoie le résultat
+                    //showResults(context);
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => ProductDetailPage(
+                                product: suggestionList[index],
+                              )),
+                    );
+                  },
+                  leading: const Icon(Icons.shopping_cart_outlined),
+                  title: RichText(
+                      text: TextSpan(
+                          text: suggestionList[index]!
+                              .name
+                              .substring(0, query.length),
+                          style: const TextStyle(
+                              color: Colors.black, fontWeight: FontWeight.bold),
+                          children: [
+                        TextSpan(
+                          text: suggestionList[index]!
+                              .name
+                              .substring(query.length),
+                          style: const TextStyle(
+                              color: Colors.grey,
+                              fontWeight: FontWeight.normal),
+                        )
+                      ]))),
+              itemCount: suggestionList.length,
+            );
+          }
+        } else {
+          return Container();
+        }
+      },
+    );
+  }
 }

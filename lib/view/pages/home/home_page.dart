@@ -14,8 +14,10 @@ class HomePage extends StatelessWidget {
     departementsBloc.add(GetAllDepartements());
 
     return Scaffold(
+
         appBar: const AppBarCustom(
           title: 'Carrefour Montpellier',
+          search: true,
         ),
         // Menu latérale gauche
         drawer: const SideBar(),
@@ -26,13 +28,14 @@ class HomePage extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                // SearchBar
-              const Expanded(
-                child: Padding(
-                  padding: EdgeInsets.all(10.0),
-                  child: CupertinoSearchTextField(),
-                ),
-              ),
+                  // SearchBar
+                  /*
+                  const Expanded(
+                    child: Padding(
+                      padding: EdgeInsets.all(10.0),
+                      child: CupertinoSearchTextField(),
+                    ),
+                  ),*/
                   // Bouton : Store Departements
                   Padding(
                     padding: const EdgeInsets.all(8.0),

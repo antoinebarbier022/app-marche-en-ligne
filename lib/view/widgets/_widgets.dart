@@ -1,4 +1,5 @@
 // Ici on place les imports des widgets
+import 'package:app_market_online/buisness_logic/bloc_product/product_bloc.dart';
 import 'package:app_market_online/buisness_logic/bloc_shop/shop_bloc.dart';
 import 'package:app_market_online/buisness_logic/bloc_shopping_list/shopping_list_bloc.dart';
 import 'package:app_market_online/data/models/_models.dart';

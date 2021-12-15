@@ -17,15 +17,19 @@ class DepartementDetailsPage extends StatelessWidget {
     return Scaffold(
         appBar: AppBarCustom(
           title: departement!.name,
+          // search
+          search: true,
         ),
         body: SingleChildScrollView(
             child:
                 Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
           // Search Bar
+          /*
           const Padding(
             padding: EdgeInsets.all(10.0),
             child: CupertinoSearchTextField(),
-          ),
+          ),*/
+
           // liste horizontale qui fait défiler la liste des noms de catégories du département
           CategoriesListBadge(departement: departement,),
           // Affichage de toutes les catégories du département avec leurs produits
