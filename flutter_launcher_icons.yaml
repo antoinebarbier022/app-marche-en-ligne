@@ -1,0 +1,9 @@
+# icon de l'application
+flutter_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/icon.png"
+
+# Pour charger la nouvelle config
+#flutter pub get
+#flutter pub run flutter_launcher_icons:main
