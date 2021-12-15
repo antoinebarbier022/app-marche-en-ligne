@@ -63,37 +63,6 @@ class _AuthenticateState extends State<Authenticate> {
                         const SizedBox(height: 20.0),
                         Row(
                           children: [
-                            Container(
-                              padding: const EdgeInsets.symmetric(
-                                  vertical: 20, horizontal: 50),
-                              child: ElevatedButton(
-                                onPressed: () async {
-                                  dynamic result = await _auth.signInAnnonyme();
-                                  if (result == null) {
-                                    ScaffoldMessenger.of(context).showSnackBar(
-                                        const SnackBar(
-                                            content: Text("Erreur : Email incorrect ou mot de passe invalide")));
-                                    print("error sign in ");
-                                  } else {
-                                    print("sign in");
-                                    Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                        builder: (context) {
-                                          return StreamProvider<
-                                              UserModel?>.value(
-                                            value: AuthService().user,
-                                            initialData: null,
-                                            child: const HomePage(),
-                                          );
-                                        },
-                                      ),
-                                    );
-                                  }
-                                },
-                                child: const Text("Sign in annonymous"),
-                              ),
-                            ),
                             ElevatedButton(
                                 child: const Text(
                                   'Sign In',
