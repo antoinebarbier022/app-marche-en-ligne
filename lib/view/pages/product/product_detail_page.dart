@@ -37,7 +37,7 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
         ),
         body: SingleChildScrollView(
             child: Container(
-          color: Theme.of(context).cardColor, //Theme.of(context).backgroundColor,
+          color: Colors.white, //Theme.of(context).backgroundColor,
           child: Column(
             children: [
               Container(
@@ -62,7 +62,7 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                             ),
                   boxShadow: [
                     BoxShadow(
-                      color: Theme.of(context).brightness == Brightness.light ? Colors.grey.shade300 : Colors.black38 ,
+                      color: Theme.of(context).brightness == Brightness.light ? Colors.grey.shade300 : Colors.grey.shade300 ,
                       spreadRadius: 0,
                       blurRadius: 8,
                       offset: const Offset(0, -12), // changes position of shadow
