@@ -35,6 +35,7 @@ class SideBar extends StatelessWidget {
                   children: ListTile.divideTiles(context: context, tiles: [
                     buildMenuItem(
                         text: "Store",
+                        isCurrentPage: true,
                         icon: Icons.store,
                         context: context,
                         link: const HomePage(
@@ -94,6 +95,7 @@ Widget buildMenuItem(
     {required String text,
     required IconData icon,
     bool isShoppingCart = false,
+    bool isCurrentPage = false,
     required BuildContext context,
     bool itemIslogOut = false,
     required Widget link}) {
@@ -131,15 +133,20 @@ Widget buildMenuItem(
       if (itemIslogOut) {
         await _auth.signOut();
       }
-      Navigator.push(
-        context,
-        CupertinoPageRoute(
-            builder: (context) => StreamProvider<UserModel?>.value(
-                  value: AuthService().user,
-                  initialData: null,
-                  child: link,
-                )),
-      );
+      if (isCurrentPage) {
+        Navigator.pop(context);
+      } else {
+        Navigator.pop(context);
+        Navigator.push(
+          context,
+          CupertinoPageRoute(
+              builder: (context) => StreamProvider<UserModel?>.value(
+                    value: AuthService().user,
+                    initialData: null,
+                    child: link,
+                  )),
+        );
+      }
     },
   );
 }
