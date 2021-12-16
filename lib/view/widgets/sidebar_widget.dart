@@ -98,7 +98,6 @@ Widget buildMenuItem(
     bool itemIslogOut = false,
     required Widget link}) {
   final AuthService _auth = AuthService();
-  final user = Provider.of<UserModel?>(context);
 
   return ListTile(
     leading: Icon(icon, color: Colors.white),
@@ -134,7 +133,12 @@ Widget buildMenuItem(
       }
       Navigator.push(
         context,
-        CupertinoPageRoute(builder: (context) => link),
+        CupertinoPageRoute(
+            builder: (context) => StreamProvider<UserModel?>.value(
+                  value: AuthService().user,
+                  initialData: null,
+                  child: link,
+                )),
       );
     },
   );

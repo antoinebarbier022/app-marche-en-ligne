@@ -55,9 +55,13 @@ class DepartementItem extends StatelessWidget {
         Navigator.push(
           context,
           CupertinoPageRoute(
-              builder: (context) => DepartementDetailsPage(
+              builder: (context) => StreamProvider<UserModel?>.value(
+                                  value: AuthService().user,
+                                  initialData: null,
+                                  child: DepartementDetailsPage(
                     departement: departement,
-                  )),
+                  )
+                                )),
         );
       },
     );

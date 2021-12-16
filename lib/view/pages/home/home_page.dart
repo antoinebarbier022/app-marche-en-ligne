@@ -12,12 +12,13 @@ class HomePage extends StatelessWidget {
 
     final departementsBloc = BlocProvider.of<DepartementBloc>(context);
     departementsBloc.add(GetAllDepartements());
+
     final user = Provider.of<UserModel?>(context);
     final AuthService _auth = AuthService();
 
     final shopBloc = BlocProvider.of<ShopBloc>(context);
 
-    shopBloc.add(const ShopLoaded());
+    shopBloc.add( ShopLoaded(idUser: (user==null ? "":user.email!)));
 
     return Scaffold(
         appBar: const AppBarCustom(
@@ -33,22 +34,6 @@ class HomePage extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                   BlocBuilder<ShopBloc, ShopState>(
-                    builder: (context, state) {
-                      if(state is ShopLoadSuccess){
-                        if(state.cart.items.length >=1){
-                          return Text(state.cart.items.first!.product!.name);
-                        }else{
-                          return const Text("vide");
-                        }
-                        
-                      }else{
-                        return const Text("error");
-                      }
-                      
-                    },
-                  ),
-
                   // SearchBar
                   /*
                   const Expanded(

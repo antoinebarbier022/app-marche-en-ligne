@@ -12,6 +12,7 @@ class AppBarCustom extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context) {
+    final user = Provider.of<UserModel?>(context);
     return AppBar(
       centerTitle: true,
       title: Text(title),
@@ -48,7 +49,12 @@ class AppBarCustom extends StatelessWidget implements PreferredSizeWidget {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => const ShoppingCartPage()),
+                            builder: (context) =>
+                                StreamProvider<UserModel?>.value(
+                                  value: AuthService().user,
+                                  initialData: null,
+                                  child: const ShoppingCartPage(),
+                                )),
                       );
                     },
                     icon: const Icon(Icons.shopping_cart_outlined),
@@ -61,7 +67,11 @@ class AppBarCustom extends StatelessWidget implements PreferredSizeWidget {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => const ShoppingCartPage()),
+                          builder: (context) => StreamProvider<UserModel?>.value(
+                                  value: AuthService().user,
+                                  initialData: null,
+                                  child: const ShoppingCartPage(),
+                                )),
                     );
                   },
                   icon: const Icon(Icons.shopping_cart_outlined),
@@ -73,7 +83,7 @@ class AppBarCustom extends StatelessWidget implements PreferredSizeWidget {
         }, onAccept: (product) {
           // On rajoute 1 item (si il existe déjà dans le panier au augmente la quantité de 1)
           BlocProvider.of<ShopBloc>(context)
-              .add(ItemAdded(Item(product: product, quantity: 1)));
+              .add(ItemAdded(idUser : user!.email!, item: Item(product: product, quantity: 1)));
           ScaffoldMessenger.of(context).showSnackBar(SnackBar(
               content: Text(
                   'Vous avez ajouté le produit : "${product.name}" dans votre panier.')));
@@ -146,9 +156,13 @@ class DataSearch extends SearchDelegate<String> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => ProductDetailPage(
+                          builder: (context) => StreamProvider<UserModel?>.value(
+                                  value: AuthService().user,
+                                  initialData: null,
+                                  child: ProductDetailPage(
                                 product: suggestionList[index],
-                              )),
+                              ),
+                                )),
                     );
                   },
                   leading: const Icon(Icons.shopping_cart_outlined),

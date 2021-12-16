@@ -57,7 +57,7 @@ class CollectionList extends StatelessWidget {
                                   // On ajoute la liste de produits dans le panier
                                   for (var product in listProduct) {
                                     BlocProvider.of<ShopBloc>(context).add(
-                                        ItemAdded(Item(
+                                        ItemAdded(item: Item(
                                             product: product, quantity: 1)));
                                   }
                                   ScaffoldMessenger.of(context).showSnackBar(

@@ -24,9 +24,10 @@ class ShopLoaded extends ShopEvent {
 }
 
 class ItemAdded extends ShopEvent {
+  final String idUser;
   final Item item;
 
-  const ItemAdded(this.item);
+  const ItemAdded({required this.item, this.idUser=""});
 
   @override
   List<Object> get props => [item];
@@ -36,9 +37,10 @@ class ItemAdded extends ShopEvent {
 }
 
 class ItemUpdated extends ShopEvent {
+  final String idUser;
   final Item item;
 
-  const ItemUpdated(this.item);
+  const ItemUpdated({required this.item, this.idUser=""});
 
   @override
   List<Object> get props => [item];
@@ -48,9 +50,10 @@ class ItemUpdated extends ShopEvent {
 }
 
 class ItemDeleted extends ShopEvent {
+  final String idUser;
   final Product? product;
 
-  const ItemDeleted(this.product);
+  const ItemDeleted({required this.product, this.idUser=""});
 
   @override
   List<Object> get props => [product as Object];

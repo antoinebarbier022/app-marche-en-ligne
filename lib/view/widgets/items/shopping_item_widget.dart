@@ -97,9 +97,13 @@ class ShoppingItem extends StatelessWidget {
         Navigator.push(
           context,
           CupertinoPageRoute(
-              builder: (context) => ShoppingListDetailsPage(
+              builder: (context) => StreamProvider<UserModel?>.value(
+                                  value: AuthService().user,
+                                  initialData: null,
+                                  child: ShoppingListDetailsPage(
                     shoppingList: shoppingList,
-                  )),
+                  )
+                                )),
         );
       },
     );

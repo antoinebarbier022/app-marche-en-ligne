@@ -16,7 +16,7 @@ class ShopBloc extends Bloc<ShopEvent, ShopState> {
   @override
   Stream<ShopState> mapEventToState(ShopEvent event) async* {
     if (event is ShopLoaded) {
-      yield* _mapShopLoadedToState();
+      yield* _mapShopLoadedToState(event);
     } else if (event is ItemAdded) {
       yield* _mapItemAddedToState(event);
     } else if (event is ItemUpdated) {
@@ -28,15 +28,17 @@ class ShopBloc extends Bloc<ShopEvent, ShopState> {
     }
   }
 
-  Stream<ShopState> _mapShopLoadedToState() async* {
+  Stream<ShopState> _mapShopLoadedToState(ShopLoaded event) async* {
     try {
       yield ShopLoadInProgress();
-      List<Item?> items = await cartRepository.getItemsList("userTest");
-      var cart = Cart(items: items);
-      print(cart.items.first!.product!.name);
-      print(cart);
-
-      yield ShopLoadSuccess(cart);
+      List<Item?> items;
+      // si l'utilisateur est connecté on lui donne sont panier
+      if (event.idUser != "") {
+         items = await cartRepository.getItemsList(event.idUser);
+      }else{
+        items = [];
+      }
+      yield ShopLoadSuccess(Cart(items: items));
     } catch (_) {
       yield ShopLoadFailure();
     }
@@ -44,6 +46,8 @@ class ShopBloc extends Bloc<ShopEvent, ShopState> {
 
   Stream<ShopState> _mapItemAddedToState(ItemAdded event) async* {
     final List<Item> listItems;
+    print("user");
+    print(event.idUser);
     // Si l'item est deja présent, on ne l'ajoute pas
     if ((state as ShopLoadSuccess)
         .cart
@@ -53,13 +57,17 @@ class ShopBloc extends Bloc<ShopEvent, ShopState> {
       double newQuantity = (listItems[listItems.indexWhere(
               (item) => item.product!.name == event.item.product!.name)]
           .quantity += event.item.quantity);
-      // Ajout dans firebase
-      cartRepository.updateItemInCart(
-          "userTest", event.item.product!.name, newQuantity);
+      // Ajout dans firebase si l'utilisateur est connecté
+      if (event.idUser != "") {
+        cartRepository.updateItemInCart(
+            event.idUser, event.item.product!.name, newQuantity);
+      }
     } else {
-      // Ajout dans firebase
-      cartRepository.addItemInCart(
-          "userTest", Item(product: event.item.product, quantity: 1));
+      // Ajout dans firebase si l'utilisateur est connecté
+      if (event.idUser != "") {
+        cartRepository.addItemInCart(
+            event.idUser, Item(product: event.item.product, quantity: 1));
+      }
       listItems = List.from((state as ShopLoadSuccess).cart.items)
         ..add(event.item);
     }
@@ -83,14 +91,16 @@ class ShopBloc extends Bloc<ShopEvent, ShopState> {
       yield ShopLoadSuccess(updatedShop);
       //_saveShop(updatedShop);
       // MAJ quantité
-      if (event.item.quantity >= 1) {
-        cartRepository.addItemInCart("userTest",
-            Item(product: event.item.product, quantity: event.item.quantity));
-      } else {
-        cartRepository.deleteItemInCart(
-          "userTest",
-          event.item.product!.name,
-        );
+      if (event.idUser != "") {
+        if (event.item.quantity >= 1) {
+          cartRepository.addItemInCart(event.idUser,
+              Item(product: event.item.product, quantity: event.item.quantity));
+        } else {
+          cartRepository.deleteItemInCart(
+            event.idUser,
+            event.item.product!.name,
+          );
+        }
       }
     }
   }
@@ -104,10 +114,13 @@ class ShopBloc extends Bloc<ShopEvent, ShopState> {
           .toList();
       yield ShopLoadSuccess(Cart(items: updatedShop));
       // delete dans firebase
-      cartRepository.deleteItemInCart(
-        "userTest",
-        event.product!.name,
-      );
+      if (event.idUser != "") {
+        cartRepository.deleteItemInCart(
+          event.idUser,
+          event.product!.name,
+        );
+      }
+
       //_saveShop(updatedShop);
     }
   }

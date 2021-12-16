@@ -31,6 +31,9 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
 
   @override
   Widget build(BuildContext context) {
+    final user = Provider.of<UserModel?>(context);
+
+    
     return Scaffold(
         appBar: AppBarCustom(
           title: widget.product!.name,
@@ -254,7 +257,7 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                           child: const Text("Add to cart"),
                           onPressed: () {
                             BlocProvider.of<ShopBloc>(context).add(
-                                ItemAdded(Item(product: widget.product, quantity: _quantity)));
+                                ItemAdded(idUser: user!.email!, item: Item(product: widget.product, quantity: _quantity)));
                             ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                                 content: Text(
                                     'Vous avez ajouté [ ${_quantity.toInt()} x ${widget.product!.name} ] dans votre panier.')));

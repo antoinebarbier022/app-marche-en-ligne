@@ -5,14 +5,17 @@ class ShoppingCartPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    final user = Provider.of<UserModel?>(context);
         
     final shopBloc = BlocProvider.of<ShopBloc>(context);
-    shopBloc.add(ShopLoaded());
+    shopBloc.add( ShopLoaded(idUser: (user==null ? "":user.email!)));
+    
 
     return Scaffold(
         appBar: AppBar(
           centerTitle: true,
-          title: const Text("Shopping Cart"),
+          title:  const Text("Shopping Cart"),
           automaticallyImplyLeading: true,
         ),
 

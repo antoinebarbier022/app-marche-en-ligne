@@ -37,6 +37,7 @@ class _CartItemState extends State<CartItem> {
 
   @override
   Widget build(BuildContext context) {
+    final user = Provider.of<UserModel?>(context);
     return Container(
       margin: const EdgeInsets.only(left: 15, right:15),
       decoration: BoxDecoration(
@@ -160,10 +161,10 @@ class _CartItemState extends State<CartItem> {
                                   if (dataQuantity == 0) {
                                     // On delete l'item
                                     BlocProvider.of<ShopBloc>(context)
-                                        .add(ItemDeleted(widget.product));
+                                        .add(ItemDeleted(idUser: user!.email!, product: widget.product));
                                   } else {
                                     BlocProvider.of<ShopBloc>(context).add(
-                                        ItemUpdated(Item(
+                                        ItemUpdated(idUser: user!.email!, item: Item(
                                             product: widget.product, quantity: dataQuantity)));
                                   }
                                 },
@@ -187,7 +188,7 @@ class _CartItemState extends State<CartItem> {
                 IconButton(
                   icon: Icon(Icons.clear, color: Theme.of(context).brightness == Brightness.light ? Colors.grey[700] : Colors.grey[100],),
                   onPressed: () => BlocProvider.of<ShopBloc>(context)
-                      .add(ItemDeleted(widget.product)),
+                      .add(ItemDeleted(product: widget.product)),
                 ),
                 Container(
                   margin: const EdgeInsets.only(

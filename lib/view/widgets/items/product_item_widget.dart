@@ -60,9 +60,13 @@ class ProductItem extends StatelessWidget {
           Navigator.push(
             context,
             MaterialPageRoute(
-                builder: (context) => ProductDetailPage(
+                builder: (context) => StreamProvider<UserModel?>.value(
+                                  value: AuthService().user,
+                                  initialData: null,
+                                  child: ProductDetailPage(
                       product: product,
-                    )),
+                    )
+                                )),
           );
         },
       ),
