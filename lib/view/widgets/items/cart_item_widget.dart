@@ -161,10 +161,10 @@ class _CartItemState extends State<CartItem> {
                                   if (dataQuantity == 0) {
                                     // On delete l'item
                                     BlocProvider.of<ShopBloc>(context)
-                                        .add(ItemDeleted(idUser: user!.email!, product: widget.product));
+                                        .add(ItemDeleted(idUser: user==null ? "":user.email!, product: widget.product));
                                   } else {
                                     BlocProvider.of<ShopBloc>(context).add(
-                                        ItemUpdated(idUser: user!.email!, item: Item(
+                                        ItemUpdated(idUser: user==null ? "":user.email!, item: Item(
                                             product: widget.product, quantity: dataQuantity)));
                                   }
                                 },

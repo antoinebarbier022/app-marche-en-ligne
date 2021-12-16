@@ -83,7 +83,7 @@ class AppBarCustom extends StatelessWidget implements PreferredSizeWidget {
         }, onAccept: (product) {
           // On rajoute 1 item (si il existe déjà dans le panier au augmente la quantité de 1)
           BlocProvider.of<ShopBloc>(context)
-              .add(ItemAdded(idUser : user!.email!, item: Item(product: product, quantity: 1)));
+              .add(ItemAdded(idUser : user==null ? "":user.email!, item: Item(product: product, quantity: 1)));
           ScaffoldMessenger.of(context).showSnackBar(SnackBar(
               content: Text(
                   'Vous avez ajouté le produit : "${product.name}" dans votre panier.')));
@@ -171,8 +171,8 @@ class DataSearch extends SearchDelegate<String> {
                           text: suggestionList[index]!
                               .name
                               .substring(0, query.length),
-                          style: const TextStyle(
-                              color: Colors.black, fontWeight: FontWeight.bold),
+                          style: TextStyle(
+                              color: Theme.of(context).brightness == Brightness.light ? Colors.black : Colors.white, fontWeight: FontWeight.bold),
                           children: [
                         TextSpan(
                           text: suggestionList[index]!
