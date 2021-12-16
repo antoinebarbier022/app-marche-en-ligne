@@ -4,6 +4,16 @@ class CartRepository{
 CartRepository({Key? key});
   final _cartProvider = CartProvider();
 
+  Future<List<Item?>> getItemsList(String idUser) async {
+        return _cartProvider.getAllCartItems(idUser).get().then((snapshot){
+          final List<Item?> items = [];
+          for (var doc in snapshot.docs) {
+            items.add(doc.data() as Item);
+          }
+          return items;
+        });
+  } 
+
     Future<void> addItemInCart(String idUser, Item newItem) async =>
       await _cartProvider.addItem(idUser, newItem);
 

@@ -15,7 +15,13 @@ abstract class ShopEvent {
   List<Object> get props => [];
 }
 
-class ShopLoaded extends ShopEvent {}
+class ShopLoaded extends ShopEvent {
+  final String idUser ;
+
+  const ShopLoaded({this.idUser = ""});
+  @override
+  List<Object> get props => [idUser];
+}
 
 class ItemAdded extends ShopEvent {
   final Item item;

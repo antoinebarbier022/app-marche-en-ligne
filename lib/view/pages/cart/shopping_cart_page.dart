@@ -5,6 +5,7 @@ class ShoppingCartPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+        
     final shopBloc = BlocProvider.of<ShopBloc>(context);
     shopBloc.add(ShopLoaded());
 
@@ -33,8 +34,8 @@ class ShoppingCartPage extends StatelessWidget {
                   itemBuilder: (context, index) {
                     return CartItem(
                       
-                      product: state.cart.items[index].product,
-                      quantity: state.cart.items[index].quantity,
+                      product: state.cart.items[index]!.product,
+                      quantity: state.cart.items[index]!.quantity,
                     );
                   },
                   // ligne de séparation des items

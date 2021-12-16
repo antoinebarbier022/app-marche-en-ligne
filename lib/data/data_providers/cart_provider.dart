@@ -16,9 +16,9 @@ class CartProvider {
     return CartProvider.getGroupCollection()
         .doc(idUser)
         .collection('items')
-        .withConverter<Cart>(
-          fromFirestore: (snapshot, _) => Cart.fromJson(snapshot.data()!),
-          toFirestore: (cart, _) => cart.toJson(),
+        .withConverter<Item>(
+          fromFirestore: (snapshot, _) => Item.fromJson(snapshot.data()!),
+          toFirestore: (item, _) => item.toJson(),
         );
   }
 

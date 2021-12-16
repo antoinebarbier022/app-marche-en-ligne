@@ -2,14 +2,14 @@ part of '_models.dart';
 
 class Cart {
   // On associe le produit avec la quantité
-  List<Item> items;
+  List<Item?> items;
 
   Cart({required this.items});
 
   double getTotalPrice(){
     double sum = 0;
     for (var element in items) {
-      sum += (element.quantity * element.product!.price);
+      sum += (element!.quantity * element.product!.price);
     }
     return sum;
   }
@@ -17,7 +17,7 @@ class Cart {
   int getTotalItems(){
     int total = 0;
     for (var element in items) {
-      total += element.quantity.toInt();
+      total += element!.quantity.toInt();
     }
     return total;
   }
@@ -27,12 +27,12 @@ class Cart {
 
   Cart.fromJson(Map<String, dynamic> json)
       : this(
-          items: List<Item>.from(json["items"].map((x) => Item.fromJson(x))),
+          items: List<Item?>.from(json["items"].map((x) => Item.fromJson(x))),
         );
 
 
   Map<String, dynamic> _cartToJson(Cart instance) => <String, dynamic>{
-      "items" : List<dynamic>.from(items.map((x) => x.toJson())),
+      "items" : List<dynamic>.from(items.map((x) => x!.toJson())),
       };
 
 }

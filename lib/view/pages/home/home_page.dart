@@ -15,8 +15,11 @@ class HomePage extends StatelessWidget {
     final user = Provider.of<UserModel?>(context);
     final AuthService _auth = AuthService();
 
-    return Scaffold(
+    final shopBloc = BlocProvider.of<ShopBloc>(context);
 
+    shopBloc.add(const ShopLoaded());
+
+    return Scaffold(
         appBar: const AppBarCustom(
           title: 'Carrefour Montpellier',
           search: true,
@@ -30,6 +33,22 @@ class HomePage extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
+                   BlocBuilder<ShopBloc, ShopState>(
+                    builder: (context, state) {
+                      if(state is ShopLoadSuccess){
+                        if(state.cart.items.length >=1){
+                          return Text(state.cart.items.first!.product!.name);
+                        }else{
+                          return const Text("vide");
+                        }
+                        
+                      }else{
+                        return const Text("error");
+                      }
+                      
+                    },
+                  ),
+
                   // SearchBar
                   /*
                   const Expanded(

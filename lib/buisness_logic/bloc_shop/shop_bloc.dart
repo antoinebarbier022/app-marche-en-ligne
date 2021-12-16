@@ -11,7 +11,7 @@ part 'shop_state.dart';
 class ShopBloc extends Bloc<ShopEvent, ShopState> {
   CartRepository cartRepository;
 
-  ShopBloc(this.cartRepository) : super(ShopLoadSuccess(Cart(items: [])));
+  ShopBloc(this.cartRepository) : super(ShopInitial());
 
   @override
   Stream<ShopState> mapEventToState(ShopEvent event) async* {
@@ -29,13 +29,12 @@ class ShopBloc extends Bloc<ShopEvent, ShopState> {
   }
 
   Stream<ShopState> _mapShopLoadedToState() async* {
-    var cart = Cart(items: []);
     try {
-      if (state is ShopLoadSuccess) {
-        cart = Cart(items: List.from((state as ShopLoadSuccess).cart.items));
-      } else {
-        cart = Cart(items: []);
-      }
+      yield ShopLoadInProgress();
+      List<Item?> items = await cartRepository.getItemsList("userTest");
+      var cart = Cart(items: items);
+      print(cart.items.first!.product!.name);
+      print(cart);
 
       yield ShopLoadSuccess(cart);
     } catch (_) {
@@ -49,15 +48,18 @@ class ShopBloc extends Bloc<ShopEvent, ShopState> {
     if ((state as ShopLoadSuccess)
         .cart
         .items
-        .any((item) => item.product!.name == event.item.product!.name)) {
-
+        .any((item) => item!.product!.name == event.item.product!.name)) {
       listItems = List.from((state as ShopLoadSuccess).cart.items);
-      double newQuantity = (listItems[listItems.indexWhere((item) => item.product!.name == event.item.product!.name)].quantity += event.item.quantity);
-    // Ajout dans firebase
-    cartRepository.updateItemInCart("userTest", event.item.product!.name, newQuantity);
+      double newQuantity = (listItems[listItems.indexWhere(
+              (item) => item.product!.name == event.item.product!.name)]
+          .quantity += event.item.quantity);
+      // Ajout dans firebase
+      cartRepository.updateItemInCart(
+          "userTest", event.item.product!.name, newQuantity);
     } else {
       // Ajout dans firebase
-    cartRepository.addItemInCart("userTest", Item(product: event.item.product, quantity: 1));
+      cartRepository.addItemInCart(
+          "userTest", Item(product: event.item.product, quantity: 1));
       listItems = List.from((state as ShopLoadSuccess).cart.items)
         ..add(event.item);
     }
@@ -69,9 +71,9 @@ class ShopBloc extends Bloc<ShopEvent, ShopState> {
 
   Stream<ShopState> _mapItemUpdatedToState(ItemUpdated event) async* {
     if (state is ShopLoadSuccess) {
-      final List<Item> listItems =
+      final List<Item?> listItems =
           (state as ShopLoadSuccess).cart.items.map((element) {
-        return element.product!.name == event.item.product!.name
+        return element!.product!.name == event.item.product!.name
             ? event.item
             : element;
       }).toList();
@@ -81,25 +83,31 @@ class ShopBloc extends Bloc<ShopEvent, ShopState> {
       yield ShopLoadSuccess(updatedShop);
       //_saveShop(updatedShop);
       // MAJ quantité
-      if(event.item.quantity >= 1){
-        cartRepository.addItemInCart("userTest", Item(product: event.item.product, quantity: event.item.quantity));
-      }else{
-        cartRepository.deleteItemInCart("userTest", event.item.product!.name,);
+      if (event.item.quantity >= 1) {
+        cartRepository.addItemInCart("userTest",
+            Item(product: event.item.product, quantity: event.item.quantity));
+      } else {
+        cartRepository.deleteItemInCart(
+          "userTest",
+          event.item.product!.name,
+        );
       }
-      
     }
   }
 
   Stream<ShopState> _mapItemDeletedToState(ItemDeleted event) async* {
     if (state is ShopLoadSuccess) {
-      final List<Item> updatedShop = (state as ShopLoadSuccess)
+      final List<Item?> updatedShop = (state as ShopLoadSuccess)
           .cart
           .items
-          .where((element) => element.product!.name != event.product!.name)
+          .where((element) => element!.product!.name != event.product!.name)
           .toList();
       yield ShopLoadSuccess(Cart(items: updatedShop));
       // delete dans firebase
-      cartRepository.deleteItemInCart("userTest", event.product!.name,);
+      cartRepository.deleteItemInCart(
+        "userTest",
+        event.product!.name,
+      );
       //_saveShop(updatedShop);
     }
   }
