@@ -36,7 +36,12 @@ class ShopBloc extends Bloc<ShopEvent, ShopState> {
       if (event.idUser != "") {
          items = await cartRepository.getItemsList(event.idUser);
       }else{
+        if (state is ShopLoadSuccess) {
+        items = List.from((state as ShopLoadSuccess).cart.items);
+      } else {
         items = [];
+      }
+        
       }
       yield ShopLoadSuccess(Cart(items: items));
     } catch (_) {

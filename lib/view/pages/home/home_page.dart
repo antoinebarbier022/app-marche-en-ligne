@@ -18,7 +18,7 @@ class HomePage extends StatelessWidget {
 
     final shopBloc = BlocProvider.of<ShopBloc>(context);
 
-    shopBloc.add( ShopLoaded(idUser: (user==null ? "":user.email!)));
+    shopBloc.add(ShopLoaded(idUser: (user == null ? "" : user.email!)));
 
     return Scaffold(
         appBar: const AppBarCustom(
@@ -59,22 +59,25 @@ class HomePage extends StatelessWidget {
                 ],
               ),
               const SizedBox(height: 20),
-              // Affichage des shopping list de l'utilisateur
-              BlocBuilder<ShoppingListBloc, ShoppingListState>(
-                builder: (context, state) {
-                  if (state is ShoppingListLoadSuccess) {
-                    return CollectionList(
-                      id: '',
-                      title: "Shopping List",
-                      listShoppingList: state.list,
-                      link: const ShoppingListsPage(
-                        title: 'Shopping List',
-                      ),
-                    );
-                  } else {
-                    return Container();
-                  }
-                },
+              // Affichage des shopping list de l'utilisateur (si il est connecté)
+              Visibility(
+                visible: user != null,
+                child: BlocBuilder<ShoppingListBloc, ShoppingListState>(
+                  builder: (context, state) {
+                    if (state is ShoppingListLoadSuccess) {
+                      return CollectionList(
+                        id: '',
+                        title: "Shopping List",
+                        listShoppingList: state.list,
+                        link: const ShoppingListsPage(
+                          title: 'Shopping List',
+                        ),
+                      );
+                    } else {
+                      return Container();
+                    }
+                  },
+                ),
               ),
 
               // Affichage des produits rangés par département (departement = catégorie général de produits)

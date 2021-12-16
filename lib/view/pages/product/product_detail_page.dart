@@ -33,7 +33,6 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
   Widget build(BuildContext context) {
     final user = Provider.of<UserModel?>(context);
 
-    
     return Scaffold(
         appBar: AppBarCustom(
           title: widget.product!.name,
@@ -60,15 +59,18 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                 decoration: BoxDecoration(
                   color: Theme.of(context).cardColor, // Colors.grey[100],
                   borderRadius: const BorderRadius.only(
-                              topLeft: Radius.circular(30),
-                              topRight: Radius.circular(30),
-                            ),
+                    topLeft: Radius.circular(30),
+                    topRight: Radius.circular(30),
+                  ),
                   boxShadow: [
                     BoxShadow(
-                      color: Theme.of(context).brightness == Brightness.light ? Colors.grey.shade300 : Colors.grey.shade300 ,
+                      color: Theme.of(context).brightness == Brightness.light
+                          ? Colors.grey.shade300
+                          : Colors.grey.shade300,
                       spreadRadius: 0,
                       blurRadius: 8,
-                      offset: const Offset(0, -12), // changes position of shadow
+                      offset:
+                          const Offset(0, -12), // changes position of shadow
                     ),
                   ],
                 ),
@@ -84,8 +86,9 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                           padding: const EdgeInsets.only(
                               left: 10, right: 10, top: 5, bottom: 5),
                           decoration: BoxDecoration(
-                            color:
-                                Theme.of(context).indicatorColor.withOpacity(0.2),
+                            color: Theme.of(context)
+                                .indicatorColor
+                                .withOpacity(0.2),
                             borderRadius: BorderRadius.circular(15),
                           ),
                           child: Text(
@@ -97,26 +100,30 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                         ),
 
                         // Ajout du produit dans une liste
-                        InkWell(
-                          child: Container(
-                            padding: const EdgeInsets.only(
-                                left: 15, right: 13, top: 13, bottom: 13),
-                            decoration: BoxDecoration(
-                              color: Colors.grey.withOpacity(0.1),
-                              borderRadius: BorderRadius.circular(20),
+                        // On affiche le bouton d'ajout à des listes seulement si l'utilisateur est connecté
+                        Visibility(
+                          visible: user != null,
+                          child: InkWell(
+                            child: Container(
+                              padding: const EdgeInsets.only(
+                                  left: 15, right: 13, top: 13, bottom: 13),
+                              decoration: BoxDecoration(
+                                color: Colors.grey.withOpacity(0.1),
+                                borderRadius: BorderRadius.circular(20),
+                              ),
+                              child: const Icon(
+                                Icons.playlist_add,
+                              ),
                             ),
-                            child: const Icon(
-                              Icons.playlist_add,
+                            onTap: () => showDialog<String>(
+                              context: context,
+                              builder: (BuildContext context) =>
+                                  ModalAddToShoppingList(
+                                product: widget.product,
+                              ),
                             ),
                           ),
-                          onTap: () => showDialog<String>(
-                            context: context,
-                            builder: (BuildContext context) =>
-                                ModalAddToShoppingList(
-                              product: widget.product,
-                            ),
-                          ),
-                        ),
+                        )
                       ],
                     ),
                     const SizedBox(
@@ -142,7 +149,8 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                             children: <Widget>[
                               TabBar(
                                 labelColor: Theme.of(context).indicatorColor,
-                                unselectedLabelColor: Theme.of(context).hintColor,
+                                unselectedLabelColor:
+                                    Theme.of(context).hintColor,
                                 tabs: const [
                                   Tab(text: 'Details'),
                                   Tab(text: 'Nutrition'),
@@ -161,9 +169,16 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                                         child: RichText(
                                           textAlign: TextAlign.justify,
                                           text: TextSpan(
-                                            text: widget.product!.description.isNotEmpty ? widget.product!.description : "Aucune description.",
+                                            text: widget.product!.description
+                                                    .isNotEmpty
+                                                ? widget.product!.description
+                                                : "Aucune description.",
                                             style: TextStyle(
-                                                color: Theme.of(context).brightness == Brightness.light ? Colors.grey.shade800 : Colors.grey.shade100,
+                                                color: Theme.of(context)
+                                                            .brightness ==
+                                                        Brightness.light
+                                                    ? Colors.grey.shade800
+                                                    : Colors.grey.shade100,
                                                 height: 1.3),
                                           ),
                                         )),
@@ -187,7 +202,6 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
             ],
           ),
         )),
-       
         backgroundColor: Theme.of(context).cardColor,
         bottomSheet: BlocBuilder<ShopBloc, ShopState>(
           builder: (context, state) {
@@ -198,11 +212,14 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                   padding: const EdgeInsets.only(left: 20, right: 20),
                   height: 60,
                   decoration: BoxDecoration(
-                    color: Theme.of(context).cardColor, //Theme.of(context).cardColor,
+                    color: Theme.of(context)
+                        .cardColor, //Theme.of(context).cardColor,
                     borderRadius: BorderRadius.circular(8),
                     boxShadow: [
                       BoxShadow(
-                        color: Theme.of(context).brightness == Brightness.light ? Colors.grey.shade300 : Colors.black45 ,
+                        color: Theme.of(context).brightness == Brightness.light
+                            ? Colors.grey.shade300
+                            : Colors.black45,
                         spreadRadius: 5,
                         blurRadius: 10,
                         offset:
@@ -223,7 +240,8 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                                   color: Theme.of(context).primaryColorLight,
                                   borderRadius: BorderRadius.circular(8),
                                 ),
-                                child: Icon(Icons.remove, color: Theme.of(context).primaryColorDark)),
+                                child: Icon(Icons.remove,
+                                    color: Theme.of(context).primaryColorDark)),
                             onTap: () {
                               _decrementQuantity();
                             },
@@ -231,9 +249,13 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                           Container(
                             padding: const EdgeInsets.all(10),
                             child: Text("${_quantity.toInt()}",
-                                style:  TextStyle(
-                                  color: Theme.of(context).brightness == Brightness.light ? Colors.grey.shade800 : Colors.grey.shade100,
-                                    fontSize: 18, fontWeight: FontWeight.bold)),
+                                style: TextStyle(
+                                    color: Theme.of(context).brightness ==
+                                            Brightness.light
+                                        ? Colors.grey.shade800
+                                        : Colors.grey.shade100,
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.bold)),
                           ),
                           InkWell(
                             child: Container(
@@ -242,7 +264,8 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                                   color: Theme.of(context).primaryColor,
                                   borderRadius: BorderRadius.circular(8),
                                 ),
-                                child: const Icon(Icons.add, color: Colors.white)),
+                                child:
+                                    const Icon(Icons.add, color: Colors.white)),
                             onTap: () {
                               _incrementQuantity();
                             },
@@ -256,8 +279,11 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                         child: ElevatedButton(
                           child: const Text("Add to cart"),
                           onPressed: () {
-                            BlocProvider.of<ShopBloc>(context).add(
-                                ItemAdded(idUser: user==null ? "":user.email!, item: Item(product: widget.product, quantity: _quantity)));
+                            BlocProvider.of<ShopBloc>(context).add(ItemAdded(
+                                idUser: user == null ? "" : user.email!,
+                                item: Item(
+                                    product: widget.product,
+                                    quantity: _quantity)));
                             ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                                 content: Text(
                                     'Vous avez ajouté [ ${_quantity.toInt()} x ${widget.product!.name} ] dans votre panier.')));

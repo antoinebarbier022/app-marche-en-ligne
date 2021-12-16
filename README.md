@@ -4,7 +4,7 @@
 ## Les fonctionnalités
 L'application marché en ligne contient les fonctionnalités suivantes : 
 - Les produits sont rangées par departements et catégories,
-- Visualisation/creation/suppression/edition de listes de produits,
+- Visualisation/creation/suppression/edition de listes de produits (si l'utilisateur est connecté),
 - Ajout/suppression/edition d'un item au panier,
 - Ajouter une liste de produit dans le panier,
 - Recherches de produits,
