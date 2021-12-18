@@ -188,7 +188,7 @@ class _CartItemState extends State<CartItem> {
                 IconButton(
                   icon: Icon(Icons.clear, color: Theme.of(context).brightness == Brightness.light ? Colors.grey[700] : Colors.grey[100],),
                   onPressed: () => BlocProvider.of<ShopBloc>(context)
-                      .add(ItemDeleted(product: widget.product)),
+                      .add(ItemDeleted(idUser: user==null ? "":user.email!, product: widget.product)),
                 ),
                 Container(
                   margin: const EdgeInsets.only(

@@ -118,14 +118,17 @@ class ShopBloc extends Bloc<ShopEvent, ShopState> {
           .items
           .where((element) => element!.product!.name != event.product!.name)
           .toList();
-      yield ShopLoadSuccess(Cart(items: updatedShop));
-      // delete dans firebase
+      
       if (event.idUser != "") {
+        print("clear "+ event.product!.name);
         cartRepository.deleteItemInCart(
           event.idUser,
           event.product!.name,
         );
       }
+      yield ShopLoadSuccess(Cart(items: updatedShop));
+      // delete dans firebase
+      
 
       //_saveShop(updatedShop);
     }
