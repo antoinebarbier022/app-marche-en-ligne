@@ -31,7 +31,9 @@ class DepartementDetailsPage extends StatelessWidget {
           ),*/
           const SizedBox(height: 10),
           // liste horizontale qui fait défiler la liste des noms de catégories du département
-          CategoriesListBadge(departement: departement,),
+          CategoriesListBadge(
+            departement: departement,
+          ),
           // Affichage de toutes les catégories du département avec leurs produits
           const SizedBox(height: 10),
           BlocBuilder<CategoryBloc, CategoryState>(
@@ -85,7 +87,7 @@ class DepartementDetailsPage extends StatelessWidget {
                     return const Center(child: Text("Is Empty."));
                   }
                 });
-              }else if(stateCategory is CategoriesLoading){
+              } else if (stateCategory is CategoriesLoading) {
                 return const Center(child: CircularProgressIndicator());
               } else {
                 return const Center(child: Text("Is Empty."));

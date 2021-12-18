@@ -10,8 +10,8 @@ class Category {
 
   Category.fromJson(Map<String, dynamic> json)
       : this(
-          name: json["name"] as String,
-          departement: json["departement"] as String,
+          name: json["name"].toString(),
+          departement: json["departement"].toString(),
         );
 
   @override

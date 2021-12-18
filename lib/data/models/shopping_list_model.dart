@@ -11,8 +11,8 @@ class ShoppingList {
 
   ShoppingList.fromJson(Map<String, dynamic> json)
       : this(
-          idUser: json["idUser"] as String,
-          name: json["name"] as String,
+          idUser: json["idUser"].toString(),
+          name: json["name"].toString(),
           products: List<Product?>.from(json["products"].map((x) => Product.fromJson(x))),
         );
 

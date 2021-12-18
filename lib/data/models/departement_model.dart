@@ -11,8 +11,8 @@ class Departement {
 
   Departement.fromJson(Map<String, dynamic> json)
       : this(
-          name: json["name"] as String,
-          image: json["image"] as String,
+          name: json["name"].toString(),
+          image: json["image"].toString(),
         );
 
   @override

@@ -9,7 +9,7 @@ class UserModel{
 
   UserModel.fromJson(Map<String, dynamic> json)
       : this(
-          email: json["email"] as String,
+          email: json["email"].toString(),
         );
 
 

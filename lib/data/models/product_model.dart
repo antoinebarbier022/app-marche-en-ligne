@@ -14,12 +14,12 @@ class Product {
 
   Product.fromJson(Map<String, dynamic> json)
       : this(
-          name: json["name"] as String,
-          urlImage: json["urlImage"] as String,
-          departement: json["departement"] as String,
-          category: json["category"] as String,
-          description: json["description"] as String,
-          price: json["price"] as double,
+          name: json["name"].toString(),
+          urlImage: json["urlImage"].toString(),
+          departement: json["departement"].toString(),
+          category: json["category"].toString(),
+          description: json["description"].toString(),
+          price: double.parse(json["price"]== null ? "0":json["price"].toString()),
         );
 
   @override
