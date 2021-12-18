@@ -4,7 +4,6 @@ class HomePage extends StatelessWidget {
   const HomePage({Key? key, this.title = ""}) : super(key: key);
 
   final String title;
-  
 
   @override
   Widget build(BuildContext context) {
@@ -14,13 +13,14 @@ class HomePage extends StatelessWidget {
     productsBloc.add(GetAllProducts());
 
     final departementsBloc = BlocProvider.of<DepartementBloc>(context);
-    departementsBloc.add(GetAllDepartements()); 
+    departementsBloc.add(GetAllDepartements());
     final shopBloc = BlocProvider.of<ShopBloc>(context);
     shopBloc.add(ShopLoaded(idUser: (user == null ? "" : user.email!)));
 
     final shoppingListBloc = BlocProvider.of<ShoppingListBloc>(context);
-    shoppingListBloc.add(ShoppingListLoaded(idUser: (user == null ? "" : user.email!)));
-    
+    shoppingListBloc
+        .add(ShoppingListLoaded(idUser: (user == null ? "" : user.email!)));
+
     return Scaffold(
         appBar: const AppBarCustom(
           title: 'Carrefour Montpellier',
@@ -66,14 +66,18 @@ class HomePage extends StatelessWidget {
                 child: BlocBuilder<ShoppingListBloc, ShoppingListState>(
                   builder: (context, state) {
                     if (state is ShoppingListLoadSuccess) {
-                      return CollectionList(
-                        id: '',
-                        title: "Shopping List",
-                        listShoppingList: state.list,
-                        link: const ShoppingListsPage(
-                          title: 'Shopping List',
-                        ),
-                      );
+                      if (state.list.isNotEmpty) {
+                        return CollectionList(
+                          id: '',
+                          title: "Shopping List",
+                          listShoppingList: state.list,
+                          link: const ShoppingListsPage(
+                            title: 'Shopping List',
+                          ),
+                        );
+                      }else{
+                        return Container();
+                      }
                     } else {
                       return Container();
                     }
