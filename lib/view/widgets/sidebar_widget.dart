@@ -16,6 +16,7 @@ class SideBar extends StatelessWidget {
             color: Theme.of(context).primaryColorDark,
             child: Column(
               children: [
+                const SizedBox(height: 20,),
                 Padding(
                   padding: const EdgeInsets.all(15.0),
                   child: Row(
@@ -28,7 +29,8 @@ class SideBar extends StatelessWidget {
                       Padding(
                         padding: const EdgeInsets.all(8.0),
                         child:
-                            Text(user == null ? "Not Connected" : user.email!),
+                            Text(user == null ? "Not Connected" : user.email!, style: const TextStyle(
+                      fontWeight: FontWeight.bold, color: Colors.white)),
                       ),
                     ],
                   ),
@@ -36,7 +38,7 @@ class SideBar extends StatelessWidget {
                 ListView(
                   physics: const NeverScrollableScrollPhysics(),
                   shrinkWrap: true,
-                  padding: const EdgeInsets.only(top: 60.0),
+                  padding: const EdgeInsets.only(top: 30.0),
                   children: ListTile.divideTiles(context: context, tiles: [
                     buildMenuItem(
                         text: "Store",
