@@ -57,10 +57,6 @@ class MyApp extends StatelessWidget {
           theme: ThemeData(
             brightness: Brightness.dark,
             primarySwatch: AppColors.primaryColor,
-            indicatorColor: AppColors.primaryColor,
-            bottomSheetTheme:
-                  BottomSheetThemeData(backgroundColor: Colors.grey[800])
-            
           ),
           darkTheme: ThemeData(
               brightness: Brightness.dark,
