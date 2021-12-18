@@ -9,7 +9,7 @@ class ShoppingListProvider {
 
   // --- GET ALL shopping list---
   Query getAllShoppingList(String idUser) { // .where("idUser", isEqualTo: idUser)
-    return ShoppingListProvider.getGroupCollection().withConverter<ShoppingList>(
+    return ShoppingListProvider.getGroupCollection().where("idUser", isEqualTo: idUser).withConverter<ShoppingList>(
       fromFirestore: (snapshot, _) => ShoppingList.fromJson(snapshot.data()!),
       toFirestore: (shoppingList, _) => shoppingList.toJson(),
     );
