@@ -16,16 +16,21 @@ class SideBar extends StatelessWidget {
             color: Theme.of(context).primaryColorDark,
             child: Column(
               children: [
-                Visibility(
-                  visible: (user != null),
-                  child: Container(
-                    padding: const EdgeInsets.all(10),
-                    child: Column(
-                      children: [
-                        Text(user == null ? "" : user.uid),
-                        Text(user == null ? "" : user.email!),
-                      ],
-                    ),
+                Padding(
+                  padding: const EdgeInsets.all(15.0),
+                  child: Row(
+                    children: [
+                      user == null
+                          ? Icon(Icons.circle,
+                              color: Theme.of(context).errorColor)
+                          : Icon(Icons.account_circle_outlined,
+                              color: Theme.of(context).indicatorColor),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child:
+                            Text(user == null ? "Not Connected" : user.email!),
+                      ),
+                    ],
                   ),
                 ),
                 ListView(
