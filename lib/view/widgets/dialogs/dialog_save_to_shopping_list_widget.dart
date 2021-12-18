@@ -47,6 +47,7 @@ class _ModalAddToShoppingListState extends State<ModalAddToShoppingList> {
                   itemBuilder: (BuildContext context, int index) {
                     return RadioListTile<String>(
                       title: Text(state.list[index]!.name),
+                      activeColor: Theme.of(context).indicatorColor,
                       value: state.list[index]!.name,
                       groupValue: _shoppingListSelected,
                       onChanged: (String? value) {
@@ -84,7 +85,7 @@ class _ModalAddToShoppingListState extends State<ModalAddToShoppingList> {
           },
           child: const Text('Done'),
         ),
-        ElevatedButton(
+        OutlinedButton(
           onPressed: () {
             // si on veut fermer la fenetre de dialogue avant d'ouvrir l'autre
             //Navigator.pop(context);
