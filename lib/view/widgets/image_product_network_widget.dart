@@ -11,13 +11,13 @@ class ImageNetworkProduct extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Image.network(
-        url,
-        fit: BoxFit.scaleDown,
-        loadingBuilder: (BuildContext context, Widget child,
-            ImageChunkEvent? loadingProgress) {
-          if (loadingProgress == null) {
-            return child;
-          }
+      url,
+      fit: BoxFit.scaleDown,
+      loadingBuilder: (BuildContext context, Widget child,
+          ImageChunkEvent? loadingProgress) {
+        if (loadingProgress == null) {
+          return child;
+        } else {
           return Center(
             child: CircularProgressIndicator(
               value: loadingProgress.expectedTotalBytes != null
@@ -26,12 +26,12 @@ class ImageNetworkProduct extends StatelessWidget {
                   : null,
             ),
           );
-        },
-        errorBuilder: (BuildContext context, Object exception,
-            StackTrace? stackTrace) {
-          return Image.asset('assets/default_image.png');
-        },
-      
+        }
+      },
+      errorBuilder:
+          (BuildContext context, Object exception, StackTrace? stackTrace) {
+        return Image.asset('assets/default_image.png');
+      },
     );
   }
 }

@@ -79,6 +79,7 @@ class ShopBloc extends Bloc<ShopEvent, ShopState> {
     final Cart updatedShop = Cart(items: listItems);
 
     yield ShopLoadSuccess(updatedShop);
+    
     //_saveShop(updatedShop);
   }
 

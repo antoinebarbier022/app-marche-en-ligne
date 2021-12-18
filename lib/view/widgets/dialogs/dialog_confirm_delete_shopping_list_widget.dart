@@ -11,6 +11,7 @@ class ModalConfirmDeleteShoppingList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final user = Provider.of<UserModel?>(context);
     return AlertDialog(
       titlePadding: const EdgeInsets.all(10),
       contentPadding: const EdgeInsets.only(left: 20, right: 20),
@@ -36,7 +37,7 @@ class ModalConfirmDeleteShoppingList extends StatelessWidget {
               //Navigator.pop(context);
               // Suppression de la liste
           BlocProvider.of<ShoppingListBloc>(context)
-              .add(ShoppingListDeleted(shoppingList));
+              .add(ShoppingListDeleted(shoppingList: shoppingList, idUser: (user == null ? "":user.email!)));
           // On ferme le popup
           Navigator.pop(context);
           // On revient à la page précédente

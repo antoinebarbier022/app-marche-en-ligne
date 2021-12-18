@@ -10,6 +10,7 @@ class ModalEditShoppingList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final user = Provider.of<UserModel?>(context);
     return AlertDialog(
       titlePadding: const EdgeInsets.all(10),
       contentPadding: const EdgeInsets.only(left: 20, right: 20),
@@ -38,22 +39,23 @@ class ModalEditShoppingList extends StatelessWidget {
               child: ListView.separated(
 
                   shrinkWrap: true,
-                  itemCount: state.list[indexCurrentShoppingList].products.length,
+                  itemCount: state.list[indexCurrentShoppingList]!.products.length,
                   itemBuilder: (BuildContext context, int index) {
-                    var productElement = state.list[indexCurrentShoppingList].products[index];
+                    var productElement = state.list[indexCurrentShoppingList]!.products[index];
                     return ListTile(
                       title: Text(productElement!.name),
                       trailing: IconButton(
                         icon: const Icon(Icons.delete),
                         onPressed: () {
                           // si il reste un élément et qu'on clique pour le supprimer on sort de la page
-                          if(state.list[indexCurrentShoppingList].products.length == 1){
+                          if(state.list[indexCurrentShoppingList]!.products.length == 1){
                             Navigator.of(context).pop();
                           }
                           BlocProvider.of<ShoppingListBloc>(context).add(
                               ShoppingListProductDeleted(
-                                  shoppingList.name,
-                                  productElement));
+                                  shoppingListName: shoppingList.name,
+                                  product: productElement,
+                                  idUser: (user == null ? "":user.email!)));
                         },
                       ),
                     );

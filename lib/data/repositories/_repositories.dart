@@ -9,3 +9,4 @@ part 'product_repository.dart';
 part 'departement_repository.dart';
 part 'category_repository.dart';
 part 'cart_repository.dart';
+part 'shopping_list_repository.dart';

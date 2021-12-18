@@ -26,10 +26,14 @@ class ShoppingListDetailsPage extends StatelessWidget {
                         label: const Text("Edit"),
                         onPressed: () => showDialog<String>(
                             context: context,
-                            builder: (BuildContext context) =>
-                                ModalEditShoppingList(
+                            builder: (BuildContext context) => StreamProvider<UserModel?>.value(
+                                value: AuthService().user,
+                                initialData: null,
+                                child: ModalEditShoppingList(
                                   shoppingList: shoppingList,
-                                )),
+                                ),
+                              )
+                                ),
                       ),
                     ),
                   ),
@@ -43,12 +47,12 @@ class ShoppingListDetailsPage extends StatelessWidget {
                     int indexCurrentShoppingList =
                         state.list.indexOf(shoppingList);
                     if (indexCurrentShoppingList >= 0  && state
-                        .list[indexCurrentShoppingList].products.isNotEmpty) {
+                        .list[indexCurrentShoppingList]!.products.isNotEmpty) {
                       return GridView.builder(
                         physics: const NeverScrollableScrollPhysics(),
                         shrinkWrap: true,
                         itemCount: state
-                            .list[indexCurrentShoppingList].products.length,
+                            .list[indexCurrentShoppingList]!.products.length,
                         padding: const EdgeInsets.all(10),
                         gridDelegate:
                             const SliverGridDelegateWithFixedCrossAxisCount(
@@ -59,7 +63,7 @@ class ShoppingListDetailsPage extends StatelessWidget {
                         itemBuilder: (BuildContext context, int index) {
                           return ProductItem(
                               product: state.list[indexCurrentShoppingList]
-                                  .products[index]);
+                                  !.products[index]);
                         },
                       );
                     } else {
@@ -111,9 +115,13 @@ class RemoveButton extends StatelessWidget {
         label: const Text("Remove"),
         onPressed: () => showDialog<String>(
             context: context,
-            builder: (BuildContext context) => ModalConfirmDeleteShoppingList(
+            builder: (BuildContext context) => StreamProvider<UserModel?>.value(
+                                value: AuthService().user,
+                                initialData: null,
+                                child: ModalConfirmDeleteShoppingList(
                   shoppingList: shoppingList,
-                )),
+                ),
+                              )),
       ),
     );
   }

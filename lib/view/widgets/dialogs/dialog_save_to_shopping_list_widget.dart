@@ -16,6 +16,7 @@ class _ModalAddToShoppingListState extends State<ModalAddToShoppingList> {
 
   @override
   Widget build(BuildContext context) {
+    final user = Provider.of<UserModel?>(context);
     return AlertDialog(
       titlePadding: const EdgeInsets.all(10),
       contentPadding: const EdgeInsets.only(left: 20, right: 20),
@@ -45,15 +46,15 @@ class _ModalAddToShoppingListState extends State<ModalAddToShoppingList> {
                   itemCount: state.list.length,
                   itemBuilder: (BuildContext context, int index) {
                     return RadioListTile<String>(
-                      title: Text(state.list[index].name),
-                      value: state.list[index].name,
+                      title: Text(state.list[index]!.name),
+                      value: state.list[index]!.name,
                       groupValue: _shoppingListSelected,
                       onChanged: (String? value) {
                         setState(() {
-                          _shoppingListSelected = state.list[index].name;
+                          _shoppingListSelected = state.list[index]!.name;
                         });
                       },
-                      selected: state.list[index].name == _shoppingListSelected,
+                      selected: state.list[index]!.name == _shoppingListSelected,
                       selectedTileColor: Colors.grey.withOpacity(0.1),
                     );
                   },
@@ -73,7 +74,7 @@ class _ModalAddToShoppingListState extends State<ModalAddToShoppingList> {
         ElevatedButton(
           onPressed: _shoppingListSelected!.isEmpty ? null : () {
             BlocProvider.of<ShoppingListBloc>(context)
-              .add(ShoppingListProductAdded(_shoppingListSelected!, widget.product));
+              .add(ShoppingListProductAdded(shoppingListName: _shoppingListSelected!, product: widget.product, idUser:(user == null ? "":user.email!)));
             // si on veut fermer la fenetre de dialogue avant d'ouvrir l'autre
             Navigator.pop(context);
               ScaffoldMessenger.of(context).showSnackBar(SnackBar(

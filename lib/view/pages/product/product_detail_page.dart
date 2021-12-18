@@ -118,8 +118,12 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                             onTap: () => showDialog<String>(
                               context: context,
                               builder: (BuildContext context) =>
-                                  ModalAddToShoppingList(
-                                product: widget.product,
+                                  StreamProvider<UserModel?>.value(
+                                value: AuthService().user,
+                                initialData: null,
+                                child: ModalAddToShoppingList(
+                                  product: widget.product,
+                                ),
                               ),
                             ),
                           ),

@@ -19,7 +19,6 @@ class ProductBloc extends Bloc<ProductEvent, ProductState> {
       // chargement des produits
       yield ProductsLoading();
       List<Product?> newState = await repository.getProductsList();
-      print(newState);
       /*[
         // vegetables
         Product(name: "Carotte", price: 2.4, departement: "Vegetables", category: "France", urlImage: "https://static.greenweez.com/images/products/119000/600/fruits-legumes-locaux-idf-bio-copie-produit-concombre-long-ile-de-france.jpg"),

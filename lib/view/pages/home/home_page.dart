@@ -4,22 +4,23 @@ class HomePage extends StatelessWidget {
   const HomePage({Key? key, this.title = ""}) : super(key: key);
 
   final String title;
+  
 
   @override
   Widget build(BuildContext context) {
+    var user = Provider.of<UserModel?>(context);
+
     final productsBloc = BlocProvider.of<ProductBloc>(context);
     productsBloc.add(GetAllProducts());
 
     final departementsBloc = BlocProvider.of<DepartementBloc>(context);
-    departementsBloc.add(GetAllDepartements());
-
-    final user = Provider.of<UserModel?>(context);
-    final AuthService _auth = AuthService();
-
+    departementsBloc.add(GetAllDepartements()); 
     final shopBloc = BlocProvider.of<ShopBloc>(context);
-
     shopBloc.add(ShopLoaded(idUser: (user == null ? "" : user.email!)));
 
+    final shoppingListBloc = BlocProvider.of<ShoppingListBloc>(context);
+    shoppingListBloc.add(ShoppingListLoaded(idUser: (user == null ? "" : user.email!)));
+    
     return Scaffold(
         appBar: const AppBarCustom(
           title: 'Carrefour Montpellier',

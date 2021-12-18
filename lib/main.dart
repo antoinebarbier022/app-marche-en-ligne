@@ -46,7 +46,7 @@ class MyApp extends StatelessWidget {
         ),
         // ShoppingList Bloc
         BlocProvider<ShoppingListBloc>(
-          create: (BuildContext context) => ShoppingListBloc(),
+          create: (BuildContext context) => ShoppingListBloc(ShoppingListRepository()),
         ),
 
 
@@ -70,20 +70,5 @@ class MyApp extends StatelessWidget {
             child: const HomePage(title: 'Online Market'),
           )),
     );
-  }
-}
-
-class Wrapper extends StatelessWidget {
-  const Wrapper({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    final user = Provider.of<UserModel?>(context);
-
-    if (user == null) {
-      return const Authenticate();
-    } else {
-      return const HomePage(title: 'Online Market');
-    }
   }
 }

@@ -29,6 +29,8 @@ class _ModalAddNewShoppingListState extends State<ModalAddNewShoppingList> {
   Widget build(BuildContext context) {
     final _formKey = GlobalKey<FormState>();
 
+    final user = Provider.of<UserModel?>(context);
+
     return Form(
       key: _formKey,
       child: AlertDialog(
@@ -66,7 +68,7 @@ class _ModalAddNewShoppingListState extends State<ModalAddNewShoppingList> {
               onPressed: () {
                 if (_formKey.currentState!.validate()) {
                   BlocProvider.of<ShoppingListBloc>(context).add(
-                      ShoppingListAdded(ShoppingList(_controller.text, [])));
+                      ShoppingListAdded(idUser: (user == null ? "":user.email!) ,shoppingList: ShoppingList(idUser: "test", name: _controller.text, products: [])));
                   Navigator.pop(context);
                 }
               },

@@ -1,7 +1,5 @@
 part of 'shopping_list_bloc.dart';
 
-
-
 @immutable
 abstract class ShoppingListEvent {
   const ShoppingListEvent();
@@ -11,45 +9,50 @@ abstract class ShoppingListEvent {
 
 // All Shopping list chargé
 class ShoppingListLoaded extends ShoppingListEvent {
-final List<ShoppingList> list;
-
-  const ShoppingListLoaded(this.list);
+  final String idUser;
+  const ShoppingListLoaded({ this.idUser = ""});
 
   @override
-  List<Object> get props => [list];
-
+  List<Object> get props => [idUser];
 }
 
 // Shopping list créée
 class ShoppingListAdded extends ShoppingListEvent {
+  final String idUser;
   final ShoppingList shoppingList;
 
-  const ShoppingListAdded(this.shoppingList);
+  const ShoppingListAdded({required this.shoppingList, this.idUser = ""});
 
   @override
-  List<Object> get props => [shoppingList];
+  List<Object> get props => [shoppingList, idUser];
 
   @override
-  String toString() => 'ShoppingListAdded { shopping list: ${shoppingList.name}}';
+  String toString() =>
+      'ShoppingListAdded { shopping list: ${shoppingList.name}}';
 }
 
 // Suppression de la shopping liste
 class ShoppingListDeleted extends ShoppingListEvent {
+  final String idUser;
   final ShoppingList shoppingList;
 
-  const ShoppingListDeleted(this.shoppingList);
+  const ShoppingListDeleted({required this.shoppingList, this.idUser = ""});
 
   @override
-  List<Object> get props => [shoppingList];
+  List<Object> get props => [shoppingList, idUser];
 }
 
 // Ajouter un produit dans une shopping list
 
 class ShoppingListProductAdded extends ShoppingListEvent {
+  final String idUser;
   final String shoppingListName;
   final Product? product;
 
-  const ShoppingListProductAdded(this.shoppingListName, this.product);
+  const ShoppingListProductAdded(
+      {required this.shoppingListName,
+      required this.product,
+      this.idUser = ""});
 
   @override
   List<Object> get props => [shoppingListName, product as Object];
@@ -60,15 +63,18 @@ class ShoppingListProductAdded extends ShoppingListEvent {
 
 // Supprimer un produit de la shopping list
 class ShoppingListProductDeleted extends ShoppingListEvent {
+  final String idUser;
   final String shoppingListName;
   final Product product;
 
-  const ShoppingListProductDeleted(this.shoppingListName,this.product);
+  const ShoppingListProductDeleted(
+      {required this.shoppingListName,
+      required this.product,
+      this.idUser = ""});
 
   @override
-  List<Object> get props => [shoppingListName, product];
+  List<Object> get props => [shoppingListName, product, idUser];
 
   @override
   String toString() => 'ProductDeleted { product: $product }';
 }
-

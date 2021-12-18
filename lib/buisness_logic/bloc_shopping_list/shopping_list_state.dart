@@ -17,9 +17,9 @@ class ShoppingListLoadInProgress extends ShoppingListState {}
 
 // ShoppingListLoadSuccess
 class ShoppingListLoadSuccess extends ShoppingListState {
-  final List<ShoppingList> list;
+  final List<ShoppingList?> list;
 
-  const ShoppingListLoadSuccess(this.list);
+  const ShoppingListLoadSuccess({required this.list});
 
   @override
   List<Object> get props => [list];

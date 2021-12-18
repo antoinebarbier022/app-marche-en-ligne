@@ -24,7 +24,11 @@ class ShoppingListsPage extends StatelessWidget {
                   onPressed: () => showDialog<String>(
                     context: context,
                     builder: (BuildContext context) =>
-                        const ModalAddNewShoppingList(),
+                        StreamProvider<UserModel?>.value(
+                                value: AuthService().user,
+                                initialData: null,
+                                child: const ModalAddNewShoppingList(),
+                              ),
                   ),
                 ),
               ),
@@ -40,10 +44,10 @@ class ShoppingListsPage extends StatelessWidget {
                           return CollectionList(
                               id: '',
                               isShopingList: true,
-                              title: state.list[index].name,
-                              listProduct: state.list[index].products,
+                              title: state.list[index]!.name,
+                              listProduct: state.list[index]!.products,
                               link: ShoppingListDetailsPage(
-                                shoppingList: state.list[index],
+                                shoppingList: state.list[index]!,
                               ));
                         },
                         separatorBuilder: (BuildContext context, int index) {
