@@ -72,6 +72,7 @@ class _CartItemState extends State<CartItem> {
                     margin: const EdgeInsets.all(10),
                     decoration: BoxDecoration(
                       //border: Border.all(color: Colors.black12, width: 1),
+                      color: Colors.white,
                       borderRadius: BorderRadius.circular(5),
                     ),
                     child: ImageNetworkProduct(url: widget.product!.urlImage,)
